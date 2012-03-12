@@ -21,8 +21,8 @@ Scenario: add blurb about family "Lin"
   And I write a blurb about family "Lin"
   And I click "Submit"
   Then I should be on the home page
-  When I click "Show Families"
-  Then I should see the family "Lin"
+  When I click "Pending Items"
+  Then I should see Lin family blurb as a pending item
 
 
 
