@@ -20,9 +20,8 @@ Scenario: add blurb about family "Lin"
   And I click on "Add New Family"
   And I write a blurb about family "Lin"
   And I click "Submit"
-  Then I should be on the home page
-  When I click "Pending Items"
-  Then I should see Lin family blurb as a pending item
+  Then I should be on the case manager home page
+  And I should see Lin family blurb as a pending item
 
 
 

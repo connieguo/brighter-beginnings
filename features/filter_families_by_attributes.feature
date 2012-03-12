@@ -13,11 +13,12 @@ Background: families have been added to database
   | Li      | 4    | Antioch  |			
   | Wong    | 10   | Antioch  |
   | Patel   | 7    | Antioch  |
-  And I am on the donors home page
+  And I am on the home page
 
 Scenario: see families in the location
   # your steps here
   Given I have logged in as a donor
+  And I am on the donors home page
   And I am from the Antioch Location
   And I select "Filter by Family Size"
   And for minimum size I enter "5"
