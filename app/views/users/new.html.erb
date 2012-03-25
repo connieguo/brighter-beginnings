@@ -1,0 +1,66 @@
+<form action="/users" class="new_user" id="new_user" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="authenticity_token" type="hidden"
+       value="rB82sI7Qw5J9J1UMILG/VQL411vH5putR+JwlxLScMQ=" />
+</div>
+
+  <div class="field">
+    <label for="username">Name</label><br />
+    <input id="username" name="user[name]" size="30" type="text" />
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label><br />
+    <input id="email" name="user[email]" size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="password">Password</label><br />
+    <input id="password" name="user[password]" size="30" type="password" />
+  </div>
+
+  <div class="field">
+    <label for="password_confirmation">Confirmation</label><br />
+    <input id="password_confirmation" name="user[password_confirmation]"
+           size="30" type="password" />
+  </div>
+  
+  <div class="field">
+    <label for="phone">Phone Number</label><br />
+    <input id="phone" name="user[phone]"
+           size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="address_1">Address Line 1</label><br />
+    <input id="address_1" name="user[address_1]"
+           size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="address_2">Address Line 2</label><br />
+    <input id="address_2" name="user[address_2]"
+           size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="city">City</label><br />
+    <input id="city" name="user[city]"
+           size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="state">State</label><br />
+    <input id="state" name="user[state]"
+           size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="zipcode">Zipcode</label><br />
+    <input id="zipcode" name="user[zipcode]"
+           size="30" type="text" />
+  </div>
+
+
+
+
+
+
+  <div class="actions">
+    <input id="user_submit" name="commit" type="submit" value="Sign up" />
+  </div>
+</form>
