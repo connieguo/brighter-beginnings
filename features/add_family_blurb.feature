@@ -17,6 +17,7 @@ Background: families have been added to database
 Scenario: add blurb about family "Lin"
   # your steps here
   Given I have logged in as a case manager
+  And I am on the case manager home page
   And I click on "Add New Family"
   And I write a blurb about family "Lin"
   And I click "Submit"
