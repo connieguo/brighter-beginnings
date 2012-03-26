@@ -65,12 +65,12 @@
       <p><font size="5" face="arial">Browse families to donate</p>
       <font size="3" face="arial">Filter By Family Size:
       <form name="size" onClick="this.form.submit();">
-      <input type="checkbox" name="size[]" value="2" checked /> 2 &nbsp; &nbsp;
-      <input type="checkbox" name="size[]" value="3" checked /> 3 &nbsp; &nbsp;
-      <input type="checkbox" name="size[]" value="4" checked /> 4 &nbsp; &nbsp;
-      <input type="checkbox" name="size[]" value="5" checked /> 5 &nbsp; &nbsp;
-      <input type="checkbox" name="size[]" value="6 or more" checked> > 5 &nbsp; &nbsp;
-      <input type="submit" value="Filter" /><br></form></div>
+      <input type="checkbox" name="size[]" value="2" <% if @selected_sizes.include?("2") %>checked="checked"<%end%> /> 2 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="3" <% if @selected_sizes.include?("3") %>checked="checked"<%end%> /> 3 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="4" <% if @selected_sizes.include?("4") %>checked="checked"<%end%> /> 4 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="5" <% if @selected_sizes.include?("5") %>checked="checked"<%end%> /> 5 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="6 or more" <%if @selected_sizes.include?("6 or more")%>checked="checked"<%end%> /> >5 &nbsp; &nbsp;
+      <input type="submit" value="Generate" /><br></form></div>
 	  <table align="center">
     <tr>
       <th><font size="4" face="arial" color = "purple">Family Name &nbsp; &nbsp; &nbsp;</th>
