@@ -57,23 +57,24 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         
-        <h1>Welcome <%= @user.name %></h1>
+        <h1>Welcome</h1>
 	<div class="padding" style="padding-bottom:3px;">&nbsp;</div>
 	  <p>Thank you for supporting Brighter Beginnings! Our client families are among the most vulnerable in our communities. Your financial contributions truly make a difference. Generous donors allow us to ensure that staff and services are available to provide the support and encouragement that our families need all year long.</p>
 	  <div class="padding" style="padding-bottom:3px;">&nbsp;</div>
     <div align="center"><br>
-      Filter By Family Size: 
-      <input type="radio" name="size" value="2"> 2
-      <input type="radio" name="size" value="3"> 3
-      <input type="radio" name="size" value="4"> 4
-      <input type="radio" name="size" value="4+"> 4+
+      <font size="3" face="arial">Filter By Family Size:
+      <input type="checkbox" name="size" value="2" checked> 2 &nbsp; &nbsp;
+      <input type="checkbox" name="size" value="3" checked> 3 &nbsp; &nbsp;
+      <input type="checkbox" name="size" value="4" checked> 4 &nbsp; &nbsp;
+      <input type="checkbox" name="size" value="5" checked> 5 &nbsp; &nbsp;
+      <input type="checkbox" name="size" value="5+" checked> 5+ &nbsp; &nbsp;
       <input type="submit" value="Filter" /><br></div>
 	  <table align="center">
     <tr>
-      <th>Family Name &nbsp; &nbsp; &nbsp;</th>
-      <th>Family Size</th>
-      <th>Family Location</th>
-      <th>More Detail</th>
+      <th><font size="4" face="arial" color = "purple">Family Name &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">Family Size &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">Location &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">More Detail</th>
     </tr>
 
    <% @families.each do |family| %>
