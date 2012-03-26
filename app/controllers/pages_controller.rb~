@@ -8,10 +8,14 @@ class PagesController < ApplicationController
   end
   
   def donor
-    #@all_sizes = Family.get_sizes()
-    @sizes = params[:sizes]
-    @families = Family.find(:all)
-    @a = @families[2]
-    #@families = Family.find(:all).select{|f| @sizes != nil && ( @sizes.include?(f.size.to_s) || @sizes.include?("5+") && f.size > 5)}.sort_by{|f| f.size}
+    @all_sizes = Family.get_sizes()
+    @sizes = params[:size]
+    @selected_sizes = @sizes || session[:size] || @all_sizes
+    if @sizes != session[:size]
+      session[:size] = @selected_sizes
+    end
+    flash[:notice] = "size is #{@sizes}"
+    #@families = Family.find(:all)
+    @families = Family.find(:all).select{|f| @sizes != nil  && ( @sizes.include?(f.size.to_s) || ( @sizes.include?("6 or more") && f.size > 5) )}.sort_by{|f| f.size}
   end
 end
