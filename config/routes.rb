@@ -11,6 +11,8 @@ BrighterBeginnings::Application.routes.draw do
   root :to => "pages#index"
   match '/signup', :to => 'users#new'
   match '/home', :to => 'pages#donor'
+  
+  match '/auth/google/callback', :to => 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

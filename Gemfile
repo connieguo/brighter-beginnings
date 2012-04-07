@@ -41,3 +41,8 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
+
+gem 'omniauth-openid'
+
+#This is required because without it you will get a "Request-URI Too Large" when using oauth-open_id
+gem 'mongrel', '1.2.0.pre2'
