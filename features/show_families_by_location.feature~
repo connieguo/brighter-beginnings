@@ -29,7 +29,7 @@ Scenario: see families in the location
   And I should not see the family "Smith"
   And I should not see the family "Wong"
   
-Scenario: no families in the location
+Scenarios: no families in the location
   Given I have logged in as a donor
   And I am on the donors home page
   And I am from the Fake location

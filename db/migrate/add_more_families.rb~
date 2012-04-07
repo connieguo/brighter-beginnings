@@ -1,11 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
+class AddMoreFamilies < ActiveRecord::Migration
   MORE_FAMILIES = [
     {:size => 4, :location => 'Oakland', :surname => 'Fox'},
     {:size => 2, :location => 'Antioch', :surname => 'Dong'},
@@ -15,6 +8,9 @@
     {:size => 3, :location => 'Oakland', :surname => 'Guo'}
   ]
   
-  MORE_FAMILIES.each do |family|
-    Family.create!(family)
+  def change
+    MORE_FAMILIES.each do |family|
+      Family.create!(family)
+    end
   end
+end

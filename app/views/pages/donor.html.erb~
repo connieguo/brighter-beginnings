@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Brighter Beginning: Strengthening Families</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Brighter Beginnings</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li><a href="/sign_out">Sign Out</a></li>
+	    </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        
+        <h1>Welcome</h1>
+	<div class="padding" style="padding-bottom:3px;">&nbsp;</div>
+	  <p>Thank you for supporting Brighter Beginnings! Our client families are among the most vulnerable in our communities. Your financial contributions truly make a difference. Generous donors allow us to ensure that staff and services are available to provide the support and encouragement that our families need all year long.</p>
+	  <div class="padding" style="padding-bottom:3px;"></div>
+    <div align="center"><br>
+      <p><font size="5" face="arial">Browse families to donate</p>
+      <font size="3" face="arial">Filter By Family Size:
+      <form name="size" onClick="this.form.submit();">
+      <input type="checkbox" name="size[]" value="2" <% if @selected_sizes.include?("2") %>checked="checked"<%end%> /> 2 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="3" <% if @selected_sizes.include?("3") %>checked="checked"<%end%> /> 3 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="4" <% if @selected_sizes.include?("4") %>checked="checked"<%end%> /> 4 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="5" <% if @selected_sizes.include?("5") %>checked="checked"<%end%> /> 5 &nbsp; &nbsp;
+      <input type="checkbox" name="size[]" value="6 or more" <% if @selected_sizes.include?("6") %>checked="checked"<%end%> /> >5 &nbsp; &nbsp;
+      <input type="submit" value="Generate" /><br></form></div>
+	  <table align="center">
+    <tr>
+      <th><font size="4" face="arial" color = "purple">Family Name &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">Family Size &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">Location &nbsp; &nbsp; &nbsp;</th>
+      <th><font size="4" face="arial" color = "purple">More Detail</th>
+    </tr>
+
+   <% @families.each do |family| %>
+  <tr>
+    <td><%= family.surname %></td>
+    <td><%= family.size %></td>
+    <td><%= family.location %></td>
+    <td><a class="btn" href="#">Detail&raquo;</a></td>
+  </tr>
+  <% end %>
+
+</table>
+
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Success Stories</h2>
+           <p>Since the inception of the donor program, Brighter Beginnings has managed to make a huge difference in the lives of many families. Click here to see testimonies and stories from the community.</p>
+          <p><a class="btn" href="#">View more&raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Get Involved</h2>
+           <p>Brighter Beginnings is always looking for talented, passionate people to help us in our mission to strengthen East Bay families. Volunteer or do an internship with us!</p>
+          <p><a class="btn" href="#">View more&raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Donor FAQ's</h2>
+          <p>Have questions about how the Adopt a Family program works exactly? Click here to see common questions and answers about our Adopt a Family Program!</p>
+          <p><a class="btn" href="#">View more&raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Brighter Beginnings 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+  </body>
+</html>
+

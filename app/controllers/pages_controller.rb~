@@ -14,6 +14,6 @@ class PagesController < ApplicationController
     if @sizes != session[:size]
       session[:size] = @selected_sizes
     end
-    @families = Family.find(:all).select{|f| @selected_sizes != nil  && ( @selected_sizes.include?(f.size.to_s) || ( @selected_sizes.include?("6 or more") && f.size > 5) )}.sort_by{|f| f.size}
+    @families = Family.find(:all).select{|f| @sizes != nil  && ( @selected_sizes.include?(f.size.to_s) || ( @selected_sizes.include?("6 or more") && f.size > 5) )}.sort_by{|f| f.size}
   end
 end

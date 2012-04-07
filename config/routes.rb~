@@ -1,8 +1,4 @@
 BrighterBeginnings::Application.routes.draw do
-  resources :family_members
-
-  resources :donations
-
   resources :families
 
   resources :users
@@ -10,7 +6,7 @@ BrighterBeginnings::Application.routes.draw do
   get "pages/index"
   root :to => "pages#index"
   match '/signup', :to => 'users#new'
-  match '/home', :to => 'pages#donor'
+  match '/home', :to => 'pages/donor'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
