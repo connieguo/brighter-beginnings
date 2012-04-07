@@ -11,24 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324010407) do
+ActiveRecord::Schema.define(:version => 20120407043638) do
+
+  create_table "donations", :force => true do |t|
+    t.string   "scheduled_dropoff"
+    t.string   "dropoff_site"
+    t.string   "dropped_off_date"
+    t.string   "date_delivered"
+    t.string   "family_code"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "families", :force => true do |t|
-    t.integer  "size"
     t.string   "location"
-    t.string   "surname"
+    t.boolean  "display"
+    t.text     "profile"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "family_code"
+  end
+
+  create_table "family_members", :force => true do |t|
+    t.string   "family_code"
+    t.string   "firstname"
+    t.integer  "age"
+    t.string   "gender"
+    t.text     "comment"
+    t.string   "pant_size"
+    t.string   "shirt_size"
+    t.string   "dress_size"
+    t.string   "shoe_size"
+    t.text     "wishlist"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "password"
-    t.string   "password_confirmation"
     t.string   "email"
-    t.string   "address"
+    t.integer  "identity"
+    t.integer  "locationID"
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "phone"
+    t.string   "address"
+    t.string   "organization"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

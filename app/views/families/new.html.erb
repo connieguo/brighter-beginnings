@@ -1,5 +1,24 @@
 <h1>New family</h1>
 
-<%= render 'form' %>
-
+<%= form_for(@family) do |f| %>
+  <div class="field">
+    <%= f.label :family_code %><br />
+    <%= f.text_field :family_code %>
+  </div>
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_field :profile %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :display %><br />
+    <%= f.check_box :display %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create New Family" %>
+  </div>
+<% end %>
 <%= link_to 'Back', families_path %>

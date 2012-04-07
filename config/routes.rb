@@ -1,4 +1,8 @@
 BrighterBeginnings::Application.routes.draw do
+  resources :family_members
+
+  resources :donations
+
   resources :families
 
   resources :users

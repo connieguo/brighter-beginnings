@@ -79,12 +79,9 @@ describe UsersController do
         assigns(:user).should be_persisted
       end
 
-      it "should flash a notice that user was successfully created" do
+      it "redirects to the created user" do
         post :create, {:user => valid_attributes}, valid_session
-        assigns(:user).should be_a(User)
-        assigns(:user).should be_persisted
-        response.should redirect_to("/")
-        flash[:notice].should == "Congratulations, your sign-up procedure was successful! Please log in to continue."
+        response.should redirect_to(User.last)
       end
     end
 
@@ -102,14 +99,7 @@ describe UsersController do
         post :create, {:user => {}}, valid_session
         response.should render_template("new")
       end
-
-      it "should flash a notice that errors were found" do
-        post :create, {:user => valid_attributes}, valid_session
-        response.should render_template("new")
-        flash[:notice].should == "Sorry, one or more mandatory fields was not entered. Please double-check to make sure those fields are correct."
-      end
     end
-
   end
 
   describe "PUT update" do
@@ -154,9 +144,7 @@ describe UsersController do
         response.should render_template("edit")
       end
     end
-
   end
-
 
   describe "DELETE destroy" do
     it "destroys the requested user" do

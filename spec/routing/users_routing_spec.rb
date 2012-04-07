@@ -31,9 +31,5 @@ describe UsersController do
       delete("/users/1").should route_to("users#destroy", :id => "1")
     end
 
-    it "should direct signup to route to #new" do
-      get("/signup").should rout_to("users#new")
-    end
-
   end
 end
