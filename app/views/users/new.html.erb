@@ -1,5 +1,41 @@
-<h1>New user</h1>
+<h1>Complete Profile Information</h1>
 
-<%= render 'form' %>
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :firstname, "First Name" %><br />
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname, "Last Name" %><br />
+    <%= f.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :phone, "Primary Phone Number" %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br />
+    <%= f.text_field :organization %>
+  </div>
+  <div>
+    <select name="user[locationID]">
+      <option value="1">Oakland</option>
+      <option value="2">Richmond</option>
+      <option value="3">Antioch</option>
+      <option value="4">Bay Point</option>
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', users_path %>

@@ -1,5 +1,17 @@
-<p id="notice"><%= notice %></p>
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @user.firstname %>
+        <%= @user.lastname %>
+      </h1>
+    </td>
+  </tr>
+</table>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<li><strong>First Name</strong> <%= @user.firstname %></li>
+<li><strong>Last Name</strong> <%= @user.lastname %></li>
+<li><strong>Address</strong> <%= @user.address %></li>
+<li><strong>Location ID</strong> <%= @user.locationID %></li>
+<li><strong>Organization</strong> <%= @user.organization %></li>
+<li><strong>Email</strong> <%= @user.email %></li>
