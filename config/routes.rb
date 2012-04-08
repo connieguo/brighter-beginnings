@@ -13,6 +13,8 @@ BrighterBeginnings::Application.routes.draw do
   match '/home', :to => 'pages#donor'
   
   match '/auth/google/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failed_login'
+  match '/logout', :to => 'sessions#logout'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
