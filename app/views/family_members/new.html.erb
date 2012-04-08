@@ -1,5 +1,52 @@
-<h1>New family_member</h1>
+<h1>Create Family Member</h1>
 
-<%= render 'form' %>
+<%= form_for(@family_member) do |f| %>
+  <div class="field">
+    <%= f.label :family_code, "Family Code" %><br />
+    <%= f.text_field :family_code %>
+  </div>
+  <div class="field">
+    <%= f.label :firstname, "First Name"%><br />
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :age, "Age" %><br />
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :Gender %><br />
+    <select name="family_member[gender]">
+      <option value="F">Female</option>
+      <option value="M">Male</option>
+    <select>
+  </div>
+  <div class="field">
+    <%= f.label :comment, "Comment" %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :pant_size, "Pant Size" %><br />
+    <%= f.text_field :pant_size %>
+  </div>
+  <div>
+    <%= f.label :shirt_size, "Shirt Size" %><br />
+    <%= f.text_field :shirt_size %>
+  </div>
+  <div>
+    <%= f.label :dress_size, "Dress Size" %><br />
+    <%= f.text_field :dress_size %>
+  </div>
+  <div>
+    <%= f.label :shoe_size, "Shoe Size" %><br />
+    <%= f.text_field :shoe_size %>
+  </div>
+  <div>
+    <%= f.label :wishlist, "Wishlist" %><br />
+    <%= f.text_area :wishlist %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', family_members_path %>
