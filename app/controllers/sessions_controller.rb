@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
     session[:user_lastname] = @hash["info"]["last_name"]
     session[:user_name] = @hash["info"]["name"]
     flash[:notice] = "Login successful!  Welcome back, #{session[:user_name]}"
-    if !@user_email
+    if !@user
     	redirect_to new_user_path
     else
-        redirect_to '/'
+        redirect_to '/users/main'
     end
   end
   
