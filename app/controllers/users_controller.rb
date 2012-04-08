@@ -84,7 +84,10 @@ class UsersController < ApplicationController
   def main
     @user_email = session[:user_email]
     @user = User.find_by_email(@user_email)
-    @families = User.findNearbyFamilies(@user.locationID)
+    @families = User.getAllFamilies(@user.locationID)
+    if params[:family_size] == "1"
+      @display = params[:family_size]
+    end
     respond_to do |format|
        format.html
     end
