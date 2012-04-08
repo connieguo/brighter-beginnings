@@ -3,13 +3,17 @@ class SessionsController < ApplicationController
   def create
     @hash = auth_hash
     user_email = @hash["info"]["email"]
-    #@user = User.find_by_email(user_email)
+    @user = User.find_by_email(user_email)
     session[:user_email] = user_email
     session[:user_firstname] = @hash["info"]["first_name"]
     session[:user_lastname] = @hash["info"]["last_name"]
     session[:user_name] = @hash["info"]["name"]
     flash[:notice] = "Login successful!  Welcome back, #{session[:user_name]}"
-    redirect_to '/'
+    if !@user_email
+    	redirect_to new_user_path
+    else
+        redirect_to '/'
+    end
   end
   
   def failed_login

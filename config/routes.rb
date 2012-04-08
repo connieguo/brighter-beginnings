@@ -15,6 +15,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/auth/google/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failed_login'
   match '/logout', :to => 'sessions#logout'
+  match '/users/main', :to => 'users#main', :as => 'user_main'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
