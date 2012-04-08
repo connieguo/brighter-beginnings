@@ -1,3 +1,4 @@
+<%= render 'common/navbar' %> 
 <h1>Complete Profile Information</h1>
 
 <%= form_for(@user) do |f| %>
@@ -6,7 +7,7 @@
     <%= f.text_field :firstname %>
   </div>
   <div class="field">
-    <%= f.label :lastname, "Last Name" %><br />
+    <%= f.label :lastname, "Last Name"%><br />
     <%= f.text_field :lastname %>
   </div>
   <div class="field">
@@ -15,10 +16,10 @@
   </div>
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_area :address %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "Email" %><br />
     <%= f.text_field :email %>
   </div>
   <div class="field">
@@ -26,6 +27,7 @@
     <%= f.text_field :organization %>
   </div>
   <div>
+    <%= f.label :locationID, "Please select your preferred drop-off location." %>
     <select name="user[locationID]">
       <option value="1">Oakland</option>
       <option value="2">Richmond</option>

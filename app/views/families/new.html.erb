@@ -7,11 +7,16 @@
   </div>
   <div class="field">
     <%= f.label :profile %><br />
-    <%= f.text_field :profile %>
+    <%= f.text_area :profile %>
   </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+  <div>
+    <%= f.label :locationID, "Location" %>
+    <select name="family[locationID]">
+      <option value="1">Oakland</option>
+      <option value="2">Richmond</option>
+      <option value="3">Antioch</option>
+      <option value="4">Bay Point</option>
+    </select>
   </div>
   <div class="field">
     <%= f.label :display %><br />
