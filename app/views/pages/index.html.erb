@@ -45,12 +45,37 @@
               <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav pull-right">
-              <li><a href="/auth/google">Sign In</a></li>
+                <% if session[:user_name] != nil %>
+                  <li class = "username">
+                    <%= session_username_link %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= session_status_link %>
+                </li>
 	    </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+    
+    <% if flash[:error] != nil %>
+      <div class="flash-error">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    
+    <% if flash[:warning] != nil %>
+      <div class="flash-warning">
+        <%= flash[:warning] %>
+      </div>
+    <% end %>
+    
+    <% if flash[:notice] != nil %>
+      <div class="flash-notice">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
     <div class="container">
 
