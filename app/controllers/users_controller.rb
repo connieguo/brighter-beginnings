@@ -82,7 +82,8 @@ class UsersController < ApplicationController
   end
 
   def main
-    @user = User.find(params[:id])
+    @user_email = session[:user_email]
+    @user = User.find_by_email(@user_email)
     @families = User.findNearbyFamilies(@user.locationID)
     respond_to do |format|
        format.html
