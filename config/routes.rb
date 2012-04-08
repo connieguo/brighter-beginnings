@@ -5,7 +5,7 @@ BrighterBeginnings::Application.routes.draw do
 
   resources :families
 
-  match '/users/main', :to => 'users#main', :as => 'user_main'
+  match '/users/:id/main', :to => 'users#main', :as => 'user_main'
   resources :users
 
   get "pages/index"

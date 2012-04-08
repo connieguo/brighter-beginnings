@@ -80,4 +80,13 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def main
+    @user = User.find(params[:id])
+    @families = User.findNearbyFamilies(@user.locationID)
+    respond_to do |format|
+       format.html
+    end
+  end
+  
 end

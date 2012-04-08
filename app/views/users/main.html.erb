@@ -1,0 +1,7 @@
+<h1>Nearby Families</h1>
+
+<% @families.each do |family| %>
+   <%= link_to family.family_code, family %>
+   <strong>Family Profile:<%= family.profile %></strong>
+<% end %>
+
