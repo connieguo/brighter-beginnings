@@ -29,53 +29,7 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Brighter Beginnings</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="nav pull-right">
-                <% if session[:user_name] != nil %>
-                  <li class = "username">
-                    <%= session_username_link %>
-                  </li>
-                <% end %>
-                <li>
-                  <%= session_status_link %>
-                </li>
-	    </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    
-    <% if flash[:error] != nil %>
-      <div class="flash-error">
-        <%= flash[:error] %>
-      </div>
-    <% end %>
-    
-    <% if flash[:warning] != nil %>
-      <div class="flash-warning">
-        <%= flash[:warning] %>
-      </div>
-    <% end %>
-    
-    <% if flash[:notice] != nil %>
-      <div class="flash-notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+    <%= render 'common/navbar' %>
 
     <div class="container">
 
