@@ -1,7 +1,19 @@
-<h1>Nearby Families</h1>
-
+<h1 style="padding-bottom:100px" >Nearby Families</h1>
+<form action="/users/main" method="get">
+Filter by family size:
+<select name="family_size">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5+</option>
+</select>
+<br />
 <% @families.each do |family| %>
    <%= link_to family.family_code, family %>
    <strong>Family Profile:<%= family.profile %></strong>
 <% end %>
+<br />
 
+<input type="submit" value="Filter">
+</form>
