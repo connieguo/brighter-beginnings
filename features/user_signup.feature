@@ -6,50 +6,38 @@ Feature: allow users to sign up to become a donor
 
 Scenario: viewing signup form after clicking signup link
   # your steps here
-  Given I am on the home page
-  And I have clicked "Sign Up"
-  Then I should be on the sign up page
+  Given I have successfully authenticated with email "connie.guo@berkeley.edu"
+  And the account I authenticated has name "Connie Guo"
+  And the account I authenticated has firstname "Connie"
+  And the account I authenticated has lastname "Guo"
+  And I am on the new user page
   And I should see the form "Sign Up"
-  And I should see a field for "name"
-  And I should see a field for "address_1"
-  And I should see a field for "address_2"
-  And I should see a field for "city"
-  And I should see a field for "state"
-  And I should see a field for "zipcode"
-  And I should see a field for "email"
-  And I should see a field for "phone number"
-  And I should see a field for "username"
-  And I should see a field for "password"
-  And I should see a field for "password_confirmation"
+  And I should see a field for "user_firstname"
+  And the field for "user_firstname" should include "Connie"
+  And I should see a field for "user_lastname"
+  And the field for "user_lastname" should include "Guo"
+  And I should see a field for "user_phone"
+  And I should see a field for "user_address"
+  And I should see a field for "user_email"
+  And the field for "user_email" should include "connie.guo@berkeley.edu"
+  And I should see a field for "user_organization"
+  And I should see a field for "user_locationID"
   And I should see the button "Submit"
 
 Scenario: displaying signup confirmation notice after successful signup
 
-  Given I am on the sign up page
-  And I have entered "Connie Guo" for name
-  And I have entered "169 CS Street" for address_1
-  And I have entered "Berkeley" for city
-  And I have entered "CA" for state
-  And I have entered "94709" for zipcode
-  And I have entered "connie.guo@berkeley.edu" for email
-  And I have entered "1234567880" for "phone number"
-  And I have entered "cguo" for username
-  And I have entered "cs169password" for password
-  And I have entered "cs169password" for password_confirmation
+  Given I have successfully authenticated with email "connie.guo@berkeley.edu"
+  And the account I authenticated has name "Connie Guo"
+  And the account I authenticated has firstname "Connie"
+  And the account I authenticated has lastname "Guo"
+  And I am on the new user page
+  And I have entered "Connie" for field "user_firstname"
+  And I have entered "Guo" for field "user_lastname"
+  And I have entered "510-123-4567" for "user_phone"
+  And I have entered "some address" for "user_address"
+  And I have entered "connie.guo@berkeley.edu" for "user_email"
+  And I have entered "cs169" for "user_organization"
+  And I have selected "Oakland" for "user_locationID"
   And I click "Submit"
-  Then I should see "Congratulations, your sign-up procedure was successful! Please log in to continue."
-
-Scenario: displaying error notice after unsucessful signup
-
-  Given I am on the sign up page
-  And I have entered "169 CS Street" for address_1
-  And I have entered "Berkeley" for city
-  And I have entered "CA" for state
-  And I have entered "94709" for zipcode
-  And I have entered "connie.guo@berkeley.edu" for email
-  And I have entered "1234567880" for "phone number"
-  And I have entered "cguo" for username
-  And I have entered "cs169password" for password
-  And I have entered "cs169password" for password_confirmation
-  And I click "Submit"
-  Then I should see "Sorry, one or more mandatory fields was not entered. Please double-check to make sure those fields are correct."
+  Then I should be redirected to the family list page
+  And I should see "User was successfully created."
