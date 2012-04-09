@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
 <%= render '/common/navbar' %>
+<div class="container">
 <%= yield %>
+</div>
 <%= render '/common/footer' %>
 </body>
 </html>
