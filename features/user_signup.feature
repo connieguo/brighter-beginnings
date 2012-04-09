@@ -26,12 +26,12 @@ Scenario: viewing signup form after clicking signup link
 Scenario: displaying signup confirmation notice after successful signup
   Given I have successfully completed authentication through Google
   Then I should be on the new user page
-  When I fill in "user_firstname" with "Connie"
-  When I fill in "user_lastname" with "Guo"
+  When I fill in "user_firstname" with "Mark"
+  When I fill in "user_lastname" with "Peng"
   When I fill in "user_phone" with "510-123-4567"
   When I fill in "user_address" with "some address"
-  When I fill in "user_email" with "connie.guo@berkeley.edu"
+  When I fill in "user_email" with "markpeng@cs169.com"
   When I fill in "user_organization" with "cs169"
   And I press "Submit"
-  Then I should be on users main page
+  Then I should be on user main page
   And I should see "User was successfully created."
