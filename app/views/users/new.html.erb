@@ -4,31 +4,31 @@
 
 <%= form_for(@user) do |f| %>
   <div class="field">
-    <%= f.label :firstname, "First Name" %><br />
-    <%= f.text_field :firstname, :value => session[:user_firstname] %>
+    <%= f.label :firstname, "First Name(*)" %><br />
+    <%= f.text_field :firstname, :value => session[:user_firstname], :required => true %>
   </div>
   <div class="field">
-    <%= f.label :lastname, "Last Name"%><br />
-    <%= f.text_field :lastname, :value => session[:user_lastname] %>
+    <%= f.label :lastname, "Last Name(*)"%><br />
+    <%= f.text_field :lastname, :value => session[:user_lastname], :required => true %>
   </div>
   <div class="field">
-    <%= f.label :phone, "Primary Phone Number" %><br />
-    <%= f.text_field :phone %>
+    <%= f.label :phone, "Primary Phone Number(*)" %><br />
+    <%= f.text_field :phone, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_area :address %>
+    <%= f.label :address, "Address(*)" %><br />
+    <%= f.text_area :address, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :email, "Email" %><br />
-    <%= f.text_field :email, :value => session[:user_email]%>
+    <%= f.label :email, "Email(*)" %><br />
+    <%= f.text_field :email, :value => session[:user_email], :required => true%>
   </div>
   <div class="field">
     <%= f.label :organization %><br />
     <%= f.text_field :organization %>
   </div>
   <div>
-    <%= f.label :locationID, "Please select your preferred drop-off location." %>
+    <%= f.label :locationID, "Please select your preferred drop-off location.(*)" %>
     <select name="user[locationID]">
       <option value="1">Oakland</option>
       <option value="2">Richmond</option>
