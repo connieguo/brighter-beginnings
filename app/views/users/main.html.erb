@@ -1,12 +1,12 @@
 <h1>Nearby Families</h1>
 <form action="/users/main" method="get">
 Filter by family size:
-<input type="checkbox" name="family_size" value=1 /> 1 
-<input type="checkbox" name="family_size" value=2 /> 2
-<input type="checkbox" name="family_size" value=3 /> 3
-<input type="checkbox" name="family_size" value=4 /> 4
-<input type="checkbox" name="family_size" value=5 /> 5+
-<input type="submit" value="Filter">
+<input type="checkbox" id="family_size_1" name="family_size" value=1 /> 1 
+<input type="checkbox" id="family_size_2" name="family_size" value=2 /> 2
+<input type="checkbox" id="family_size_3" name="family_size" value=3 /> 3
+<input type="checkbox" id="family_size_4" name="family_size" value=4 /> 4
+<input type="checkbox" id="family_size_5" name="family_size" value=5 /> 5+
+<input type="submit" id="Filter" value="Filter">
 <br />
 <table id="nearby_families">
    <% @display_families.each do |family| %>
