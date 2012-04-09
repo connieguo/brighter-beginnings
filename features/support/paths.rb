@@ -15,6 +15,8 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the donors home page$/
+      '/users/main'
     when /user main page/
       '/users/main'
 
