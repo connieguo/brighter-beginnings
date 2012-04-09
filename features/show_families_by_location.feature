@@ -26,7 +26,6 @@ Scenario: see families in the location
   # your steps here
   Given I have successfully completed authentication through Google
   And I am on the donors home page
-  And I am from the Oakland location
   Then I should see "SMITHCODE"
   And I should see "BROWNCODE"
   And I should see "LICODE"
