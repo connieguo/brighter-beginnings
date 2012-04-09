@@ -252,3 +252,25 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Then /^I should see the form "Sign Up"/ do
+  if !(page.body.include?("<form accept-charset=\"UTF-8\" action=\"/users\" class=\"new_user\" id=\"new_user\" method=\"post\">"))
+    assert false, "Sign up form was not found"
+  end
+end
+
+Then /^I should see a field for "([^"]*)"$/ do |arg1|
+  if !(page.body.include?("id=\"#{arg1}\""))
+    assert false, "Field #{arg1} was not found."
+  end
+end
+
+Then /^the field for "([^"]*)" should have "([^"]*)"$/ do |arg1, arg2|
+  field_labeled(arg1).value.should =~ /#{arg2}/
+end
+
+Then /^I should see the button "Submit"/ do
+  if !(page.body.include?("<input name=\"commit\" type=\"submit\" value=\"Submit\">"))
+    assert false, "Submit button was not found in #{page.body}."
+  end
+end
