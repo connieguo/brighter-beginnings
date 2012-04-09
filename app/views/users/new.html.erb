@@ -1,14 +1,15 @@
 <%= render 'common/navbar' %> 
+<div class="container">
 <h1>Complete Profile Information</h1>
 
 <%= form_for(@user) do |f| %>
   <div class="field">
     <%= f.label :firstname, "First Name" %><br />
-    <%= f.text_field :firstname %>
+    <%= f.text_field :firstname, :value => session[:user_firstname] %>
   </div>
   <div class="field">
     <%= f.label :lastname, "Last Name"%><br />
-    <%= f.text_field :lastname %>
+    <%= f.text_field :lastname, :value => session[:user_lastname] %>
   </div>
   <div class="field">
     <%= f.label :phone, "Primary Phone Number" %><br />
@@ -20,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :email, "Email" %><br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :value => session[:user_email]%>
   </div>
   <div class="field">
     <%= f.label :organization %><br />
@@ -41,3 +42,4 @@
 <% end %>
 
 <%= link_to 'Back', users_path %>
+</div>
