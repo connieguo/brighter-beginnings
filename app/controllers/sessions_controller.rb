@@ -8,16 +8,17 @@ class SessionsController < ApplicationController
     session[:user_firstname] = @hash["info"]["first_name"]
     session[:user_lastname] = @hash["info"]["last_name"]
     session[:user_name] = @hash["info"]["name"]
-    flash[:notice] = "Login successful!  Welcome back, #{session[:user_name]}"
     if !@user
+      flash[:notice] = "Login successful!  Since we have no information about you in our records, please fill in the form below before proceeding."
     	redirect_to new_user_path
     else
-        redirect_to '/users/main'
+      flash[:notice] = "Login successful!  Welcome back, #{session[:user_name]}!"
+      redirect_to '/users/main'
     end
   end
   
   def failed_login
-    flash[:error] = "There was a problem with logging in, please click the Sign In button and try again"
+    flash[:error] = "There was a problem with logging in, please click the Sign In button and try again."
     redirect_to '/'
   end
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407043638) do
+ActiveRecord::Schema.define(:version => 20120408091816) do
 
   create_table "donations", :force => true do |t|
     t.string   "scheduled_dropoff"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(:version => 20120407043638) do
   end
 
   create_table "families", :force => true do |t|
-    t.string   "location"
     t.boolean  "display"
     t.text     "profile"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "family_code"
+    t.integer  "locationID"
   end
 
   create_table "family_members", :force => true do |t|
