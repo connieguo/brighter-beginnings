@@ -7,24 +7,28 @@ Feature: filter a list of families in the location of the donor by a specific at
 Background: families have been added to database
   
   Given the following families exist:
-  | surname | size | location |
-  | Smith   | 5    | Oakland  |
-  | Brown   | 6    | Richmond |
-  | Li      | 4    | Antioch  |			
-  | Wong    | 10   | Antioch  |
-  | Patel   | 7    | Antioch  |
+  |    profile     | family_code | locationID | display |
+  | Smith profile  | SMITHCODE   |     1      | true    |
+  | Brown profile  | BROWNCODE   |     1      | true    |
   And I am on the home page
 
-Scenario: see families in the location
+  Given the following users exist:
+  |        email         | firstname | lastname | locationID | identity |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     0    |
+  
+  Given the following family members exist:
+  |  family_code | firstname | age | gender | comment | pant_size | shirt_size | dress_size | shoe_size | wishlist |
+  |  SMITHCODE   | Carol | 4 | F | None | S | S | S | S | Barbie |
+  |  SMITHCODE   | Bob   | 45| M | None | L | L | L | L | food   |
+  |  BROWNCODE   | George| 10| M | None | M | M | M | M | toys   |
+
+@omniauth_test
+Scenario: see list of filtered families
   # your steps here
-  Given I have logged in as a donor
+  Given I have successfully completed authentication through Google
   And I am on the donors home page
-  And I am from the Antioch Location
-  And I select "Filter by Family Size"
-  And for minimum size I enter "5"
-  Then I should see the family "Wong"
-  And I should see the family "Patel"
-  And I should not see the family "Smith"
-  And I should not see the family "Brown"
-  And I should not see the family "Li"
+  And I check "family_size_2"
+  And I press "Filter"
+  Then I should see "SMITHCODE"
+  And I should not see "BROWNCODE"
 
