@@ -24,7 +24,7 @@ describe FamiliesController do
   # Family. As you add validations to Family, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    return {:profile => 'none', :display => true, :locationID => 1}
   end
   
   # This should return the minimal set of values that should be in the session
