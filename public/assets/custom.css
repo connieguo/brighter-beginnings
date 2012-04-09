@@ -1,0 +1,42 @@
+.flash-error {
+  width: 800px;
+  background-color: #f0a8a8;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #a8a8a8;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  text-align: center;
+  text-color: #404040;
+}
+.flash-warning {
+  width: 800px;
+  background-color: #ffffe0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #a8a8a8;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  text-align: center;
+  text-color: #404040;
+}
+.flash-notice {
+  width: 800px;
+  background-color: #99ffcc;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #a8a8a8;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  text-align: center;
+  text-color: #404040;
+}
+li.session-user-name {
+  text-color: #b0b0b0;
+}
