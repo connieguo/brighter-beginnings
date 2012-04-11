@@ -1,44 +1,44 @@
-<h1>Complete Profile Information</h1>
+<h1>Complete Profile Information</h1><br />
 
 <%= form_for(@user) do |f| %>
   <div class="field">
-    <%= f.label :firstname, "First Name(*)" %><br />
+    <%= f.label :firstname, "First Name(*)" %>
     <%= f.text_field :firstname, :value => session[:user_firstname], :required => true %>
   </div>
   <div class="field">
-    <%= f.label :lastname, "Last Name(*)"%><br />
+    <%= f.label :lastname, "Last Name(*)"%>
     <%= f.text_field :lastname, :value => session[:user_lastname], :required => true %>
   </div>
   <div class="field">
-    <%= f.label :phone, "Primary Phone Number(*)" %><br />
+    <%= f.label :phone, "Primary Phone Number(*)" %>
     <%= f.text_field :phone, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :address_1, "Address 1(*)" %><br />
+    <%= f.label :address_1, "Address 1(*)" %>
     <%= f.text_field :address_1, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :address_2, "Address 2" %><br />
+    <%= f.label :address_2, "Address 2" %>
     <%= f.text_field :address_2 %>
   </div>
   <div class="field">
-    <%= f.label :city, "City(*)" %><br />
+    <%= f.label :city, "City(*)" %>
     <%= f.text_field :city, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :state, "State(*)" %><br />
+    <%= f.label :state, "State(*)" %>
     <%= f.text_field :state, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :zipcode, "Zipcode(*)" %><br />
+    <%= f.label :zipcode, "Zipcode(*)" %>
     <%= f.text_field :zipcode, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :email, "Email(*)" %><br />
+    <%= f.label :email, "Email(*)" %>
     <%= f.text_field :email, :value => session[:user_email], :required => true%>
   </div>
   <div class="field">
-    <%= f.label :organization %><br />
+    <%= f.label :organization %>
     <%= f.text_field :organization %>
   </div>
   <div>
