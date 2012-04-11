@@ -14,8 +14,24 @@
     <%= f.text_field :phone, :required => true %>
   </div>
   <div class="field">
-    <%= f.label :address, "Address(*)" %><br />
-    <%= f.text_area :address, :required => true %>
+    <%= f.label :address_1, "Address 1(*)" %><br />
+    <%= f.text_field :address_1, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :address_2, "Address 2" %><br />
+    <%= f.text_field :address_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :city, "City(*)" %><br />
+    <%= f.text_field :city, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :state, "State(*)" %><br />
+    <%= f.text_field :state, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode, "Zipcode(*)" %><br />
+    <%= f.text_field :zipcode, :required => true %>
   </div>
   <div class="field">
     <%= f.label :email, "Email(*)" %><br />
