@@ -5,7 +5,7 @@ Feature: allow donors to donate to a family
   I want to be able to choose a family in the Adopt-a-Family program
   
 Background: users have already registered with our site and families and family members have been added to the database
-  # identity - 0 (case manager), 1 (donor), 2 (manager), 3 (superuser)
+  #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
   | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |

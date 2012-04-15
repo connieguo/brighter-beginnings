@@ -6,20 +6,20 @@ Feature: allowing managers to approve pending family blurbs
   
 Background: donors have already registered with our site
   
-  # identity :0 (case manager), 1 (donor), 2 (manager), 3 (superuser)
+  #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     3    |
   | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     0    |
   | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |
-  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     3    |
+  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     4    |
 
   Given the following families exist:
-  |    profile     | family_code | locationID | display |
-  | Smith profile  | SMITHCODE   |     1      | false   |
-  | Brown profile  | BROWNCODE   |     1      | true    |
-  | Li profile     |  LICODE     |     1      | true    |
-  | Wong profile   |  WONGCODE   |     2      | true    |
+  |    profile     | family_code | locationID | display |  approved |
+  | Smith profile  | SMITHCODE   |     1      | true    |  false    |
+  | Brown profile  | BROWNCODE   |     1      | true    |  true     |
+  | Li profile     |  LICODE     |     1      | true    |  true     |
+  | Wong profile   |  WONGCODE   |     2      | true    |  true     |
   
   And I am on the home page
 

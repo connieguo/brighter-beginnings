@@ -6,13 +6,13 @@ Feature: allowing managers to view a list of all accounts and selectively delete
   
 Background: donors have already registered with our site
   
-  # identity :0 (case manager), 1 (donor), 2 (manager), 3 (superuser)
+  #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following donors exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     3    |
   | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     1    |
   | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |
-  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     3    |
+  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     1    |
   And I am on the home page
 
 @omniauth_test

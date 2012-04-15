@@ -6,9 +6,10 @@ Feature: allowing case managers to view a list of all donors
   
 Background: donors have already registered with our site
   
+  # identity - 1: donor, 2: case manager, 3: manager, 4: superuser
   Given the following donors exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     0    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
   | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     1    |
   | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |
   And I am on the home page
