@@ -12,13 +12,13 @@ Background: users have already registered with our site and families have been a
   | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
 
   Given the following families exist:
-  |    profile     | family_code | locationID | display |
-  | Smith profile  | SMITHCODE   |     1      | true    |
-  | Brown profile  | BROWNCODE   |     1      | true    |
-  | Li profile     |  LICODE     |     1      | true    |
-  | Wong profile   |  WONGCODE   |     2      | true    |
-  | Fong profile   |  FONGCODE   |     3      | true    |
-  | Small profile  |  SMALLCODE  |     4      |	true	|
+  |    profile     | family_code | locationID | display | approved |
+  | Smith profile  | SMITHCODE   |     1      | true    | true     |
+  | Brown profile  | BROWNCODE   |     1      | true    | true     |
+  | Li profile     |  LICODE     |     1      | true    | true     |
+  | Wong profile   |  WONGCODE   |     2      | true    | true     |
+  | Fong profile   |  FONGCODE   |     3      | true    | true     |
+  | Small profile  |  SMALLCODE  |     4      |	true	| true     |
   And I am on the home page
 
 @omniauth_test
