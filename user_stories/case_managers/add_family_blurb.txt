@@ -1,0 +1,3 @@
+As a case manager
+So that I can quickly add information about families to the Adopt-a-Family Program
+I want to enter blurbs about family

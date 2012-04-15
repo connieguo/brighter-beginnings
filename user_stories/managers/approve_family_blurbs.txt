@@ -1,0 +1,3 @@
+As a manager
+So that I can proofread family profiles before they are visible to donors
+I want to approve pending family blurbs written by case managers

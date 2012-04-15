@@ -1,0 +1,3 @@
+As a manager
+So that I can ensure that registered donors are committed to the program
+I want to be able to delete donor accounts

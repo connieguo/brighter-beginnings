@@ -1,0 +1,3 @@
+As an altruistic donor
+So that I can provide a family in need some useful resources
+I want to be able to choose a family in the Adopt-a-Family program
