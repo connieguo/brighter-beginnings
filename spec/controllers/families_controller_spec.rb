@@ -160,5 +160,51 @@ describe FamiliesController do
       response.should redirect_to(families_url)
     end
   end
+  
+  describe "add family" do
+    it "should add a new family" do
+      @fake_family_params = {"family_code" => "1234", "locationID" = 1}
+      @fake_family = mock_model(Movie)
+      @fake_family_member_params = {"family_code" => "1234", "firstname" => "Jim"}
+      @fake_family_member = mock_model(FamilyMember)
+      Family.should_receive(:create!).with(@fake_family_params).and_return(@fake_family)
+      FamilyMember.should_receive(:create!).with(@fake_family_member_params).and_return(@fake_family_member)
+      post :add_family, {:family => @fake_family_params, @members => [@fake_family_member]}
+      response.should redirect_to('show')
+      flash[:notice].should == "Your family profile has been successfully created! It is now pending approval."
+    end
+    
+    it "should fail to add a family" do
+      @fake_family_params = {"family_code" => "1234"}
+      @fake_family = mock_model(Movie)
+      @fake_family_member_params = {"family_code" => "1234", "firstname" => "Jim"}
+      @fake_family_member = mock_model(FamilyMember)
+      Family.should_receive(:create!).with(@fake_family_params).should raise_error
+      post :add_family, {:family => @fake_family_params, @members => [@fake_family_member]}
+      response.should redirect_to('show')
+      flash[:notice].should == "Sorry, one or more fields were not entered correctly. Please double-check that the information is correct."
+    end
+  end
+  
+  describe "view pending family blurbs" do
+    it "assigns the list of family blurbs" do
+      family_list = [mock_model(Family), mock_model(Family), mock_model(Family)]
+      Family.should_receive(:get_pending).and_return(family_list)
+      post :view_pending_families
+      response.should render_template("show")
+      assigns(:pending_families).should == admin_accounts
+    end
+  end
+  
+  describe "view family details" do
+    it "assigns the list of family members" do
+      family_id = "1234"
+      family_members = [mock_model(FamilyMember), mock_model(FamilyMember)]
+      FamilyMember.should_receive(:find_all_by_family_id).with(family_id).and_return(family_members)
+      post :view_details, {:id => '1234'}
+      response.should render_template("details")
+      assigns(:members).should == family_members
+    end
+  end
 
 end
