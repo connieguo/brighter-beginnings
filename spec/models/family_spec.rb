@@ -11,7 +11,7 @@ describe Family do
   describe 'get_pending' do
      it 'should get all families whose blurbs have not been approved yet' do
        @fake_pending_families = [mock('Family'), mock('Family')]
-       Family.should_receive(:find_all_by_approved).with("true").and_return(@fake_pending_families)
+       Family.should_receive(:find_all_by_approved).with("false").and_return(@fake_pending_families)
        Family.get_pending()
      end
   end
