@@ -50,6 +50,7 @@ li.session-user-name {
 }
 
 .field {
+  width:125px;
   vertical-align:top;
   padding-right:50px;
 }
