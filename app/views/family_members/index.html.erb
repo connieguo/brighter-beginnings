@@ -1,21 +1,17 @@
-<h1>Listing family_members</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Family Members</h1>
+<h3>Family Code:&nbsp;<%= @family_code %></h3>
 
 <% @family_members.each do |family_member| %>
-  <tr>
-    <td><%= link_to 'Show', family_member %></td>
-    <td><%= link_to 'Edit', edit_family_member_path(family_member) %></td>
-    <td><%= link_to 'Destroy', family_member, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<strong>Firstname:&nbsp;</strong><%=family_member.firstname%><br />
+<strong>Age:&nbsp;</strong><%=family_member.age%><br />
+<strong>Gender:&nbsp:</strong><%=family_member.gender%><br />
+<strong>Comment:&nbsp;</strong><%=family_member.comment%><br />
+<strong>Pant Size:&nbsp;</strong><%=family_member.pant_size%><br />
+<strong>Dress Size:&nbsp;</strong><%=family_member.dress_size%><br />
+<strong>Shirt Size:&nbsp;</strong><%=family_member.shirt_size%><br />
+<strong>Shoe Size:&nbsp;</strong><%= family_member.shoe_size%><br />
+<strong>Wishlist:&nbsp;</strong><%= family_member.wishlist%><br />
 <br />
+<%end%>
 
-<%= link_to 'New Family member', new_family_member_path %>
+<a class="btn btn-success btn-large" href="#">Donate Now!</a><br />
