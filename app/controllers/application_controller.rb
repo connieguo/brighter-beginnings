@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def check_login
     if (request.path != login_callback_path) && (request.path != new_user_path)
       if (logged_in? && !User.find_by_email(user_email))
-        flash[:notice] = "Login successful!  Since we have no information about you in our records, please fill in the form below before proceeding."
+        flash[:notice] = "Sorry, we seem to be missing some information about you in our records, please fill in the form below before proceeding."
         redirect_to new_user_path
       end
     end
