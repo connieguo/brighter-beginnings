@@ -1,10 +1,10 @@
 <h1>Family Members</h1>
-<h3>Family Code:&nbsp;<%= @family_code %></h3>
+<span class="badge badge-info">Family Code:&nbsp;<%= @family.family_code %></span><br />
 
 <% @family_members.each do |family_member| %>
 <strong>Firstname:&nbsp;</strong><%=family_member.firstname%><br />
 <strong>Age:&nbsp;</strong><%=family_member.age%><br />
-<strong>Gender:&nbsp:</strong><%=family_member.gender%><br />
+<strong>Gender:&nbsp;</strong><%=family_member.gender%><br />
 <strong>Comment:&nbsp;</strong><%=family_member.comment%><br />
 <strong>Pant Size:&nbsp;</strong><%=family_member.pant_size%><br />
 <strong>Dress Size:&nbsp;</strong><%=family_member.dress_size%><br />
