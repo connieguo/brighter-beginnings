@@ -3,7 +3,6 @@ class DonationsController < ApplicationController
   # GET /donations.json
   def index
     @donations = Donation.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @donations }
@@ -24,8 +23,16 @@ class DonationsController < ApplicationController
   # GET /donations/new
   # GET /donations/new.json
   def new
-    @donation = Donation.new
-
+    @family = Family.find(params[:id])
+    @donation = Donation.new()
+    session[:family_code] = @family.family_code
+    @family_members = FamilyMember.find_all_by_family_code(@family.family_code)
+    @display = []
+    @family_members.each do |family_member|
+       @display << family_member.firstname
+    end
+    @display = @display.join(', ')
+    @display = @display.gsub(/(.*),(.*)/, '\1 and\2')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @donation }
@@ -41,10 +48,13 @@ class DonationsController < ApplicationController
   # POST /donations.json
   def create
     @donation = Donation.new(params[:donation])
-
+    @user = User.find_by_email(session[:user_email])
+    @donation.user_id = @user.id
+    @donation.family_code = session[:family_code]
     respond_to do |format|
       if @donation.save
-        format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
+        session[:family_code] = nil
+        format.html { redirect_to "/users/main", notice: 'Donation was successfully created.', confirm: 'Are you sure' }
         format.json { render json: @donation, status: :created, location: @donation }
       else
         format.html { render action: "new" }

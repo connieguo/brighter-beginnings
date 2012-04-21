@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411013241) do
+ActiveRecord::Schema.define(:version => 20120421070103) do
 
   create_table "donations", :force => true do |t|
     t.string   "scheduled_dropoff"
-    t.string   "dropoff_site"
     t.string   "dropped_off_date"
     t.string   "date_delivered"
     t.string   "family_code"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "dropoff_site"
   end
 
   create_table "families", :force => true do |t|
@@ -58,11 +58,23 @@ ActiveRecord::Schema.define(:version => 20120411013241) do
     t.string   "organization"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
