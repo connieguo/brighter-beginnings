@@ -2,11 +2,11 @@
 <form action="/users/main" method="get">
 Filter by family size:
 <% @family_sizes.each do |size| %>
-  <input type="checkbox" id=<%="family_size_#{size}"%> name="family_size[]" value=<%=size%> <%= checked(size) %> /> <%= size %>
-<% end %>
+  <input type="checkbox" id=<%="family_size_#{size}"%> name="family_size[]" value=<%=size%> <%=checked(size)%> /> <%=size%>
+<%end%>
 <input type="submit" id="Filter" value="Filter">
 <br />
-<table id="nearby_families">
+<table id="nearby_families" class="table">
    <% @display_families.each do |family| %>
       <tr>
          <td>
