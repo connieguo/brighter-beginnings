@@ -1,6 +1,6 @@
 <h1>Family Members</h1>
-<span class="badge badge-info">Family Code:&nbsp;<%= @family.family_code %></span><br />
-
+<span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br />
+<br />
 <% @family_members.each do |family_member| %>
 <strong>Firstname:&nbsp;</strong><%=family_member.firstname%><br />
 <strong>Age:&nbsp;</strong><%=family_member.age%><br />
