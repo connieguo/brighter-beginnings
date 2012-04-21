@@ -2,7 +2,9 @@ class FamilyMembersController < ApplicationController
   # GET /family_members
   # GET /family_members.json
   def index
-    @family_members = FamilyMember.all
+    @family = Family.find(params[:id])
+    @family_code = @family.family_code
+    @family_members = FamilyMember.find_all_by_family_code(@family.family_code)
 
     respond_to do |format|
       format.html # index.html.erb
