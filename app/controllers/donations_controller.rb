@@ -54,7 +54,7 @@ class DonationsController < ApplicationController
     respond_to do |format|
       if @donation.save
         session[:family_code] = nil
-        format.html { redirect_to "/users/main", notice: 'Donation was successfully created.', confirm: 'Are you sure' }
+        format.html { redirect_to "/users/main", notice: 'Your request has been successfully entered! We will send you an email confirmation with details once the adoption has been approved. Thanks for your generosity!', confirm: 'Are you sure' }
         format.json { render json: @donation, status: :created, location: @donation }
       else
         format.html { render action: "new" }
