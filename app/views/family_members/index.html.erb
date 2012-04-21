@@ -5,15 +5,33 @@
 <h2><%=family_member.firstname%></h2>
 <div class="row">
    <div class="span12 blurb">
-	<strong>Age:&nbsp;</strong><%=family_member.age%><br />
-	<strong>Gender:&nbsp;</strong><%=family_member.gender%><br />
-	<strong>Comment:&nbsp;</strong><%=family_member.comment%><br />
-	<strong>Pant Size:&nbsp;</strong><%=family_member.pant_size%><br />
-	<strong>Dress Size:&nbsp;</strong><%=family_member.dress_size%><br />
-	<strong>Shirt Size:&nbsp;</strong><%=family_member.shirt_size%><br />
-	<strong>Shoe Size:&nbsp;</strong><%= family_member.shoe_size%><br />
-	<strong>Wishlist:&nbsp;</strong><%= family_member.wishlist%><br />
-   </div>
+   <table>
+     <tr> 
+	<td class="field"><h4>Age:&nbsp;</h4></td><td><%=family_member.age%></td>
+     </tr>
+     <tr>
+	<td class="field"><h4>Gender:&nbsp;</h4></td><td><%=family_member.gender%></td>
+     </tr>
+     <tr>
+	<td class="field"><h4>Comment:&nbsp;</h4></td><td><%=family_member.comment%></td>
+     </tr>
+     <tr>
+	<td class="field"><h4>Pant Size:&nbsp;</h4></td><td><%=family_member.pant_size%></td>
+     </tr>
+     <tr>	
+        <td class="field"><h4>Dress Size:&nbsp;</h4></td><td><%=family_member.dress_size%></td>
+     </tr>
+     <tr>	
+        <td class="field"><h4>Shirt Size:&nbsp;</h4></td><td><%=family_member.shirt_size%></td>
+     </tr>
+     <tr>	
+        <td class="field"><h4>Shoe Size:&nbsp;</h4></td><td><%= family_member.shoe_size%></td>
+     </tr> 
+     <tr>
+        <td class="field"><h4>Wishlist:&nbsp;</h4></td><td><%= family_member.wishlist%></td>
+     </tr>
+    </table> 
+  </div>
 </div>
 <br />
 <%end%>
