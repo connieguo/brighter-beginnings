@@ -6,12 +6,13 @@ Filter by family size:
 <%end%>
 <input type="submit" id="Filter" value="Filter">
 <br />
-<table id="nearby_families" class="table">
+<table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>
       <tr>
          <td>
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
            <strong>Profile:&nbsp;</strong><%= family.profile %><br />
+           <a class="btn btn-info btn-mini" href="#">View Details</a><br />
          </td>
       <tr />
   <% end %>
