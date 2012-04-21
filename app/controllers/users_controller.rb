@@ -86,11 +86,14 @@ class UsersController < ApplicationController
     @user = User.find_by_email(@user_email)
     @families = User.findNearbyFamilies(@user.locationID)
     @display_families = []
-    if params[:family_size]
+    @family_sizes = [1,2,3,4,5]
+    if params[:family_size] 
     	@families.each do |family|
-      		if FamilyMember.find_all_by_family_code(family.family_code).count.to_s ==  params[:family_size]
+           params[:family_size].each do |size|
+      		if FamilyMember.find_all_by_family_code(family.family_code).count.to_s == size
         		@display_families << family
       		end
+           end
     	end
     else
        @display_families = @families
