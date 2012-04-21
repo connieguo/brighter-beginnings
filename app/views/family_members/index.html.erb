@@ -2,16 +2,20 @@
 <span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br />
 <br />
 <% @family_members.each do |family_member| %>
-<strong>Firstname:&nbsp;</strong><%=family_member.firstname%><br />
-<strong>Age:&nbsp;</strong><%=family_member.age%><br />
-<strong>Gender:&nbsp;</strong><%=family_member.gender%><br />
-<strong>Comment:&nbsp;</strong><%=family_member.comment%><br />
-<strong>Pant Size:&nbsp;</strong><%=family_member.pant_size%><br />
-<strong>Dress Size:&nbsp;</strong><%=family_member.dress_size%><br />
-<strong>Shirt Size:&nbsp;</strong><%=family_member.shirt_size%><br />
-<strong>Shoe Size:&nbsp;</strong><%= family_member.shoe_size%><br />
-<strong>Wishlist:&nbsp;</strong><%= family_member.wishlist%><br />
-<br />
+<h2><%=family_member.firstname%></h2>
+<div class="row">
+   <div class="span12 blurb">
+	<strong>Age:&nbsp;</strong><%=family_member.age%><br />
+	<strong>Gender:&nbsp;</strong><%=family_member.gender%><br />
+	<strong>Comment:&nbsp;</strong><%=family_member.comment%><br />
+	<strong>Pant Size:&nbsp;</strong><%=family_member.pant_size%><br />
+	<strong>Dress Size:&nbsp;</strong><%=family_member.dress_size%><br />
+	<strong>Shirt Size:&nbsp;</strong><%=family_member.shirt_size%><br />
+	<strong>Shoe Size:&nbsp;</strong><%= family_member.shoe_size%><br />
+	<strong>Wishlist:&nbsp;</strong><%= family_member.wishlist%><br />
+   </div>
+</div>
 <%end%>
-
+<br />
+<br />
 <a class="btn btn-success btn-large" href="#">Donate Now!</a><br />
