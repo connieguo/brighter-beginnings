@@ -57,7 +57,10 @@ class FamiliesController < ApplicationController
   # PUT /families/1.json
   def update
     @family = Family.find(params[:id])
-
+    @user = User.find_by_email(session[:user_email])
+    if @user.identity == 2
+	@family.approved_by = nil
+    end
     respond_to do |format|
       if @family.update_attributes(params[:family])
         format.html { redirect_to session[:redirect_path], notice: 'Family was successfully updated.' }
