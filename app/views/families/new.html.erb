@@ -1,29 +1,17 @@
-<h1>New family</h1>
-
+<h1>New Family</h1>
+<br />
 <%= form_for(@family) do |f| %>
-  <div class="field">
-    <%= f.label :family_code %><br />
+    <%= f.label :family_code, "Family Code:" %>
     <%= f.text_field :family_code %>
-  </div>
-  <div class="field">
-    <%= f.label :profile %><br />
+    <%= f.label :profile, "Family Profile:" %>
     <%= f.text_area :profile %>
-  </div>
-  <div>
-    <%= f.label :locationID, "Location" %>
+    <%= f.label :locationID, "Location:" %>
     <select name="family[locationID]">
       <option value="1">Oakland</option>
       <option value="2">Richmond</option>
       <option value="3">Antioch</option>
       <option value="4">Bay Point</option>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :display %><br />
-    <%= f.check_box :display %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Create New Family" %>
-  </div>
+    </select><br />
+    Display:&nbsp;<input type="checkbox" name="family[display]" value="1"><br /><br />
+    <%= f.submit "Create New Family", :class=> "btn btn-primary btn-large", confirm: "Are you sure you want to create this family?" %>
 <% end %>
-<%= link_to 'Back', families_path %>

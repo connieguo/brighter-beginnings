@@ -9,8 +9,9 @@ Filter by family size:
     <%=size%>
   <%end%>
 <%end%>
-<input type="submit" id="Filter" value="Filter">
-<br />
+<input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
+<a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
+<br /><br />
 <table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>
       <tr>
