@@ -9,10 +9,10 @@
 <% if user_at_least_case_manager? %>
 <a class="btn btn-primary btn-mini" href=<%= edit_existing_family_member_path(@family,family_member)%>>Edit Info</a>
 <% end %>
-<br />
 <% if user_at_least_manager? %>
-<%= link_to "Delete Family Member", family_member, :class=>"btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family member?', method: :delete %><br /><br />
+<%= link_to "Delete Family Member", family_member, :class=>"btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family member?', method: :delete %>
 <% end %>
+<br /><br />
 <div class="row">
    <div class="span12 blurb">
    <table>
