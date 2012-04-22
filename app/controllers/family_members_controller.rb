@@ -2,10 +2,13 @@ class FamilyMembersController < ApplicationController
   # GET /family_members
   # GET /family_members.json
   def index
-    @family = Family.find(params[:id])
-    @family_code = @family.family_code
-    @family_members = FamilyMember.find_all_by_family_code(@family.family_code)
-
+    if params[:id]
+    	@family = Family.find(params[:id])
+        if @family
+        	@family_code = @family.family_code
+	        @family_members = FamilyMember.find_all_by_family_code(@family.family_code)
+        end
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @family_members }
@@ -27,8 +30,12 @@ class FamilyMembersController < ApplicationController
   # GET /family_members/new.json
   def new
     @family_member = FamilyMember.new
-    @family = Family.find(params[:id])
-    session[:family_code] = @family.family_code
+    if params[:id]
+    	@family = Family.find(params[:id])
+        if @family
+    		session[:family_code] = @family.family_code
+        end
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @family_member }

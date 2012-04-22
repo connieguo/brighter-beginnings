@@ -76,7 +76,7 @@ class FamiliesController < ApplicationController
     @family.destroy
 
     respond_to do |format|
-      format.html { redirect_to families_url }
+      format.html { redirect_to "/users/main" }
       format.json { head :ok }
     end
   end

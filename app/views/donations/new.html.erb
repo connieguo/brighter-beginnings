@@ -1,4 +1,4 @@
-<h1>Adopt <%= @display %></h1><br />
+<h1>Adopt <%= @display %>!</h1><br />
 <%= form_for @donation do |f| %>
    <label>Drop Off Location:</label>
    <select id="donation_dropoff_site" name="donation[dropoff_site]">
@@ -9,6 +9,6 @@
     </select>  
 
 <label>Desired Drop-Off Date:(mm/dd/yyyy)</label> 
-<input type="text" id="datepicker"><br />
+<input type="text" id="datepicker"><br /><br />
    <%=f.submit "Donate Now!", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to donate?"%>
 <%end%>

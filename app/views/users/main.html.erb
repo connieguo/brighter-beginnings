@@ -19,7 +19,8 @@ Filter by family size:
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
            <strong>Profile:&nbsp;</strong><%= family.profile %><br /><br />
            <a class="btn btn-info btn-mini" href=<%=family_details_path(family)%>>View Details</a>
-	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</br>
+	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
+           <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
          </td>
       <tr />
   <% end %>
