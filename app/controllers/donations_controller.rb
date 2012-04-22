@@ -86,8 +86,27 @@ class DonationsController < ApplicationController
     @donation.destroy
 
     respond_to do |format|
-      format.html { redirect_to donations_url }
+      format.html { redirect_to session[:redirect_path], notice: "Succesfully deleted donation!" }
       format.json { head :ok }
     end
+  end
+
+  def pending
+    @donations = Donation.find(:all, :conditions=>"approved_by IS NULL")
+    session[:redirect_path] = pending_donations_path
+    respond_to do |format|
+      format.html 
+      format.json { head :ok }
+    end
+  end
+  def approve
+     @donation = Donation.find(params[:id])
+     @donation.approved_by = User.find_by_email(session[:user_email]).id
+     if @donation.save
+	flash[:notice] = "Successfully approved #{@donation.id}."
+     else
+	flash[:error] = "Sorry, something went wrong with the approval. Please try again."
+     end
+     redirect_to session[:redirect_path]
   end
 end

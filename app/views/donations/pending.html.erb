@@ -1,0 +1,26 @@
+<h1>Pending Donations</h1>
+<br />
+
+<table class="table table-striped">
+<% @donations.each do |donation| %>
+	<tr>
+	<td>
+	<strong>Donor's Name:&nbsp;</strong><%= donation.get_donor.firstname %>&nbsp;<%=donation.get_donor.lastname %><br />
+	<strong>Donor's Email:&nbsp;</strong><%= donation.get_donor.email %><br />
+	<strong>Donor's Phone No.:&nbsp;</strong><%= donation.get_donor.phone %><br />
+	<strong>Donor's Address 1:&nbsp;</strong><%= donation.get_donor.address_1 %><br />
+	<strong>Donor's Address 2:&nbsp;</strong><%= donation.get_donor.address_2 %><br />
+	<strong>Donor's City:&nbsp;</strong><%= donation.get_donor.city %><br />
+	<strong>Donor's State:&nbsp;</strong><%= donation.get_donor.state %><br />
+	<strong>Donor's Zipcode:&nbsp;</strong><%= donation.get_donor.zipcode %><br />
+	<strong>Donor's Organization:&nbsp;</strong><%= donation.get_donor.organization %><br />
+	<strong>Scheduled Drop-Off Date:&nbsp;</strong><%= donation.scheduled_dropoff %><br />
+        <strong>Desired Drop-Off Site:&nbsp;</strong><%= donation.get_location %><br />
+        <% if user_at_least_manager? %>
+            <%= link_to "Approve Donation", approve_donation_path(donation), :class=> "btn btn-success btn-mini", confirm: 'Approve this donation?'%>
+        <% end %>
+        <%= link_to "Delete Donation", donation, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donation?', method: :delete %>
+	</td>
+	</tr>
+<% end %>
+</table>
