@@ -2,12 +2,19 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+  
     @users = User.all
+    @donors = User.find_all_by_identity(1)
+    @case_managers = User.find_all_by_identity(2)
+    @managers = User.find_all_by_identity(3)
+     
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
+    
+    
   end
 
   # GET /users/1
@@ -101,12 +108,7 @@ class UsersController < ApplicationController
     	end
     else
        @display_families = @families
-    end
-    
-    @donors = User.find_all_by_identity(1)
-    @case_managers = User.find_all_by_identity(2)
-    @managers = User.find_all_by_identity(3)
-    
+    end    
     
     respond_to do |format|
        format.html

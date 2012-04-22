@@ -17,4 +17,19 @@ class User < ActiveRecord::Base
     @families = Family.find(:all, :conditions => "approved_by IS NULL")
     return @families
   end
+  
+  def get_location
+	  if self.locationID == 1
+		  return "Oakland"
+	  elsif self.locationID == 2
+		  return "Richmond"
+	  elsif self.locationID == 3
+	  	return "Antioch"
+	  elsif self.locationID == 4
+		  return "Bay Point"
+	  else
+		  return ""
+	  end
+  end
+  
 end

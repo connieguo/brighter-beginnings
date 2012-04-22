@@ -17,6 +17,11 @@
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
  	    <li><a href="/users/main">Nearby Families</a></li>
+ 	    
+ 	    <% if user_at_least_manager? %> 
+ 	      <li><a href="/users">Accounts</a></li>
+ 	    <% end %>
+ 	    
           <% end %>
         </ul>
         <ul class="nav pull-right">

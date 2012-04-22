@@ -1,11 +1,75 @@
-<h1>All users</h1>
-
-<ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= link_to user.email, user %>
-      <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
-    </li>
+<% if user_at_least_manager? %>
+<table id="donors" class="table table-striped">
+               <strong>All Donors</strong><br />
+      <tr>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+        <th>Location:</th>
+        <th>Delete?</th>
+        
+      
+      <% @donors.each do |user| %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>           
+          <td><%= user.email %></td>
+          <td><%= user.get_location %></td>
+          <td><%= link_to "Delete Donor", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %></td>
+           
+      <tr />
   <% end %>
-</ul>
+</table>
+
+<table id="case_managers" class="table table-striped">
+               <strong>All Case Managers</strong><br />
+      <tr>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+        <th>Location:</th>
+        <th>Delete?</th>
+        
+      
+      <% @case_managers.each do |user| %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>          
+          <td><%= user.email %></td>
+          <td><%= user.get_location %></td>
+          <td><%= link_to "Delete Case Manager", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this case manager?', method: :delete %></td>
+           
+      <tr />
+  <% end %>
+</table>
+
+<% end %>
+
+
+
+<table id="managers" class="table table-striped">
+               <strong>All Managers</strong><br />
+      <tr>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+        <th>Location:</th>
+        <th>Delete?</th>
+        
+      
+      <% @managers.each do |user| %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>          
+          <td><%= user.email %></td>
+          <td><%= user.get_location %></td>
+          <% if user_is_superuser? %>
+          <td><%= link_to "Delete Manager", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this manager?', method: :delete %></td>
+          <% end %>
+           
+      <tr />
+  <% end %>
+</table>
+
+
 
