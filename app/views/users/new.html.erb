@@ -1,47 +1,26 @@
 <h1>Complete Profile Information</h1><br />
 
 <%= form_for(@user) do |f| %>
-  <div class="field">
     <%= f.label :firstname, "First Name(*)" %>
     <%= f.text_field :firstname, :value => session[:user_firstname], :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :lastname, "Last Name(*)"%>
     <%= f.text_field :lastname, :value => session[:user_lastname], :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :phone, "Primary Phone Number(*)" %>
     <%= f.text_field :phone, :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :address_1, "Address 1(*)" %>
     <%= f.text_field :address_1, :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :address_2, "Address 2" %>
     <%= f.text_field :address_2 %>
-  </div>
-  <div class="field">
     <%= f.label :city, "City(*)" %>
     <%= f.text_field :city, :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :state, "State(*)" %>
     <%= f.text_field :state, :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :zipcode, "Zipcode(*)" %>
     <%= f.text_field :zipcode, :required => true %>
-  </div>
-  <div class="field">
     <%= f.label :email, "Email(*)" %>
     <%= f.text_field :email, :value => session[:user_email], :required => true%>
-  </div>
-  <div class="field">
     <%= f.label :organization %>
     <%= f.text_field :organization %>
-  </div>
-  <div>
     <%= f.label :locationID, "Please select your preferred drop-off location.(*)" %>
     <select id="user_locationID" name="user[locationID]">
       <option value="<%= Family::OAKLAND_ID %>"><%= Family.get_location_name(Family::OAKLAND_ID) %></option>
@@ -55,4 +34,3 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', users_path %>
