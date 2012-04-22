@@ -16,10 +16,10 @@
 	<strong>Donor's Organization:&nbsp;</strong><%= donation.get_donor.organization %><br />
 	<strong>Scheduled Drop-Off Date:&nbsp;</strong><%= donation.scheduled_dropoff %><br />
         <strong>Desired Drop-Off Site:&nbsp;</strong><%= donation.get_location %><br />
-        <% if user_at_least_manager? %>
+        <% if user_at_least_case_manager? %>
             <%= link_to "Approve Donation", approve_donation_path(donation), :class=> "btn btn-success btn-mini", confirm: 'Approve this donation?'%>
-        <% end %>
         <%= link_to "Delete Donation", donation, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donation?', method: :delete %>
+	<% end %>
 	</td>
 	</tr>
 <% end %>
