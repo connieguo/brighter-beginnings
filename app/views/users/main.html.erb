@@ -1,6 +1,6 @@
 <h1>Nearby Families</h1>
 <form action="/users/main" method="get">
-Filter by family size:
+Filter by Family Size:
 <% @family_sizes.each do |size| %>
   <input type="checkbox" id=<%="family_size_#{size}"%> name="family_size[]" value=<%=size%> <%=checked(size)%> /> 
   <% if size == 5 %>
@@ -15,17 +15,44 @@ Filter by family size:
 <table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>
       <tr>
+        <strong>Families Fitting Your Filters</strong><br />
+      
          <td>
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
-	   <strong>Family Size:&nbsp;</strong><%= family.get_size %><br />
+	         <strong>Family Size:&nbsp;</strong><%= family.get_size %><br />
            <strong>Profile:&nbsp;</strong><%= family.profile %><br /><br />
            <a class="btn btn-info btn-mini" href=<%=family_details_path(family)%>>View Details</a>
-	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
+	         <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
+	         
+	         
            <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
+           
+           
          </td>
       <tr />
   <% end %>
 </table>
+
+<table id="nearby_families" class="table table-striped">
+               <strong>All Donors</strong><br />
+      <tr>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+      
+
+      <% @donors.each do |user| %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>          
+          <td><%= user.email %></td>           
+           
+      <tr />
+  <% end %>
+</table>
+
+
+
 <br />
 
 </form>
