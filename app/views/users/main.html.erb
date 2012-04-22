@@ -39,32 +39,6 @@ Filter by Family Size:
   <% end %>
 </table>
 
-<%if user_at_least_manager? %>
-<table id="nearby_families" class="table table-striped">
-               <strong>All Donors</strong><br />
-      <tr>
-        <th>First Name:</th>
-        <th>Last Name:</th>
-        <th>Email:</th>
-        <th>Location:</th>
-        <th>Delete?</th>
-        
-      
-      <% @donors.each do |user| %>
-        <tr>
-          <td><%= user.firstname %></td>
-          <td><%= user.lastname %></td>          
-          <td><%= user.email %></td>
-          <td><%= user.locationID %></td>
-          <td><%= link_to "Delete Donor", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %></td>
-           
-      <tr />
-  <% end %>
-</table>
-<% end %>
-
-
-
 <br />
 
 </form>
