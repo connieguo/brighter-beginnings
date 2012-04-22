@@ -19,6 +19,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/families/:id/family_members', :to => 'family_members#index', :as => 'family_details'
   match '/families/:id/family_members/new', :to => 'family_members#new', :as => "add_new_family_member"
   match '/donations/:id/new', :to => 'donations#new', :as => 'new_donor'
+  match 'families/:id/family_members/:fm_id/edit', :to => 'family_members#edit', :as => "edit_existing_family_member"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

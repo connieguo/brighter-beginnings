@@ -7,6 +7,8 @@ class FamilyMembersController < ApplicationController
         if @family
         	@family_code = @family.family_code
 	        @family_members = FamilyMember.find_all_by_family_code(@family.family_code)
+		@size = @family_members.count
+		session[:family_id] = @family.id
         end
     end
     respond_to do |format|
@@ -44,7 +46,10 @@ class FamilyMembersController < ApplicationController
 
   # GET /family_members/1/edit
   def edit
-    @family_member = FamilyMember.find(params[:id])
+    @family = Family.find(params[:id])
+    @family_member = FamilyMember.find(params[:fm_id])
+    session[:family_id] = @family.id
+    session[:fm_id] = @family_member.id
   end
 
   # POST /family_members
@@ -66,11 +71,13 @@ class FamilyMembersController < ApplicationController
   # PUT /family_members/1
   # PUT /family_members/1.json
   def update
-    @family_member = FamilyMember.find(params[:id])
-
+    @family_member = FamilyMember.find(session[:fm_id])
+    @family = Family.find(session[:family_id])
     respond_to do |format|
       if @family_member.update_attributes(params[:family_member])
-        format.html { redirect_to @family_member, notice: 'Family member was successfully updated.' }
+        session[:family_id] = nil
+        session[:fm_id] = nil
+        format.html { redirect_to family_details_path(@family), notice: 'Family member was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -82,11 +89,12 @@ class FamilyMembersController < ApplicationController
   # DELETE /family_members/1
   # DELETE /family_members/1.json
   def destroy
+    @family = Family.find(session[:family_id])
     @family_member = FamilyMember.find(params[:id])
     @family_member.destroy
-
+    session[:family_id] = nil
     respond_to do |format|
-      format.html { redirect_to family_members_url }
+      format.html { redirect_to family_details_path(@family), notice: 'Family member successfully deleted!' }
       format.json { head :ok }
     end
   end

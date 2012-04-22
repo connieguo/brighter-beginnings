@@ -17,6 +17,7 @@ Filter by family size:
       <tr>
          <td>
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
+	   <strong>Family Size:&nbsp;</strong><%= family.get_size %><br />
            <strong>Profile:&nbsp;</strong><%= family.profile %><br /><br />
            <a class="btn btn-info btn-mini" href=<%=family_details_path(family)%>>View Details</a>
 	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>

@@ -1,6 +1,29 @@
-<h1>Editing family_member</h1>
+<h1>Editing Family Member</h1>
+<br />
+<%= form_for(@family_member) do |f| %>
+    <%= f.label :family_code, "Family Code:" %>
+    <input type="text" name="family_member[family_code]" value=<%=@family.family_code%>>
+    <%= f.label :firstname, "First Name:"%>
+    <%= f.text_field :firstname %>
+    <%= f.label :age, "Age:" %>
+    <%= f.text_field :age %>
+    <%= f.label :gender, "Gender:" %>
+    <select name="family_member[gender]">
+      <option value="F">Female</option>
+      <option value="M">Male</option>
+    <select>
+    <%= f.label :comment, "Comment:" %>
+    <%= f.text_area :comment %>
+    <%= f.label :pant_size, "Pant Size:" %>
+    <%= f.text_field :pant_size %>
+    <%= f.label :shirt_size, "Shirt Size:" %>
+    <%= f.text_field :shirt_size %>
+    <%= f.label :dress_size, "Dress Size:" %>
+    <%= f.text_field :dress_size %>
+    <%= f.label :shoe_size, "Shoe Size:" %>
+    <%= f.text_field :shoe_size %>
+    <%= f.label :wishlist, "Wishlist:" %>
+    <%= f.text_area :wishlist %><br />
+    <%= f.submit "Update", :class => "btn btn-primary btn-large", confirm:"Are you sure you want to update this family member?" %>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @family_member %> |
-<%= link_to 'Back', family_members_path %>
