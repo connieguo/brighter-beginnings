@@ -86,7 +86,7 @@ class DonationsController < ApplicationController
     @donation.destroy
 
     respond_to do |format|
-      format.html { redirect_to session[:redirect_path], notice: "Succesfully deleted donation!" }
+      format.html { redirect_to session[:redirect_path], notice: "Successfully deleted donation!" }
       format.json { head :ok }
     end
   end
