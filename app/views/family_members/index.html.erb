@@ -1,5 +1,5 @@
 <h1>Family Members</h1>
-<span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br />
+<span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br /><br />
 <% if user_at_least_case_manager? %>
 <a href=<%=add_new_family_member_path(@family)%> class="btn btn-primary btn-large pull-right">Add New Family Member</a>
 <br />
