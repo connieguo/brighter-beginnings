@@ -1,52 +1,29 @@
-<h1>Create Family Member</h1>
-
+<h1>Add New Family Member</h1>
+<span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br /><br />
 <%= form_for(@family_member) do |f| %>
-  <div class="field">
-    <%= f.label :family_code, "Family Code" %><br />
-    <%= f.text_field :family_code %>
-  </div>
-  <div class="field">
-    <%= f.label :firstname, "First Name"%><br />
+    <%= f.label :family_code, "Family Code:" %>
+    <input type="text" name="family_member[family_code]" value=<%=@family.family_code%>>
+    <%= f.label :firstname, "First Name:"%>
     <%= f.text_field :firstname %>
-  </div>
-  <div class="field">
-    <%= f.label :age, "Age" %><br />
+    <%= f.label :age, "Age:" %>
     <%= f.text_field :age %>
-  </div>
-  <div class="field">
-    <%= f.label :Gender %><br />
+    <%= f.label :gender, "Gender:" %>
     <select name="family_member[gender]">
       <option value="F">Female</option>
       <option value="M">Male</option>
     <select>
-  </div>
-  <div class="field">
-    <%= f.label :comment, "Comment" %><br />
+    <%= f.label :comment, "Comment:" %>
     <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :pant_size, "Pant Size" %><br />
+    <%= f.label :pant_size, "Pant Size:" %>
     <%= f.text_field :pant_size %>
-  </div>
-  <div>
-    <%= f.label :shirt_size, "Shirt Size" %><br />
+    <%= f.label :shirt_size, "Shirt Size:" %>
     <%= f.text_field :shirt_size %>
-  </div>
-  <div>
-    <%= f.label :dress_size, "Dress Size" %><br />
+    <%= f.label :dress_size, "Dress Size:" %>
     <%= f.text_field :dress_size %>
-  </div>
-  <div>
-    <%= f.label :shoe_size, "Shoe Size" %><br />
+    <%= f.label :shoe_size, "Shoe Size:" %>
     <%= f.text_field :shoe_size %>
-  </div>
-  <div>
-    <%= f.label :wishlist, "Wishlist" %><br />
-    <%= f.text_area :wishlist %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
+    <%= f.label :wishlist, "Wishlist:" %>
+    <%= f.text_area :wishlist %><br />
+    <%= f.submit "Submit", :class => "btn btn-primary btn-large", confirm:"Are you sure you want to create this family member?" %>
 <% end %>
 
-<%= link_to 'Back', family_members_path %>

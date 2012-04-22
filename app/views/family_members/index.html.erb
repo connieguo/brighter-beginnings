@@ -1,5 +1,6 @@
 <h1>Family Members</h1>
 <span class="label label-warning">Family Code:&nbsp;<%= @family.family_code %></span><br />
+<a href=<%=add_new_family_member_path(@family)%> class="btn btn-primary btn-large pull-right">Add New Family Member</a>
 <br />
 <% @family_members.each do |family_member| %>
 <h2><%=family_member.firstname%></h2>

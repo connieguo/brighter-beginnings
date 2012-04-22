@@ -17,6 +17,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/auth/failure', :to => 'sessions#failed_login'
   match '/logout', :to => 'sessions#logout'
   match '/families/:id/family_members', :to => 'family_members#index', :as => 'family_details'
+  match '/families/:id/family_members/new', :to => 'family_members#new', :as => "add_new_family_member"
   match '/donations/:id/new', :to => 'donations#new', :as => 'new_donor'
   # The priority is based upon order of creation:
   # first created -> highest priority.

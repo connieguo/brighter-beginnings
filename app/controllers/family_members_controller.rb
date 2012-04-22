@@ -27,7 +27,8 @@ class FamilyMembersController < ApplicationController
   # GET /family_members/new.json
   def new
     @family_member = FamilyMember.new
-
+    @family = Family.find(params[:id])
+    session[:family_code] = @family.family_code
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @family_member }
@@ -43,10 +44,10 @@ class FamilyMembersController < ApplicationController
   # POST /family_members.json
   def create
     @family_member = FamilyMember.new(params[:family_member])
-
+    @family = Family.find_by_family_code(@family_member.family_code)
     respond_to do |format|
       if @family_member.save
-        format.html { redirect_to @family_member, notice: 'Family member was successfully created.' }
+        format.html { redirect_to family_details_path(@family), notice: 'Family member was successfully created.' }
         format.json { render json: @family_member, status: :created, location: @family_member }
       else
         format.html { render action: "new" }
