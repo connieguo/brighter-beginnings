@@ -1,4 +1,7 @@
 <h1>Nearby Families</h1>
+<% if user_at_least_case_manager? %>
+  <a href=<%= pending_families_path %>>(View pending families)</a>
+<% end %>
 <form action="/users/main" method="get">
 Filter by Family Size:
 <% @family_sizes.each do |size| %>
@@ -10,7 +13,9 @@ Filter by Family Size:
   <%end%>
 <%end%>
 <input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
-<a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
+<% if user_at_least_case_manager? %>
+  <a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
+<% end %>
 <br /><br />
 <table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>

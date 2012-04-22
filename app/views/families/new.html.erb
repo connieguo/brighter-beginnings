@@ -7,10 +7,10 @@
     <%= f.text_area :profile %>
     <%= f.label :locationID, "Location:" %>
     <select name="family[locationID]">
-      <option value="1">Oakland</option>
-      <option value="2">Richmond</option>
-      <option value="3">Antioch</option>
-      <option value="4">Bay Point</option>
+      <option value="<%= Family::OAKLAND_ID %>">Oakland</option>
+      <option value="<%= Family::RICHMOND_ID %>">Richmond</option>
+      <option value="<%= Family::ANTIOCH_ID %>">Antioch</option>
+      <option value="<%= Family::BAY_POINT_ID %>">Bay Point</option>
     </select><br />
     Display:&nbsp;<input type="checkbox" name="family[display]" value="1"><br /><br />
     <%= f.submit "Create New Family", :class=> "btn btn-primary btn-large", confirm: "Are you sure you want to create this family?" %>
