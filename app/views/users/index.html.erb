@@ -1,4 +1,4 @@
-<% if user_at_least_manager? %>
+<% if user_at_least_case_manager? %>
 <table id="donors" class="table table-striped">
                <strong>All Donors</strong><br />
       <tr>
@@ -6,8 +6,9 @@
         <th>Last Name:</th>
         <th>Email:</th>
         <th>Location:</th>
+        <% if user_at_least_manager? %>
         <th>Delete?</th>
-        
+        <% end %>        
       
       <% @donors.each do |user| %>
         <tr>
@@ -15,12 +16,17 @@
           <td><%= user.lastname %></td>           
           <td><%= user.email %></td>
           <td><%= user.get_location %></td>
+           <% if user_at_least_manager? %>
           <td><%= link_to "Delete Donor", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %></td>
+          <% end %>
            
       <tr />
   <% end %>
 </table>
 
+<% end %>
+
+<% if user_at_least_manager? %>
 <table id="case_managers" class="table table-striped">
                <strong>All Case Managers</strong><br />
       <tr>
@@ -43,8 +49,6 @@
   <% end %>
 </table>
 
-<% end %>
-
 
 
 <table id="managers" class="table table-striped">
@@ -54,7 +58,9 @@
         <th>Last Name:</th>
         <th>Email:</th>
         <th>Location:</th>
+        <% if user_is_superuser? %>
         <th>Delete?</th>
+        <% end %>
         
       
       <% @managers.each do |user| %>
@@ -72,4 +78,4 @@
 </table>
 
 
-
+<% end %>
