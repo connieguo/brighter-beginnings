@@ -21,10 +21,28 @@ module ApplicationHelper
     end
   end
   
+  def user_at_least_case_manager?
+    @user = User.find_by_email(session[:user_email])
+    if @user
+      @user.identity >= 2
+    else
+      false
+    end
+  end
+  
   def user_is_manager?
     @user = User.find_by_email(session[:user_email])
     if @user
       @user.identity == 3
+    else
+      false
+    end
+  end
+  
+  def user_at_least_manager?
+    @user = User.find_by_email(session[:user_email])
+    if @user
+      @user.identity >= 3
     else
       false
     end
