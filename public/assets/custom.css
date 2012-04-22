@@ -54,3 +54,8 @@ li.session-user-name {
   vertical-align:top;
   padding-right:50px;
 }
+
+textarea {
+ width: 500px;
+ height: 250px;
+}
