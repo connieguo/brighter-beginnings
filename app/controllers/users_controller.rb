@@ -102,6 +102,11 @@ class UsersController < ApplicationController
     else
        @display_families = @families
     end
+    
+    @donors = User.find_all_by_identity(1)
+    @case_managers = User.find_all_by_identity(2)
+    @managers = User.find_all_by_identity(3)   
+    
     respond_to do |format|
        format.html
     end

@@ -3,7 +3,7 @@
   <a href=<%= pending_families_path %>>(View pending families)</a>
 <% end %>
 <form action="/users/main" method="get">
-Filter by family size:
+Filter by Family Size:
 <% @family_sizes.each do |size| %>
   <input type="checkbox" id=<%="family_size_#{size}"%> name="family_size[]" value=<%=size%> <%=checked(size)%> /> 
   <% if size == 5 %>
@@ -20,21 +20,58 @@ Filter by family size:
 <table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>
       <tr>
+        <strong>Families Fitting Your Filters</strong><br />
+      
          <td>
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
-	   <strong>Family Size:&nbsp;</strong><%= family.get_size %><br />
+	         <strong>Family Size:&nbsp;</strong><%= family.get_size %><br />
            <strong>Profile:&nbsp;</strong><%= family.profile %><br /><br />
            <a class="btn btn-info btn-mini" href=<%=family_details_path(family)%>>View Details</a>
+<<<<<<< HEAD
+	         <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
+	         
+	         
+           <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
+           
+           
+=======
            <% if user_at_least_case_manager? %>
 	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
 	   <% end %>
 	   <% if user_at_least_manager? %>
            <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
 	   <% end %>
+>>>>>>> 25fe4d7d9ae1a62bf65ab07c01f25ba29e49352f
          </td>
       <tr />
   <% end %>
 </table>
+
+<table id="nearby_families" class="table table-striped">
+               <strong>All Donors</strong><br />
+      <tr>
+        <th>First Name:</th>
+        <th>Last Name:</th>
+        <th>Email:</th>
+        <th>Location:</th>
+        <th>Delete?</th>
+        
+      
+
+      <% @donors.each do |user| %>
+        <tr>
+          <td><%= user.firstname %></td>
+          <td><%= user.lastname %></td>          
+          <td><%= user.email %></td>
+          <td><%= user.locationID %></td>
+          <td><%= link_to "Delete Donor", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %></td>
+           
+      <tr />
+  <% end %>
+</table>
+
+
+
 <br />
 
 </form>
