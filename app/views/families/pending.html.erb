@@ -1,7 +1,13 @@
 <h1>Pending Families</h1>
 <a href=<%= user_main_path %>>(View approved families)</a>
 <form action="/families/pending" method="get">
-Show locations:
+Show locations:<br/>
+<% Family.get_locations.each do |location_id| %>
+  <%= check_box_tag "location[]", Family.get_location_name(location_id), (location_checked? location_id) %>
+  <%= Family.get_location_name(location_id) %>
+<%end%>
+<input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
+</form>
 <% if user_at_least_case_manager? %>
   <a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
 <% end %>
@@ -24,5 +30,3 @@ Show locations:
   <% end %>
 </table>
 <br />
-
-</form>
