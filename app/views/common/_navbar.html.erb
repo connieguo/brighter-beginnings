@@ -12,7 +12,7 @@
           <li class="active"><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/contact">Contact</a></li>
-          <% if (user_is_case_manager?  || user_is_manager? || user_is_superuser?) %>
+          <% if user_at_least_case_manager? %>
             <li><a href="/admin">Admin</a></li>
           <% end %>
         </ul>
