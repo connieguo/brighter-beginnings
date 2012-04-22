@@ -1,6 +1,17 @@
-<h1>Editing family</h1>
+<h1>Edit Family Information</h1>
 
-<%= render 'form' %>
+<%= form_for @family do |f| %>
+   <%= f.label :family_code, "Family Code:" %>  
+   <%= f.text_field :family_code %>
+   <%= f.label :profile, "Family Profile:" %>
+   <%= f.text_area :profile %><br />
+   <%= f.label :locationID, "Family's Location:" %>
+   <select id="family_locationID" name="family[locationID]">
+      <option value="1">Oakland</option>
+      <option value="2">Richmond</option>
+      <option value="3">Antioch</option>
+      <option value="4">Bay Point</option>
+   </select><br />
+   <%= f.submit "Edit Family Information", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to update?" %>
+<%end%>
 
-<%= link_to 'Show', @family %> |
-<%= link_to 'Back', families_path %>
