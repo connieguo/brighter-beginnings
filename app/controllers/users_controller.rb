@@ -82,6 +82,7 @@ class UsersController < ApplicationController
   end
 
   def main
+    session[:redirect_path] = user_main_path
     @user_email = session[:user_email]
     @user = User.find_by_email(@user_email)
     @families = User.findNearbyFamilies(@user.locationID)

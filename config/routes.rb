@@ -3,6 +3,8 @@ BrighterBeginnings::Application.routes.draw do
 
   resources :donations
 
+  match '/families/pending', :to => 'families#pending', :as => "pending_families"
+  match '/families/:id/approve', :to => 'families#approve', :as => "approve_family"
   resources :families
 
   match '/users/main', :to => 'users#main', :as => 'user_main'
@@ -20,6 +22,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/families/:id/family_members/new', :to => 'family_members#new', :as => "add_new_family_member"
   match '/donations/:id/new', :to => 'donations#new', :as => 'new_donor'
   match 'families/:id/family_members/:fm_id/edit', :to => 'family_members#edit', :as => "edit_existing_family_member"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

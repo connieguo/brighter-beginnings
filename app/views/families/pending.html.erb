@@ -1,23 +1,12 @@
-<h1>Nearby Families</h1>
-<% if user_at_least_case_manager? %>
-  <a href=<%= pending_families_path %>>(View pending families)</a>
-<% end %>
-<form action="/users/main" method="get">
-Filter by family size:
-<% @family_sizes.each do |size| %>
-  <input type="checkbox" id=<%="family_size_#{size}"%> name="family_size[]" value=<%=size%> <%=checked(size)%> /> 
-  <% if size == 5 %>
-    <%=size%>+
-  <%else%>
-    <%=size%>
-  <%end%>
-<%end%>
-<input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
+<h1>Pending Families</h1>
+<a href=<%= user_main_path %>>(View approved families)</a>
+<form action="/families/pending" method="get">
+Show locations:
 <% if user_at_least_case_manager? %>
   <a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
 <% end %>
 <br /><br />
-<table id="nearby_families" class="table table-striped">
+<table id="pending_families" class="table table-striped">
    <% @display_families.each do |family| %>
       <tr>
          <td>
@@ -27,6 +16,7 @@ Filter by family size:
            <a class="btn btn-info btn-mini" href=<%=family_details_path(family)%>>View Details</a>
 	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
            <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
+           <%= link_to "Approve Family", approve_family_path(family), :class=> "btn btn-success btn-mini", confirm: 'Approve this family?'%>
          </td>
       <tr />
   <% end %>

@@ -44,7 +44,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.save
-        format.html { redirect_to "/users/main", notice: 'Family was successfully created.' }
+        format.html { redirect_to session[:redirect_path], notice: 'Family was successfully created.' }
         format.json { render json: @family, status: :created, location: @family }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.update_attributes(params[:family])
-        format.html { redirect_to '/users/main', notice: 'Family was successfully updated.' }
+        format.html { redirect_to session[:redirect_path], notice: 'Family was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -76,8 +76,28 @@ class FamiliesController < ApplicationController
     @family.destroy
 
     respond_to do |format|
-      format.html { redirect_to "/users/main" }
+      format.html { redirect_to session[:redirect_path] }
       format.json { head :ok }
     end
+  end
+  
+  # List of pending families
+  def pending
+    session[:redirect_path] = pending_families_path
+    @display_families = User.find_pending_families
+    respond_to do |format|
+       format.html
+    end
+  end
+  
+  def approve
+    @family = Family.find(params[:id])
+    @family.approved_by = User.find_by_email(session[:user_email]).id
+    if @family.save
+      flash[:notice] = "Successfully approved #{@family.family_code}."
+    else
+      flash[:error] = "Sorry, something went wrong with the approval.  Please try again."
+    end
+    redirect_to session[:redirect_path]
   end
 end

@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     session[:user_firstname] = @hash["info"]["first_name"]
     session[:user_lastname] = @hash["info"]["last_name"]
     session[:user_name] = @hash["info"]["name"]
+    session[:redirect_path] = '/'
     if !@user
       flash[:notice] = "Login successful!  Since we have no information about you in our records, please fill in the form below before proceeding."
     	redirect_to new_user_path
