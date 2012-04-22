@@ -84,7 +84,12 @@ class FamiliesController < ApplicationController
   # List of pending families
   def pending
     session[:redirect_path] = pending_families_path
-    @display_families = User.find_pending_families
+    if params[:location]
+      @display_families = User.find_pending_families
+      @display_families.keep_if { |family| params[:location].include?(Family.get_location_name(family.locationID)) }
+    else
+      @display_families = User.find_pending_families
+    end
     respond_to do |format|
        format.html
     end

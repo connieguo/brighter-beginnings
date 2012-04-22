@@ -44,10 +44,10 @@
   <div>
     <%= f.label :locationID, "Please select your preferred drop-off location.(*)" %>
     <select id="user_locationID" name="user[locationID]">
-      <option value="<%= Family::OAKLAND_ID %>">Oakland</option>
-      <option value="<%= Family::RICHMOND_ID %>">Richmond</option>
-      <option value="<%= Family::ANTIOCH_ID %>">Antioch</option>
-      <option value="<%= Family::BAY_POINT_ID %>">Bay Point</option>
+      <option value="<%= Family::OAKLAND_ID %>"><%= Family.get_location_name(Family::OAKLAND_ID) %></option>
+      <option value="<%= Family::RICHMOND_ID %>"><%= Family.get_location_name(Family::RICHMOND_ID) %></option>
+      <option value="<%= Family::ANTIOCH_ID %>"><%= Family.get_location_name(Family::ANTIOCH_ID) %></option>
+      <option value="<%= Family::BAY_POINT_ID %>"><%= Family.get_location_name(Family::BAY_POINT_ID) %>Point</option>
     </select>
   </div>
   <div class="actions">
