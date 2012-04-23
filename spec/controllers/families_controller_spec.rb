@@ -31,7 +31,7 @@ describe FamiliesController do
   # in order to pass any filters (e.g. authentication) defined in
   # FamiliesController. Be sure to keep this updated too.
   def valid_session
-    {}
+    return {:redirect_path => '/families/pending'}
   end
 
   describe "GET index" do
@@ -67,7 +67,7 @@ describe FamiliesController do
 
   describe "POST create" do
     before(:each) do
-     @request.session[:redirect_path] = '/'
+      session[:redirect_path] = '/families/pending'
     end
     describe "with valid params" do
       it "creates a new Family" do
@@ -84,7 +84,7 @@ describe FamiliesController do
 
       it "redirects to the created family" do
         post :create, {:family => valid_attributes}, valid_session
-        response.should redirect_to(Family.last)
+        response.should redirect_to(session[:redirect_path])
       end
     end
 
@@ -126,7 +126,7 @@ describe FamiliesController do
       it "redirects to the family" do
         family = Family.create! valid_attributes
         put :update, {:id => family.to_param, :family => valid_attributes}, valid_session
-        response.should redirect_to(family)
+        response.should redirect_to(valid_session[:redirect_path])
       end
     end
 
@@ -160,60 +160,53 @@ describe FamiliesController do
     it "redirects to the families list" do
       family = Family.create! valid_attributes
       delete :destroy, {:id => family.to_param}, valid_session
-      response.should redirect_to(families_url)
-    end
-  end
-  
-  describe "add family" do
-    it "should add a new family" do
-      @fake_family_params = {"family_code" => "1234", "locationID" => 1}
-      @fake_family = mock_model(Movie)
-      @fake_family_member_params = {"family_code" => "1234", "firstname" => "Jim"}
-      @fake_family_member = mock_model(FamilyMember)
-      Family.should_receive(:create!).with(@fake_family_params).and_return(@fake_family)
-      FamilyMember.should_receive(:create!).with(@fake_family_member_params).and_return(@fake_family_member)
-      post :add_family, {:family => @fake_family_params, @members => [@fake_family_member]}
-      response.should redirect_to('show')
-      flash[:notice].should == "Your family profile has been successfully created! It is now pending approval."
-    end
-    
-    it "should fail to add a family" do
-      @fake_family_params = {"family_code" => "1234"}
-      @fake_family = mock_model(Movie)
-      @fake_family_member_params = {"family_code" => "1234", "firstname" => "Jim"}
-      @fake_family_member = mock_model(FamilyMember)
-      Family.should_receive(:create!).with(@fake_family_params).should raise_error
-      post :add_family, {:family => @fake_family_params, @members => [@fake_family_member]}
-      response.should redirect_to('show')
-      flash[:notice].should == "Sorry, one or more fields were not entered correctly. Please double-check that the information is correct."
-    end
-  end
-  
-  describe "view pending family blurbs" do
-    it "assigns the list of family blurbs" do
-      family_list = [mock_model(Family), mock_model(Family), mock_model(Family)]
-      Family.should_receive(:get_pending).and_return(family_list)
-      post :view_pending_families
-      response.should render_template("show")
-      assigns(:pending_families).should == admin_accounts
-    end
-  end
-  
-  describe "view family details" do
-    it "assigns the list of family members" do
-      family_id = "1234"
-      family_members = [mock_model(FamilyMember), mock_model(FamilyMember)]
-      FamilyMember.should_receive(:find_all_by_family_id).with(family_id).and_return(family_members)
-      post :view_details, {:id => '1234'}
-      response.should render_template("details")
-      assigns(:members).should == family_members
+      response.should redirect_to(valid_session[:redirect_path])
     end
   end
   
   describe "pending" do
+    before(:each) do
+	@family_a = Family.new(:locationID=>1, :family_code=>"123")
+	@family_b = Family.new(:locationID=>2, :family_code=>"345")
+        @fake_families = [@family_a, @family_b]
+    end
+    it "should get the list of filtered non-approved families" do
+      User.should_receive(:find_pending_families).and_return(@fake_families)
+      @fake_families.should_receive(:keep_if).and_return(@family_a)
+      post :pending, :location=>["Oakland"] 
+   end
+   it "should get the list of non-filtered non-approved families" do
+      User.should_receive(:find_pending_families).and_return(@fake_families)
+      post :pending
+   end
   end
   
   describe "approve" do
+    before(:each) do
+       session[:redirect_path] = 
+       @family = Family.new(:family_code=>"abc", :locationID=>1, :approved_by=>1)
+       @user = User.new(:id=>1, :email=>"connie.guo@cs169.com")
+    end
+    it "should say Successfully approved if the family is approved" do
+      Family.should_receive(:find).with("1").and_return(@family)
+      valid_session[:user_email] = "connie.guo107@gmail.com"
+      User.should_receive(:find_by_email).with(valid_session[:user_email]).and_return(@user)
+      @family.approved_by.should == 1
+      @family.should_receive(:save).and_return(true)
+      post :approve, :id=>1
+      response.should redirect_to "/families"
+      flash[:notice].should == "Successfully approved abc."
+    end
+    it "should say Sorry something went wrong with the approval" do
+      Family.should_receive(:find).with("1").and_return(@family)
+      valid_session[:user_email] = "connie.guo107@gmail.com"
+      User.should_receive(:find_by_email).with(valid_session[:user_email]).and_return(@user)
+      @family.approved_by.should == 1
+      @family.should_receive(:save).and_return(false)
+      post :approve, :id=>1
+      response.should redirect_to "/families"
+      flash[:error].should == "Sorry, something went wrong with the approval. Please try again."
+    end
   end
 
 end

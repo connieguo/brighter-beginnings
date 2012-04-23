@@ -59,7 +59,7 @@ class FamiliesController < ApplicationController
   def update
     @family = Family.find(params[:id])
     @user = User.find_by_email(session[:user_email])
-    if @user.identity == 2
+    if @user &&  @user.identity == 2
 	@family.approved_by = nil
     end
     respond_to do |format|
@@ -105,7 +105,7 @@ class FamiliesController < ApplicationController
     if @family.save
       flash[:notice] = "Successfully approved #{@family.family_code}."
     else
-      flash[:error] = "Sorry, something went wrong with the approval.  Please try again."
+      flash[:error] = "Sorry, something went wrong with the approval. Please try again."
     end
     redirect_to session[:redirect_path]
   end
