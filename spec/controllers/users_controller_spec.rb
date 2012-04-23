@@ -161,24 +161,5 @@ describe UsersController do
     end
   end
   
-  describe "view admin accounts" do
-    it "assigns a list of admin accounts" do
-      admin_accounts = [mock_model(User), mock_model(User), mock_model(User), mock_model(User)]
-      User.should_receive(:get_all_admins).and_return(admin_accounts)
-      post :view_admin_accounts
-      response.should render_template("show")
-      assigns(:account_list).should == admin_accounts
-    end
-  end
-  
-  describe "view donor accounts" do
-    it "assigns a list of donor accounts" do
-      donor_accounts = [mock_model(User), mock_model(User), mock_model(User), mock_model(User)]
-      User.should_receive(:get_all_donors).and_return(donor_accounts)
-      post :view_donor_accounts
-      response.should render_template("show")
-      assigns(:account_list).should == donor_accounts
-    end
-  end
 
 end
