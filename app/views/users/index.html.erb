@@ -8,7 +8,7 @@
 		<strong>Email:&nbsp;</strong><%= user.email %><br />
        		<strong>Location:&nbsp;</strong><%= user.get_location %><br />
                 <% if user_at_least_manager? %>
-                     <%= link_to "Delete Donor", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %>
+                     <%= link_to "Delete Donor", user, :id=>"user_#{user.id}" ,:class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %>
                 <% end %>        
         </td> 
       </tr>
@@ -26,7 +26,7 @@
 		<strong>Email:&nbsp;</strong><%= user.email %><br />
        		<strong>Location:&nbsp;</strong><%= user.get_location %>                <br />
                 <% if user_at_least_manager? %>
-                     <%= link_to "Delete Case Manager", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this case manager?', method: :delete %>
+                     <%= link_to "Delete Case Manager", user, :id=> "user_#{user.id}", :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this case manager?', method: :delete %>
                 <% end %>        
         </td> 
       </tr>
@@ -44,7 +44,7 @@
 		<strong>Email:&nbsp;</strong><%= user.email %><br />
        		<strong>Location:&nbsp;</strong><%= user.get_location %>                <br />
                 <% if user_is_superuser? %>
-                     <%= link_to "Delete Manager", user, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this manager?', method: :delete %>
+                     <%= link_to "Delete Manager", user, :id=> "user_#{user.id}", :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this manager?', method: :delete %>
                 <% end %>        
         </td> 
       </tr>
