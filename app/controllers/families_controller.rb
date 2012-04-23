@@ -47,6 +47,7 @@ class FamiliesController < ApplicationController
         format.html { redirect_to session[:redirect_path], notice: 'Family was successfully created.' }
         format.json { render json: @family, status: :created, location: @family }
       else
+        flash[:error] = "Sorry, one or more fields were not entered correctly. Please double-check that the information is correct."
         format.html { render action: "new" }
         format.json { render json: @family.errors, status: :unprocessable_entity }
       end

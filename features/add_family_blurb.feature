@@ -26,49 +26,55 @@ Scenario: successfully reaching the 'Add Family Blurb' button
   Given I have successfully completed authentication through Google
   And I am on the user main page
   Then I should see "Add New Family"
-    
-Scenario: going to the add new family form after clicking "Add a New Family Profile"
-  Given I have unsuccessfully completed authentication through Google
-  And I am on the user main page
-  And I click "All Families"
-  And I click "Add a New Family Profile"
-  Then I should see the field "Family Code"
-  And I should see the field "Profile"
-  And I should see the field "Location"
 
 @omniauth_test
+Scenario: going to the add new family form after clicking "Add a New Family Profile"
+  Given I have successfully completed authentication through Google
+  And I am on the user main page
+  And I follow "All Families"
+  And I follow "Add New Family"
+  Then I should see "Family Code"
+  And I should see "Family Profile"
+  And I should see "Location"
+
+@omniauth_test
+@javascript
 Scenario: successfully adding new family profile
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  Then I click "All Families"
-  And I click "Add a New Family Profile"
-  And I enter "OCA123" for "Family Code"
-  And I enter "Test Profile" for "Profile"
-  And I select "Oakland" for location
-  And I click "Submit Profile"
-  And I should see "Your family profile has been successfully created! It is now pending approval."
+  And I follow "All Families"
+  And I follow "Add New Family"
+  And I fill in "Family Code" with "OCA123"
+  And I fill in "Family Profile" with "Test Profile"
+  And I select "Oakland" from "Location"
+  And I press "Create New Family"
+  And I confirm popup
+  And I should see "Family was successfully created."
 
 @omniauth_test
+@javascript
 Scenario: not entering all fields correctly
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  Then I click "All Families"
-  And I click "Add a New Family Profile"
-  And I enter "" for "Family Code"
-  And I enter "Test Profile" for "Profile"
-  And I select "Oakland" for location
-  And I click "Submit Profile"
+  And I follow "All Families"
+  And I follow "Add New Family"
+  And I fill in "Family Profile" with "Test Profile"
+  And I select "Oakland" from "Location"
+  And I press "Create New Family"
+  And I confirm popup
   Then I should see "Sorry, one or more fields were not entered correctly. Please double-check that the information is correct."
 
 @omniauth_test
+@javascript
 Scenario: viewing successfully added blurb in Pending Family Profiles
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  Then I click "All Families"
-  And I click "Add a New Family Profile"
-  And I enter "OCA123" for "Family Code"
-  And I enter "Test Profile" for "Profile"
-  And I select "Oakland" for location
-  And I click "Submit Profile"
-  And I click "Pending Profiles"
+  And I follow "All Families"
+  And I follow "Add New Family"
+  And I fill in "Family Code" with "OCA123"
+  And I fill in "Family Profile" with "Test Profile"
+  And I select "Oakland" from "Location"
+  And I press "Create New Family"
+  And I confirm popup
+  And I follow "View pending families info"
   Then I should see "OCA123"

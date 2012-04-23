@@ -19,7 +19,7 @@ Filter by Family Size:
 <%end%>
 <input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
 <% if user_at_least_case_manager? %>
-  <a class="btn btn-warning btn-medium" href=<%= new_family_path %>>Add New Family</a>
+  <a class="btn btn-warning btn-medium" href=<%= new_family_path %> id="Add New Family">Add New Family</a>
 <% end %>
 </form>
 <table id="nearby_families" class="table table-striped">
