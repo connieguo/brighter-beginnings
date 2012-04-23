@@ -24,7 +24,7 @@ describe FamilyMembersController do
   # FamilyMember. As you add validations to FamilyMember, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:family_code => "test", :firstname => "mark"}
+    {:family_code => "abc", :firstname => "mark"}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -32,14 +32,6 @@ describe FamilyMembersController do
   # FamilyMembersController. Be sure to keep this updated too.
   def valid_session
     {}
-  end
-
-  describe "GET index" do
-    it "assigns all family_members as @family_members" do
-      family_member = FamilyMember.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:family_members).should eq([family_member])
-    end
   end
 
   describe "GET show" do
@@ -57,33 +49,7 @@ describe FamilyMembersController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested family_member as @family_member" do
-      family_member = FamilyMember.create! valid_attributes
-      get :edit, {:id => family_member.to_param}, valid_session
-      assigns(:family_member).should eq(family_member)
-    end
-  end
-
   describe "POST create" do
-    describe "with valid params" do
-      it "creates a new FamilyMember" do
-        expect {
-          post :create, {:family_member => valid_attributes}, valid_session
-        }.to change(FamilyMember, :count).by(1)
-      end
-
-      it "assigns a newly created family_member as @family_member" do
-        post :create, {:family_member => valid_attributes}, valid_session
-        assigns(:family_member).should be_a(FamilyMember)
-        assigns(:family_member).should be_persisted
-      end
-
-      it "redirects to the created family_member" do
-        post :create, {:family_member => valid_attributes}, valid_session
-        response.should redirect_to(FamilyMember.last)
-      end
-    end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved family_member as @family_member" do
@@ -99,65 +65,6 @@ describe FamilyMembersController do
         post :create, {:family_member => {}}, valid_session
         response.should render_template("new")
       end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested family_member" do
-        family_member = FamilyMember.create! valid_attributes
-        # Assuming there are no other family_members in the database, this
-        # specifies that the FamilyMember created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        FamilyMember.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => family_member.to_param, :family_member => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested family_member as @family_member" do
-        family_member = FamilyMember.create! valid_attributes
-        put :update, {:id => family_member.to_param, :family_member => valid_attributes}, valid_session
-        assigns(:family_member).should eq(family_member)
-      end
-
-      it "redirects to the family_member" do
-        family_member = FamilyMember.create! valid_attributes
-        put :update, {:id => family_member.to_param, :family_member => valid_attributes}, valid_session
-        response.should redirect_to(family_member)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the family_member as @family_member" do
-        family_member = FamilyMember.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        FamilyMember.any_instance.stub(:save).and_return(false)
-        put :update, {:id => family_member.to_param, :family_member => {}}, valid_session
-        assigns(:family_member).should eq(family_member)
-      end
-
-      it "re-renders the 'edit' template" do
-        family_member = FamilyMember.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        FamilyMember.any_instance.stub(:save).and_return(false)
-        put :update, {:id => family_member.to_param, :family_member => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested family_member" do
-      family_member = FamilyMember.create! valid_attributes
-      expect {
-        delete :destroy, {:id => family_member.to_param}, valid_session
-      }.to change(FamilyMember, :count).by(-1)
-    end
-
-    it "redirects to the family_members list" do
-      family_member = FamilyMember.create! valid_attributes
-      delete :destroy, {:id => family_member.to_param}, valid_session
-      response.should redirect_to(family_members_url)
     end
   end
 
