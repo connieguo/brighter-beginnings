@@ -23,8 +23,21 @@ describe DonationsController do
   # This should return the minimal set of attributes required to create a valid
   # Donation. As you add validations to Donation, be sure to
   # update the return value of this method accordingly.
+  
   def valid_attributes
-    {:user_id => 1, :family_code => "test"}
+    return {:user_id => 1, :family_code => "123test"}
+  end
+  
+  def valid_attributes_family
+    return {:profile => 'none', :display => true, :locationID => 1, :family_code => "123test"}
+  end
+  
+  def valid_attributes_user
+        return {:email => 'x@x.com', :identity => 1, :locationID => 1, :firstname => 'X', :lastname => 'X', :phone => '123456', :address_1 => 'unknown'}
+  end
+  
+  def valid_attributes_manager
+        return {:email => 'manager@x.com', :identity => 3, :locationID => 1, :firstname => 'Xmanager', :lastname => 'Xmanager', :phone => '123456', :address_1 => 'unknown'}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -52,7 +65,9 @@ describe DonationsController do
 
   describe "GET new" do
     it "assigns a new donation as @donation" do
-      get :new, {}, valid_session
+      family = Family.create! valid_attributes_family
+      donation = Donation.create! valid_attributes
+      get :new, {:id => family.id}, valid_session
       assigns(:donation).should be_a_new(Donation)
     end
   end
@@ -68,35 +83,35 @@ describe DonationsController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Donation" do
+        user = User.create! valid_attributes_user
         expect {
-          post :create, {:donation => valid_attributes}, valid_session
+          post :create, {:donation => valid_attributes}, {:user_email => user.email, :family_code => "123test"}
         }.to change(Donation, :count).by(1)
       end
 
       it "assigns a newly created donation as @donation" do
-        post :create, {:donation => valid_attributes}, valid_session
+        user = User.create! valid_attributes_user
+        post :create, {:donation => valid_attributes}, {:user_email => user.email, :family_code => "123test"}
         assigns(:donation).should be_a(Donation)
         assigns(:donation).should be_persisted
-      end
-
-      it "redirects to the created donation" do
-        post :create, {:donation => valid_attributes}, valid_session
-        response.should redirect_to(Donation.last)
-      end
+      end    
+      
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved donation as @donation" do
         # Trigger the behavior that occurs when invalid params are submitted
+        user = User.create! valid_attributes_user
         Donation.any_instance.stub(:save).and_return(false)
-        post :create, {:donation => {}}, valid_session
+        post :create, {:donation => {}}, {:user_email => user.email, :family_code => "123test"}
         assigns(:donation).should be_a_new(Donation)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
+        user = User.create! valid_attributes_user
         Donation.any_instance.stub(:save).and_return(false)
-        post :create, {:donation => {}}, valid_session
+        post :create, {:donation => {}}, {:user_email => user.email, :family_code => "123test"}
         response.should render_template("new")
       end
     end
@@ -148,16 +163,34 @@ describe DonationsController do
 
   describe "DELETE destroy" do
     it "destroys the requested donation" do
+      user = User.create! valid_attributes_user
       donation = Donation.create! valid_attributes
       expect {
-        delete :destroy, {:id => donation.to_param}, valid_session
+        delete :destroy, {:id => donation.to_param}, {:user_email => user.email, :family_code => "123test", :redirect_path => donations_url}
       }.to change(Donation, :count).by(-1)
     end
 
     it "redirects to the donations list" do
+      user = User.create! valid_attributes_user
       donation = Donation.create! valid_attributes
-      delete :destroy, {:id => donation.to_param}, valid_session
+      delete :destroy, {:id => donation.to_param}, {:user_email => user.email, :family_code => "123test", :redirect_path => donations_url}
       response.should redirect_to(donations_url)
+    end
+  end
+  
+  describe "pending" do 
+    it "is marked by donor and awaiting approval from manager" do 
+      donation = Donation.create! valid_attributes
+      user = User.create! valid_attributes_user
+      #user
+      #session[:redirect_path].should == user_main_path
+    end
+  end
+  
+  describe "approve" do 
+    it "approves a selected pending donation request" do
+      donation = Donation.create! valid_attributes
+      manager = User.create! valid_attributes_manager
     end
   end
 

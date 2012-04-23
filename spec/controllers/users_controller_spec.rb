@@ -24,7 +24,7 @@ describe UsersController do
   # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-        return {:email => 'x@x.com', :identity => 1, :locationID => 1, :firstname => 'X', :lastname => 'X', :phone => '123456', :address_1 => 'unknown'}
+    return {:email => 'x@x.com', :identity => 1, :locationID => 1, :firstname => 'X', :lastname => 'X', :phone => '123456', :address_1 => 'unknown', :address_2 => 'test'}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -160,24 +160,49 @@ describe UsersController do
       response.should redirect_to(users_url)
     end
   end
-  
-  describe "view admin accounts" do
-    it "assigns a list of admin accounts" do
-      admin_accounts = [mock_model(User), mock_model(User), mock_model(User), mock_model(User)]
-      User.should_receive(:get_all_admins).and_return(admin_accounts)
-      post :view_admin_accounts
-      response.should render_template("show")
-      assigns(:account_list).should == admin_accounts
+
+  describe "main" do
+    before do
+      @mock_user = mock('User')
+      session[:user_email] = "email"
+      @families = [mock('Family'), mock('Family')]
     end
-  end
-  
-  describe "view donor accounts" do
-    it "assigns a list of donor accounts" do
-      donor_accounts = [mock_model(User), mock_model(User), mock_model(User), mock_model(User)]
-      User.should_receive(:get_all_donors).and_return(donor_accounts)
-      post :view_donor_accounts
-      response.should render_template("show")
-      assigns(:account_list).should == donor_accounts
+    it "sets the session redirect path" do
+      User.should_receive(:find_by_email).twice.with("email").and_return(@mock_user)
+      @mock_user.should_receive(:locationID).and_return(1)
+      User.should_receive(:findNearbyFamilies).with(1).and_return(@families)
+      post :main
+      session[:redirect_path].should == user_main_path
+    end
+    it "should return all families if there are no filters" do
+      User.should_receive(:find_by_email).twice.with("email").and_return(@mock_user)
+      @mock_user.should_receive(:locationID).and_return(1)
+      User.should_receive(:findNearbyFamilies).with(1).and_return(@families)
+      post :main
+      assigns(:display_families).should == @families
+      session[:redirect_path].should == user_main_path
+    end
+    it "should filter out the list" do
+      family_a = Family.new(:family_code => "1233", :locationID => 1)
+      family_b = Family.new(:family_code => "1234", :locationID => 2)
+      family_c = Family.new(:family_code => "1235", :locationID => 3)
+      members_a = [mock('FamilyMember')]
+      members_b = [mock('FamilyMember')]
+      members_c = [mock('FamilyMember')]
+      @family_list = [family_a, family_b, family_c]
+      @trimmed_list = [family_b, family_c]
+      User.should_receive(:find_by_email).twice.with("email").and_return(@mock_user)
+      @mock_user.should_receive(:locationID).and_return(1)
+      User.should_receive(:findNearbyFamilies).with(1).and_return(@family_list)
+      FamilyMember.should_receive(:find_all_by_family_code).twice.with(family_a.family_code).and_return(members_a)
+      members_a.should_receive(:count).twice.and_return(3)
+      FamilyMember.should_receive(:find_all_by_family_code).twice.with(family_b.family_code).and_return(members_b)
+      members_b.should_receive(:count).twice.and_return(5)
+      FamilyMember.should_receive(:find_all_by_family_code).twice.with(family_c.family_code).and_return(members_c)
+      members_c.should_receive(:count).twice.and_return(4)
+      post :main, :family_size => [4, 5]
+      assigns(:display_families).should == @trimmed_list
+      session[:redirect_path].should == user_main_path
     end
   end
 
