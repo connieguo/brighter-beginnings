@@ -1,3 +1,41 @@
+== Brighter Beginnings == 
+
+This application is designed specifically for the non-profit organization, Brighter Beginnings, 
+in order to better facilitate their annual wintertime Adopt-A-Family program.  
+
+The purpose of this application is so that donors will be able to search through a list of families
+filtering by size of family. The application is meant to remove Brighter Beginnings from their 
+traditional way of using paper to match up donors and families, and the Adopt-A-Family program will 
+be able to expand to a year-round program. 
+
+== Permissions ==
+Case managers will be able to add families, add family members, and set their location.  Managers 
+will approve all donors, add or delete case manager accounts, delete donor accounts and have all 
+permissions of a case manager.  The superuser will have full permissions to the application, including 
+adding and deleting manager accounts. 
+
+
+= Donors =
+See all families in their location. 
+
+= Case Managers = 
+Add/Edit family accounts. 
+Add/Edit family members. 
+Set family locations.
+
+= Managers =
+Create/Delete case manager accounts.
+Approve donors' choice of family adopted.
+Delete donor accounts. 
+All case manager permissions. 
+
+= Superuser = 
+Create/Delete manager accounts. 
+All manager permissions.
+
+
+
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
