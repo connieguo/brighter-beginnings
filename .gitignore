@@ -6,3 +6,4 @@ tmp/
 *~
 coverage/*
 features/coverage/*
+spec/coverage/*

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates_uniqueness_of :email
-  validates_presence_of :identity, :locationID
+  validates_presence_of :identity, :locationID, :email
   has_many :families, :through => :donations
   has_many :donations
   def self.findNearbyFamilies(userLocationID)
@@ -19,17 +19,7 @@ class User < ActiveRecord::Base
   end
   
   def get_location
-	  if self.locationID == 1
-		  return "Oakland"
-	  elsif self.locationID == 2
-		  return "Richmond"
-	  elsif self.locationID == 3
-	  	return "Antioch"
-	  elsif self.locationID == 4
-		  return "Bay Point"
-	  else
-		  return ""
-	  end
+	  Family.get_location_name(self.locationID)
   end
   
 end
