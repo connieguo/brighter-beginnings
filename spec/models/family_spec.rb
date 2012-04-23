@@ -1,18 +1,34 @@
 require 'spec_helper'
 
 describe Family do
-  pending "add some examples to (or delete) #{__FILE__}"
   describe 'get_size' do
      it 'should get the size of a particular family' do
-       FamilyMember.should_receive(:find_all_by_family_code).with('OAB123').should_receive(:count).and_return(1)
-       Family.get_size('OAB123')
+       @fake_members = [mock('FamilyMember')]
+       @family = Family.new(:family_code => 'OAB123', :locationID => 2)
+       FamilyMember.should_receive(:find_all_by_family_code).with('OAB123').and_return(@fake_members)
+       @fake_members.should_receive(:count).and_return(1)
+       @family.get_size.should == 1
      end
   end
-  describe 'get_pending' do
-     it 'should get all families whose blurbs have not been approved yet' do
-       @fake_pending_families = [mock('Family'), mock('Family')]
-       Family.should_receive(:find_all_by_approved).with("false").and_return(@fake_pending_families)
-       Family.get_pending()
-     end
+  
+  describe 'get_locations' do
+    it 'should return an array with the locations' do
+      Family.get_locations.should == [1,2,3,4]
+    end
+  end
+  
+  describe 'get_location_name' do
+    it 'should return oakland for 1' do
+      Family.get_location_name(1).should == "Oakland"
+    end
+    it 'should return oakland for 2' do
+      Family.get_location_name(2).should == "Richmond"
+    end
+    it 'should return oakland for 3' do
+      Family.get_location_name(3).should == "Antioch"
+    end
+    it 'should return oakland for 4' do
+      Family.get_location_name(4).should == "Bay Point"
+    end
   end
 end
