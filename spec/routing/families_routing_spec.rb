@@ -30,6 +30,11 @@ describe FamiliesController do
     it "routes to #destroy" do
       delete("/families/1").should route_to("families#destroy", :id => "1")
     end
-
+    it "routes to #pending" do
+      get("/families/pending").should route_to("families#pending")
+    end
+    it "routes to #approve" do
+      get("/families/1/approve").should route_to("families#approve", :id=>"1")
+    end
   end
 end

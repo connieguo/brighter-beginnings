@@ -30,6 +30,8 @@ describe FamilyMembersController do
     it "routes to #destroy" do
       delete("/family_members/1").should route_to("family_members#destroy", :id => "1")
     end
-
+    it "routes to family details" do 
+      get("/families/1/family_members").should route_to("family_members#index", :id=> "1")
+    end
   end
 end
