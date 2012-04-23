@@ -11,13 +11,13 @@ Background: users have already registered with our site and families and family 
   | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
 
   Given the following families exist:
-  |    profile     | family_code | locationID | display |
-  | Smith profile  | SMITHCODE   |     1      | true    |
-  | Brown profile  | BROWNCODE   |     1      | true    |
-  | Li profile     |  LICODE     |     1      | true    |
-  | Wong profile   |  WONGCODE   |     2      | true    |
-  | Fong profile   |  FONGCODE   |     3      | true    |
-  | Small profile  |  SMALLCODE  |     4      |	true	|
+  |    profile     | family_code | locationID | display | approved_by |
+  | Smith profile  | SMITHCODE   |     1      | true    | 1           |
+  | Brown profile  | BROWNCODE   |     1      | true    | 1           |
+  | Li profile     |  LICODE     |     1      | true    | 1           |
+  | Wong profile   |  WONGCODE   |     2      | true    | 1           |
+  | Fong profile   |  FONGCODE   |     3      | true    | 1           |
+  | Small profile  |  SMALLCODE  |     4      |	true	| 1           |
 
   Given the following family members exist:
   |  family_code | firstname | age | gender | comment | pant_size | shirt_size | dress_size | shoe_size | wishlist |
@@ -51,5 +51,3 @@ Scenario: clicking donate for an existing family
   And I am on the "Smith Family Details Page"
   And I click "Smith-Donate"
   Then I should see "An email confirmation link has been emailed to your account at markpeng@cs169.com. Thanks for your generosity!"
-  
-
