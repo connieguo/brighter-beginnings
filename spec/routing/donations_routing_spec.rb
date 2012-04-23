@@ -31,5 +31,12 @@ describe DonationsController do
       delete("/donations/1").should route_to("donations#destroy", :id => "1")
     end
 
+    it "routes to #pending" do
+      get("/donations/pending").should route_to("donations#pending")
+    end
+    
+    it "routes to #approve" do
+      get("/donations/1/approve").should route_to("donations#approve", :id=>"1")
+    end
   end
 end
