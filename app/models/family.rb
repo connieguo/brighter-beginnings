@@ -1,6 +1,6 @@
 class Family < ActiveRecord::Base
   validates_uniqueness_of :family_code
-  validates_presence_of :locationID
+  validates_presence_of :locationID, :family_code
 
   has_many :family_members
   has_many :users, :through => :donations
