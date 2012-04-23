@@ -3,7 +3,7 @@
 <form action="/families/pending" method="get">
 Show locations:<br/>
 <% Family.get_locations.each do |location_id| %>
-  <%= check_box_tag "location[]", Family.get_location_name(location_id), (location_checked? location_id) %>
+  <%= check_box_tag "location[]", Family.get_location_name(location_id), (location_checked? location_id), :id=> "#{Family.get_location_name(location_id)}" %>
   <%= Family.get_location_name(location_id) %>
 <%end%>
 <input type="submit" id="Filter" value="Filter" class="btn btn-default btn-medium">
@@ -22,7 +22,7 @@ Show locations:<br/>
 	   <a class="btn btn-primary btn-mini" href=<%=edit_family_path(family)%>>Edit Family Info</a>
            <% if user_at_least_manager? %>
            <%= link_to "Delete Family", family, :class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this family?', method: :delete %>
-           <%= link_to "Approve Family", approve_family_path(family), :class=> "btn btn-success btn-mini", confirm: 'Approve this family?'%>
+           <%= link_to "Approve Family", approve_family_path(family), :class=> "btn btn-success btn-mini", confirm: 'Approve this family?', :id=>"Approve_#{family.family_code}" %>
            <% end %>
          </td>
       <tr />

@@ -29,7 +29,8 @@ module NavigationHelpers
     when /^the (.*) Donate Page$/
       @family = Family.find_by_family_code($1)
       "/donations/#{@family.id}/new"
-
+    when /^the Pending Families Page$/
+      "/families/pending"
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

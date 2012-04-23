@@ -17,9 +17,9 @@ Background: donors have already registered with our site
   Given the following families exist:
   |    profile     | family_code | locationID | display |  approved_by  |
   | Smith profile  | SMITHCODE   |     1      | true    |  1            |
-  | Brown profile  | BROWNCODE   |     1      | true    |  NULL         |
-  | Li profile     |  LICODE     |     1      | true    |  NULL         |
-  | Wong profile   |  WONGCODE   |     1      | true    |  NULL         |
+  | Brown profile  | BROWNCODE   |     1      | true    |               |
+  | Li profile     |  LICODE     |     1      | true    |               |
+  | Wong profile   |  WONGCODE   |     1      | true    |               |
   
   And I am on the home page
 
@@ -35,23 +35,27 @@ Scenario: successfully viewing all pending family profiles
   And I should see "BROWNCODE"
   And I should see "LICODE"
   And I should see "WONGCODE"
-  
+
+@javascript  
 @omniauth_test
 Scenario: successfully approving a family profile
   Given I have successfully completed authentication through Google
   And I am on the manager main page
   And I follow "Approve pending families info"
-  And I follow "Smith-Approve"
-  Then I should see "This family profile was successfully approved!"
-  And I should not see "SMITHCODE"
+  And I follow "Approve_BROWNCODE"
+  And I confirm popup
+  Then I should see "Successfully approved BROWNCODE."
+  And I should not see "Approve_BROWNCODE"
 
+@javascript
 @omniauth_test
 Scenario: viewing family profile after successfully approving it
   Given I have successfully completed authentication through Google
   And I am on the manager main page
   And I follow "Approve pending families info"
-  And I follow "Smith-Approve"
+  And I follow "Approve_BROWNCODE"
+  And I confirm popup
   And I follow "All Families"
-  Then I should see "SMITHCODE"
+  Then I should see "BROWNCODE"
 
 
