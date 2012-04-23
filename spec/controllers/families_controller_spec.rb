@@ -24,7 +24,7 @@ describe FamiliesController do
   # Family. As you add validations to Family, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    return {:profile => 'none', :display => true, :locationID => 1}
+    return {:profile => 'none', :display => true, :locationID => 1, :family_code => "123test"}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -66,6 +66,9 @@ describe FamiliesController do
   end
 
   describe "POST create" do
+    before(:each) do
+     @request.session[:redirect_path] = '/'
+    end
     describe "with valid params" do
       it "creates a new Family" do
         expect {
@@ -163,7 +166,7 @@ describe FamiliesController do
   
   describe "add family" do
     it "should add a new family" do
-      @fake_family_params = {"family_code" => "1234", "locationID" = 1}
+      @fake_family_params = {"family_code" => "1234", "locationID" => 1}
       @fake_family = mock_model(Movie)
       @fake_family_member_params = {"family_code" => "1234", "firstname" => "Jim"}
       @fake_family_member = mock_model(FamilyMember)
@@ -205,6 +208,12 @@ describe FamiliesController do
       response.should render_template("details")
       assigns(:members).should == family_members
     end
+  end
+  
+  describe "pending" do
+  end
+  
+  describe "approve" do
   end
 
 end
