@@ -19,41 +19,39 @@ Background: donors have already registered with our site
 Scenario: sucessfully viewing all donor, cm, manager accounts after signing on as a manager
   Given I have successfully completed authentication through Google
   And I am on the manager main page
-  And I click "Accounts"
+  And I follow "Accounts"
   Then I should see "connie.guo@cs169.com"
   And I should see "eric.leung@cs169.com"
   And I should see "markpeng@cs169.com"
   And I should not see "manduo.dong@cs169.com"
   
-@omniauth_test
-Scenario: successfully deleting a donor account
-  Given I have successfully completed authentication through Google
-  And I am on the manager main page
-  And I click "Accounts"
-  And I see "connie.guo@cs169.com"
-  And I click "Delete Donor"
-  And I see "Are you sure you want to delete this donor?"
-  And I click "Yes"
-  Then I should see "User connie.guo@cs169.com has been successfully deleted."
 
 @omniauth_test
-Scenario: successfully deleting a case manager account
+@javascript
+Scenario: successfully deleting donor
   Given I have successfully completed authentication through Google
   And I am on the manager main page
-  And I click "Accounts"
-  And I see "eric.leung@cs169.com"
-  And I click "Delete Case Manager"
-  And I see "Are you sure you want to delete this case manager?"
-  And I click "Yes"
-  Then I should see "Successfully deleted!"
+  And I follow "Accounts"
+  And I delete "connie.guo@cs169.com"
+  And I confirm popup
+  Then I should not see "connie.guo@cs169.com"
+
 @omniauth_test
+@javascript
+Scenario: successfully deleting case manager
+  Given I have successfully completed authentication through Google
+  And I am on the manager main page
+  And I follow "Accounts"
+  And I delete "eric.leung@cs169.com"
+  And I confirm popup
+  Then I should not see "eric.leung@cs169.com"
+
+@omniauth_test
+@javascript
 Scenario: choosing not to delete user after prompt
   Given I have successfully completed authentication through Google
   And I am on the manager main page
-  And I click "Accounts"
-  And I see "connie.guo@cs169.com"
-  And I click "Delete Donor"
-  And I see "Are you sure you want to delete this donor?"
-  And I click "No"
+  And I follow "Accounts"
+  And I delete "connie.guo@cs169.com"
+  And I dismiss popup
   Then I should see "connie.guo@cs169.com"
-

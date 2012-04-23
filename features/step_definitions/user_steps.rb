@@ -22,3 +22,17 @@ Given /^I have unsuccessfully completed authentication through Google$/ do
   visit '/auth/failure'
 end
 
+When /^(?:|I )delete "([^"]*)"$/ do |email|
+  @uid = User.find_by_email(email).id
+  click_link("user_#{@uid}")
+end
+
+When /^I dismiss popup$/ do
+  page.driver.browser.switch_to.alert.dismiss
+end
+
+When /^I confirm popup$/ do
+  page.driver.browser.switch_to.alert.accept
+end
+
+
