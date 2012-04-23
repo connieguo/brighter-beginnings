@@ -10,5 +10,5 @@
 
 <label>Desired Drop-Off Date:(mm/dd/yyyy)</label> 
 <input type="text" name="donation[scheduled_dropoff]" id="datepicker"><br /><br />
-   <%=f.submit "Donate Now!", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to donate?"%>
+   <%=f.submit "Donate Now!", :id=> "Donate", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to donate?"%>
 <%end%>

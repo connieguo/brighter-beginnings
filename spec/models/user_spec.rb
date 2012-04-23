@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   pending "add some examples to (or delete) #{__FILE__}"
-  
+=begin 
   describe 'findNearbyFamilies' do
      it 'should get all the nearby families' do
        @fake_families = [mock('Family'), mock('Family')]
@@ -10,7 +10,6 @@ describe User do
        User.findNearbyFamilies('1')
      end
   end
-
   describe 'get_all_admins' do
      it 'should get all the admin accounts' do
        @fake_admins = [mock('User'), mock('User')]
@@ -26,4 +25,5 @@ describe User do
         User.get_all_donors()
       end
    end
+=end
 end

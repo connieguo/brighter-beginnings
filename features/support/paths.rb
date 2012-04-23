@@ -21,6 +21,12 @@ module NavigationHelpers
       '/users/main'
     when /^the manager main page$/
       '/users/main'
+    when /^the (.*) Details Page$/
+      @family = Family.find_by_family_code($1)
+      "/families/#{@family.id}/family_members"
+    when /^the (.*) Donate Page$/
+      @family = Family.find_by_family_code($1)
+      "/donations/#{@family.id}/new"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -35,19 +35,34 @@ Scenario: viewing nearby families after signing in as donor
   And I should not see "WONGCODE"
   And I should not see "FONGCODE"
   And I should not see "SMALLCODE"
- 
+
+@omniauth_test 
 Scenario: viewing details and family members for a particularly family
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  And I click "Smith-Details"
-  Then I should be on the "Smith Family Details Page"
+  And I follow "SMITHCODE"
+  Then I should be on the SMITHCODE Details Page
   Then I should see "Carol"
   And I should see "Bob"
 
-Scenario: clicking donate for an existing family
+@omniauth_test
+Scenario: going to donate page for family
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  And I click "Smith-Details"
-  And I am on the "Smith Family Details Page"
-  And I click "Smith-Donate"
-  Then I should see "An email confirmation link has been emailed to your account at markpeng@cs169.com. Thanks for your generosity!"
+  And I follow "SMITHCODE"
+  And I am on the SMITHCODE Details Page
+  And I follow "Adopt this Family!"
+  Then I should be on the SMITHCODE Donate Page
+
+@javascript
+@omniauth_test
+Scenario: fill out donate form successfully
+  Given I have successfully completed authentication through Google
+  And I am on the user main page
+  And I follow "SMITHCODE"
+  And I am on the SMITHCODE Details Page
+  And I follow "Adopt this Family!"
+  And I am on the SMITHCODE Donate Page
+  And I press "Donate"
+  And I confirm popup
+  Then I am on the user main page
