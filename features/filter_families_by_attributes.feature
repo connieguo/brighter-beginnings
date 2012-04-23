@@ -7,14 +7,14 @@ Feature: filter a list of families in the location of the donor by a specific at
 Background: families have been added to database
   
   Given the following families exist:
-  |    profile     | family_code | locationID | display |
-  | Smith profile  | SMITHCODE   |     1      | true    |
-  | Brown profile  | BROWNCODE   |     1      | true    |
+  |    profile     | family_code | locationID | display | approved_by |
+  | Smith profile  | SMITHCODE   |     1      | true    |  1          |
+  | Brown profile  | BROWNCODE   |     1      | true    |  1          |
   And I am on the home page
 
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     0    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
   
   Given the following family members exist:
   |  family_code | firstname | age | gender | comment | pant_size | shirt_size | dress_size | shoe_size | wishlist |

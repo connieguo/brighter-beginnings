@@ -15,13 +15,14 @@ Scenario: viewing signup form after clicking signup link
   And I should see a field for "user_lastname"
   And the field for "user_lastname" should have "Peng"
   And I should see a field for "user_phone"
-  And I should see a field for "user_address"
+  And I should see a field for "user_address_1"
+  And I should see a field for "user_address_2"
+  And I should see a field for "user_city"
+  And I should see a field for "user_zipcode"
   And I should see a field for "user_email"
   And the field for "user_email" should have "markpeng@cs169.com"
   And I should see a field for "user_organization"
   And I should see a field for "user_locationID"
-  And I should see the button "Submit"
-
 @omniauth_test
 Scenario: displaying signup confirmation notice after successful signup
   Given I have successfully completed authentication through Google
@@ -29,7 +30,10 @@ Scenario: displaying signup confirmation notice after successful signup
   When I fill in "user_firstname" with "Mark"
   When I fill in "user_lastname" with "Peng"
   When I fill in "user_phone" with "510-123-4567"
-  When I fill in "user_address" with "some address"
+  When I fill in "user_address_1" with "some address"
+  When I fill in "user_address_2" with "some address"
+  When I fill in "user_city" with "some city"
+  When I fill in "user_zipcode" with "some zipcode"
   When I fill in "user_email" with "markpeng@cs169.com"
   When I fill in "user_organization" with "cs169"
   And I press "Submit"

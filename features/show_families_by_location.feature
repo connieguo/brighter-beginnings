@@ -7,18 +7,18 @@ Feature: display a list of families in the location of the donor
 Background: families and users have been added to database
   
   Given the following families exist:
-  |    profile     | family_code | locationID | display |
-  | Smith profile  | SMITHCODE   |     1      | true    |
-  | Brown profile  | BROWNCODE   |     1      | true    |
-  | Li profile     |  LICODE     |     1      | true    |
-  | Wong profile   |  WONGCODE   |     2      | true    |
-  | Fong profile   |  FONGCODE   |     3      | true    |
-  | Small profile  |  SMALLCODE  |     4      |	true	|
+  |    profile     | family_code | locationID | display | approved_by |
+  | Smith profile  | SMITHCODE   |     1      | true    |    1        |
+  | Brown profile  | BROWNCODE   |     1      | true    |    1        |
+  | Li profile     |  LICODE     |     1      | true    |    1        |
+  | Wong profile   |  WONGCODE   |     2      | true    |    1        |
+  | Fong profile   |  FONGCODE   |     3      | true    |    1        |
+  | Small profile  |  SMALLCODE  |     4      |	true	|    1        |
   And I am on the home page
 
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     0    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     4    |
   
 
 @omniauth_test

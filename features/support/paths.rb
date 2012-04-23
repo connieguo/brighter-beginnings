@@ -17,7 +17,9 @@ module NavigationHelpers
       '/'
     when /^the donors home page$/
       '/users/main'
-    when /user main page/
+    when /^user main page$/
+      '/users/main'
+    when /^the manager main page$/
       '/users/main'
 
     # Add more mappings here.

@@ -9,24 +9,23 @@ Background: users have already registered with our site and families have been a
   # identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      0     |     2    |
 
   Given the following families exist:
-  |    profile     | family_code | locationID | display | approved |
-  | Smith profile  | SMITHCODE   |     1      | true    | true     |
-  | Brown profile  | BROWNCODE   |     1      | true    | true     |
-  | Li profile     |  LICODE     |     1      | true    | true     |
-  | Wong profile   |  WONGCODE   |     2      | true    | true     |
-  | Fong profile   |  FONGCODE   |     3      | true    | true     |
-  | Small profile  |  SMALLCODE  |     4      |	true	| true     |
+  |    profile     | family_code | locationID | display |
+  | Smith profile  | SMITHCODE   |     1      | true    |
+  | Brown profile  | BROWNCODE   |     1      | true    |
+  | Li profile     |  LICODE     |     1      | true    |
+  | Wong profile   |  WONGCODE   |     2      | true    |
+  | Fong profile   |  FONGCODE   |     3      | true    |
+  | Small profile  |  SMALLCODE  |     4      |	true	|
   And I am on the home page
 
 @omniauth_test
 Scenario: successfully reaching the 'Add Family Blurb' button
   Given I have successfully completed authentication through Google
   And I am on the user main page
-  And I click "All Families"
-  Then I should see "Add a New Family Profile"
+  Then I should see "Add New Family"
     
 Scenario: going to the add new family form after clicking "Add a New Family Profile"
   Given I have unsuccessfully completed authentication through Google
