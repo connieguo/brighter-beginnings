@@ -7,20 +7,28 @@ Feature: allowing case managers to view a list of all donors
 Background: donors have already registered with our site
   
   # identity - 1: donor, 2: case manager, 3: manager, 4: superuser
-  Given the following donors exist:
+  Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
   | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     2    |
-  | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     1    |
+  | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     3    |
   | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |
   And I am on the home page
 
 @omniauth_test
-Scenario: sucessfully viewing all donors after signing on as a case manager
+Scenario: sucessfully viewing all accounts after signing on as a case manager
   Given I have successfully completed authentication through Google
   And I am on the case manager main page
-  And I click "View All Donors"
-  Then I should see "connie.guo@cs169.com"
-  And I should see "eric.leung@cs169.com"
-  And I should not see "markpeng@cs169.com"
-  
+  And I follow "Accounts"
+  Then I should see "eric.leung@cs169.com"
+  And I should see "markpeng@cs169.com"
+  And I should see "connie.guo@cs169.com"
+
+@omniauth_test
+Scenario: not viewing delete buttons if signed in as case manager
+  Given I have successfully completed authentication through Google
+  And I am on the case manager main page
+  And I follow "Accounts"
+  Then I should not see "Delete Donor"
+  And I should not see "Delete Case Manager"
+  And I should not see "Delete Manager"
 

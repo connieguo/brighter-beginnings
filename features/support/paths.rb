@@ -21,6 +21,8 @@ module NavigationHelpers
       '/users/main'
     when /^the manager main page$/
       '/users/main'
+    when /^the case manager main page$/
+      '/users/main'
     when /^the (.*) Details Page$/
       @family = Family.find_by_family_code($1)
       "/families/#{@family.id}/family_members"
