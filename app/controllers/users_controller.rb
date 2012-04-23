@@ -97,14 +97,14 @@ class UsersController < ApplicationController
     @family_sizes = [1,2,3,4,5]
     if params[:family_size] 
     	@families.each do |family|
-           params[:family_size].each do |size|
-                #get all families size 5 or greater
-                if size == 5 && FamilyMember.find_all_by_family_code(family.family_code).count >= size
-		        @display_families << family
-      		elsif FamilyMember.find_all_by_family_code(family.family_code).count.to_s == size
-        		@display_families << family
-      		end
-           end
+          params[:family_size].each do |size|
+            #get all families size 5 or greater
+            if size == 5 && FamilyMember.find_all_by_family_code(family.family_code).count >= size
+		          @display_families << family
+      		  elsif FamilyMember.find_all_by_family_code(family.family_code).count.to_s == size
+        	  	@display_families << family
+      		  end
+          end
     	end
     else
        @display_families = @families
