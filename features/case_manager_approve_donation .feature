@@ -1,10 +1,10 @@
-Feature: allowing managers to approve pending donations
+Feature: allowing case managers to approve pending donations
   
-  As a manager
+  As a case manager
   So that I can view donations donors made
   I want to approve pending donations submitted by donors
   
-Background: donors have already registered with our site and submitted donation form
+Background: donors have already registered with our site
   
   #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
@@ -27,7 +27,7 @@ Background: donors have already registered with our site and submitted donation 
 @omniauth_test
 Scenario: a donor should receive an email confirmation once the donation has been approved
   Given I have successfully completed authentication through Google
-  And I am on the manager main page
+  And I am on the case manager main page
   And I follow "View Donations"
   Then I should be on "Donations Page"
   And I hit approve
