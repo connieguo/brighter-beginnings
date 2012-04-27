@@ -175,6 +175,7 @@ describe UsersController do
       manager = User.create! valid_attributes_manager
       promote(user, manager, 2)
       user.identity.should == 2
+      user.location.should == 0
     end
     
     it "refuses to promote the requested user" do 
@@ -229,5 +230,4 @@ describe UsersController do
       session[:redirect_path].should == user_main_path
     end
   end
-
 end
