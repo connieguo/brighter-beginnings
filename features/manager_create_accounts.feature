@@ -4,7 +4,7 @@ Feature: allowing managers to create new case manager accounts
   So that I can hire new case managers to the project
   I want to be able to create case manager accounts
   
-Background: donors have already registered with our site
+Background: users have already registered with our site
   
   #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
