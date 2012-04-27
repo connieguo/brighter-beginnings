@@ -26,6 +26,14 @@ describe UsersController do
   def valid_attributes
     return {:email => 'x@x.com', :identity => 1, :locationID => 1, :firstname => 'X', :lastname => 'X', :phone => '123456', :address_1 => 'unknown', :address_2 => 'test'}
   end
+    
+  def valid_attributes_case
+    return {:email => 'x2@x.com', :identity => 2, :locationID => 1, :firstname => 'X2', :lastname => 'X2', :phone => '1234562', :address_1 => 'unknown2', :address_2 => 'test2'}
+  end
+  
+  def valid_attributes_manager
+    return {:email => 'x3@x.com', :identity => 3, :locationID => 1, :firstname => 'X3', :lastname => 'X3', :phone => '1234563', :address_1 => 'unknown3', :address_2 => 'test3'}
+  end
   
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -158,6 +166,22 @@ describe UsersController do
       user = User.create! valid_attributes
       delete :destroy, {:id => user.to_param}, valid_session
       response.should redirect_to(users_url)
+    end
+  end
+  
+  describe "promote to case manager" do 
+    it "promotes the requested user" do 
+      user = User.create! valid_attributes
+      manager = User.create! valid_attributes_manager
+      promote(user, manager, 2)
+      user.identity.should == 2
+    end
+    
+    it "refuses to promote the requested user" do 
+      case_manager = User.create! valid_attributes_case
+      manager = User.create! valid_attributes_manager
+      promote(case_manager, manager, 2)
+      case_manager.identity.should == 2
     end
   end
 

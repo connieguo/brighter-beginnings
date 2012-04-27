@@ -274,3 +274,29 @@ Then /^I should see the button "Submit"/ do
     assert false, "Submit button was not found in #{page.body}."
   end
 end
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  current_page = page.body
+  first_pos = current_page.index(e1.to_s)
+  second_pos = current_page.index(e2.to_s)
+  if second_pos > first_pos
+    assert true
+  else
+    assert false, "#{e1} not before #{e2}"
+  end
+  #  ensure that that e1 occurs before e2.
+  #  page.content  is the entire content of the page as a string.
+end
+
+Then /I should see "(.*)" after "(.*)"/ do |e1, e2|
+  current_page = page.body
+  first_pos = current_page.index(e1.to_s)
+  second_pos = current_page.index(e2.to_s)
+  if second_pos < first_pos
+    assert true
+  else
+    assert false, "#{e1} not after #{e2}"
+  end
+  #  ensure that that e1 occurs before e2.
+  #  page.content  is the entire content of the page as a string.
+end

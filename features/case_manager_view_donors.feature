@@ -31,4 +31,5 @@ Scenario: not viewing delete buttons if signed in as case manager
   Then I should not see "Delete Donor"
   And I should not see "Delete Case Manager"
   And I should not see "Delete Manager"
+  
 
