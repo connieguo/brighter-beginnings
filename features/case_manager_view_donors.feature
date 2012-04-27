@@ -31,4 +31,13 @@ Scenario: not viewing delete buttons if signed in as case manager
   Then I should not see "Delete Donor"
   And I should not see "Delete Case Manager"
   And I should not see "Delete Manager"
+  
+@omniauth_test
+Scenario: a donor should receive an email confirmation once the donation has been approved
+  Given I have successfully completed authentication through Google
+  And I am on the case manager main page
+  And I follow "View Donations"
+  Then I should be on "Donations Page"
+  And I hit approve
+  Then I should see "donation confirmation email has been sent to the donor"
 
