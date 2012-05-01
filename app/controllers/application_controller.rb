@@ -31,4 +31,16 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !(session[:user_email] == nil)
   end
+  
+  def fill_template (template)
+    return nil if template == nil
+    user = User.find_by_email(session[:user_email])
+    result = template
+    result = result.gsub("{{user_name}}", session[:user_name])
+    result = result.gsub("{{user_email}}", session[:user_email])
+    result = result.gsub("{{user_firstname}}", session[:user_firstname])
+    result = result.gsub("{{user_lastname}}", session[:user_lastname])
+    result = result.gsub("{{user_location}}", Family.get_location_name(user.locationID))
+    #result = result.gsub("{{family_code}}", TODO: fill in family code logic)
+  end
 end

@@ -1,6 +1,9 @@
 <h1>Pending Donations</h1>
 <br />
-
+<% if user_at_least_manager? %>
+  <%= link_to "(View/Edit Donor Email Template)", email_template_path %>
+<% end %>
+<br/>
 <table class="table table-striped">
 <% @donations.each do |donation| %>
 	<tr>

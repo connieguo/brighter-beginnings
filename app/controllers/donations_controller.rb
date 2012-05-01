@@ -109,4 +109,29 @@ class DonationsController < ApplicationController
      end
      redirect_to session[:redirect_path]
   end
+  
+  def email_template
+    @template = EmailTemplate.get_current_template
+    if @template
+      @filled_template = fill_template(@template.template_body)
+    end
+    respond_to do |format|
+      format.html
+      format.json {head :ok}
+    end
+  end
+  
+  def new_email_template
+    body = params[:email_template][:template]
+    template = EmailTemplate.create(:editor_name => session[:user_name], :template_body => body)
+    if template.save
+      flash[:notice] = "Successfully added template!"
+    else
+      flash[:error] = "Sorry, there was an error, please try again."
+    end
+    respond_to do |format|
+      format.html { redirect_to email_template_path }
+      format.json { head :ok }
+    end
+  end
 end

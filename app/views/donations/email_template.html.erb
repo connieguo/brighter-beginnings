@@ -1,0 +1,15 @@
+<h1> Email Template </h1>
+<br/>
+An email will be sent out upon approving a donation.
+
+<label>This is what the current email looks like:</label>
+<br/>
+<div class="template-preview">
+  <% if @template %>
+    <%= simple_format(@filled_template) %>
+  <% else %>
+    There is no current email template.
+  <% end %>
+</div>
+<br/>
+<%= render 'email_template_form' %>

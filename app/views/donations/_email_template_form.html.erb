@@ -1,0 +1,38 @@
+<h1>New Email Template</h1><br />
+
+<%= form_for(:email_template, options = {:url => '/donations/email/new'}) do |f| %>
+    <div class=template-instructions>
+    Within your email, you may use these strings:<br/>
+    <table border="1" cellpadding="5">
+      <tr>
+        <td>{{user_name}}</td>
+        <td>Full name of recipient</td>
+      </tr>
+      <tr>
+        <td>{{user_firstname}}</td>
+        <td>First name of recipient</td>
+      </tr>
+      <tr>
+        <td>{{user_lastname}}</td>
+        <td>Last name of recipient</td>
+      </tr>
+      <tr>
+        <td>{{user_email}}</td>
+        <td>Email of recipient</td>
+      </tr>
+      <tr>
+        <td>{{user_location}}</td>
+        <td>Dropoff location of recipient</td>
+      </tr>
+      <tr>
+        <td>{{donation_family_code}}</td>
+        <td>Family code associated with the donor</td>
+      </tr>
+    </table>
+    </div>
+    <%= f.label :template, "New Template" %>
+    <%= f.text_area :template, :required => true, :placeholder => "Enter email template here.  Placeholder strings may be put directly inline-- like {{user_name}}, and will be replaced when the email is sent out."%>
+    <br/>
+    <%= f.submit "Submit", :class=>"btn btn-primary btn-large", :confirm => "Are you sure you want to submit this as the new email template?"%>
+<% end %>
+

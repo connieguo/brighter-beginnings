@@ -20,6 +20,8 @@ class Family < ActiveRecord::Base
   
   def self.get_location_name(id)
     case id
+      when 0
+        return "Admin"
       when 1
         return "Oakland"
       when 2
