@@ -116,4 +116,38 @@ class UsersController < ApplicationController
     end
   end
   
+  def manage
+    @user = User.find_by_email(session[:user_email])
+    @user_to_promote = User.find_by_email(params[:user_promotion][:user_email])
+    if @user_to_promote == nil
+      flash[:error] = "This user was not found.  Please double check to make sure this user exists."
+    else
+      if @user_to_promote.identity >= @user.identity
+        flash[:error] = "You require additional permissions to change this user's account level."
+      else
+        case params[:user_promotion][:account_level]
+          when 'Donor'
+            @user_to_promote.identity = 1
+            if @user_to_promote.identity == 3
+              @user_to_promote.locationID = 1
+            end
+          when 'Case Manager'
+            @user_to_promote.identity = 2
+          when 'Manager'
+            @user_to_promote.identity = 3
+            @user_to_promote.locationID = 0
+        end
+        
+        if @user_to_promote.save!
+          flash[:notice] = "Successfully changed user."
+        else
+          flash[:error] = "An error occurred, please try again"
+        end
+      end
+    end
+    respond_to do |format|
+      format.html {redirect_to users_url}
+      format.json { head :ok }
+    end
+  end
 end
