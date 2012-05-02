@@ -57,4 +57,23 @@ module ApplicationHelper
     end
   end
 
+  
+  def is_link_active? (path)
+    if request.path == path
+      return "active"
+    else
+      return "inactive"
+    end
+  end
+  
+  def navbar_link(label, path)
+    html = "<li"
+    if request.path == path
+      html += " class=\"active\">"
+    else
+      html += ">"
+    end
+    html += "<a href = \"#{path}\">#{label}</a></li>"
+    return html.html_safe
+  end
 end
