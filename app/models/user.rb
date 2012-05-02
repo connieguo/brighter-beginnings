@@ -21,5 +21,10 @@ class User < ActiveRecord::Base
   def get_location
 	  Family.get_location_name(self.locationID)
   end
-  
+ 
+  def notify_registration
+     if (self.identity == 1)
+        UserMailer.registration_confirmation(self).deliver
+     end
+  end 
 end
