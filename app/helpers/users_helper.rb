@@ -14,7 +14,7 @@ module UsersHelper
     end
     return result
   end
-  
+
   def get_family_id_from_code(family_code)
     Family.find_by_family_code(family_code).id
   end
@@ -26,7 +26,7 @@ module UsersHelper
     @status = "#{donation.family_code}-Dropped-Off" if donation.dropped_off_date != nil
     return @status
   end
- 
+
   def get_donation_status(donation_id)
     html = ""
     donation = Donation.find_by_id(donation_id)
