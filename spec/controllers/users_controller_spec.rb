@@ -24,22 +24,22 @@ describe UsersController do
   # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    return {:email => 'x@x.com', :identity => 1, :locationID => 1, :firstname => 'X', :lastname => 'X', :phone => '123456', :address_1 => 'unknown', :address_2 => 'test'}
+    return {:email => 'test', :identity => 1, :locationID => 1}
   end
     
   def valid_attributes_case
-    return {:email => 'x2@x.com', :identity => 2, :locationID => 1, :firstname => 'X2', :lastname => 'X2', :phone => '1234562', :address_1 => 'unknown2', :address_2 => 'test2'}
+    return {:email => 'test_case', :identity => 2, :locationID => 1}
   end
   
   def valid_attributes_manager
-    return {:email => 'x3@x.com', :identity => 3, :locationID => 1, :firstname => 'X3', :lastname => 'X3', :phone => '1234563', :address_1 => 'unknown3', :address_2 => 'test3'}
+    return {:email => 'test_mgr', :identity => 3, :locationID => 1}
   end
   
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {:test => true}
   end
 
   describe "GET index" do
@@ -168,23 +168,6 @@ describe UsersController do
       response.should redirect_to(users_url)
     end
   end
-  
-  describe "promote to case manager" do 
-    it "promotes the requested user" do 
-      user = User.create! valid_attributes
-      manager = User.create! valid_attributes_manager
-      promote(user, manager, 2)
-      user.identity.should == 2
-      user.location.should == 0
-    end
-    
-    it "refuses to promote the requested user" do 
-      case_manager = User.create! valid_attributes_case
-      manager = User.create! valid_attributes_manager
-      promote(case_manager, manager, 2)
-      case_manager.identity.should == 2
-    end
-  end
 
   describe "main" do
     before do
@@ -228,6 +211,83 @@ describe UsersController do
       post :main, :family_size => [4, 5]
       assigns(:display_families).should == @trimmed_list
       session[:redirect_path].should == user_main_path
+    end
+  end
+  
+  describe "manage" do
+    before do
+      @user = mock('User')
+      @user_to_promote = mock('User')
+      session[:user_email] = "user_email"
+    end
+    it "should return an error if there is no user to promote" do
+      User.should_receive(:find_by_email).twice.with("user_email").and_return(@user)
+      User.should_receive(:find_by_email).with("promote_email").and_return(nil)
+      post :manage, :user_promotion => {:user_email => "promote_email"}
+      flash[:error].should == "This user was not found.  Please double check to make sure this user exists."
+      response.should redirect_to users_url
+    end
+    it "should not let you modify a user that is >= you" do
+      User.should_receive(:find_by_email).twice.with("user_email").and_return(@user)
+      User.should_receive(:find_by_email).with("promote_email").and_return(@user_to_promote)
+      @user_to_promote.should_receive(:identity).and_return(3)
+      @user.should_receive(:identity).and_return(3)
+      post :manage, :user_promotion => {:user_email => "promote_email", :account_level => "Donor"}
+      flash[:error].should == "You require additional permissions to change this user's account level."
+      response.should redirect_to users_url
+    end
+    it "should change a user to a donor" do
+      @promote_user = User.new(:email => "promote_email", :locationID => 0, :identity => 3)
+      User.should_receive(:find_by_email).twice.with("user_email").and_return(@user)
+      User.should_receive(:find_by_email).with("promote_email").and_return(@promote_user)
+      @user.should_receive(:identity).and_return(4)
+      post :manage, :user_promotion => {:user_email => "promote_email", :account_level => "Donor"}
+      response.should redirect_to users_url
+      @promote_user.identity.should == 1
+      flash[:notice].should == "Successfully changed user."
+    end
+    it "should change a user to a case manager" do
+      @promote_user = User.new(:email => "promote_email", :locationID => 0, :identity => 3)
+      User.should_receive(:find_by_email).twice.with("user_email").and_return(@user)
+      User.should_receive(:find_by_email).with("promote_email").and_return(@promote_user)
+      @user.should_receive(:identity).and_return(4)
+      post :manage, :user_promotion => {:user_email => "promote_email", :account_level => "Case Manager"}
+      response.should redirect_to users_url
+      @promote_user.identity.should == 2
+      flash[:notice].should == "Successfully changed user."
+    end
+    it "should change a user to a manager" do
+      @promote_user = User.new(:email => "promote_email", :locationID => 0, :identity => 3)
+      User.should_receive(:find_by_email).twice.with("user_email").and_return(@user)
+      User.should_receive(:find_by_email).with("promote_email").and_return(@promote_user)
+      @user.should_receive(:identity).and_return(4)
+      post :manage, :user_promotion => {:user_email => "promote_email", :account_level => "Manager"}
+      response.should redirect_to users_url
+      @promote_user.identity.should == 3
+      flash[:notice].should == "Successfully changed user."
+    end
+  end
+  
+  describe "view_donations" do
+    before do
+      session[:user_email] = "user_email"
+      @user = mock('User')
+      @donations = [mock('Donation'), mock('Donation')]
+    end
+    it "should find all approved donations if user is admin" do
+      User.should_receive(:find_by_email).twice.and_return(@user)
+      @user.should_receive(:identity).and_return(2)
+      Donation.should_receive(:find).and_return(@donations)
+      post :view_donations
+      assigns(:donations).should == @donations
+    end
+    it "should find all donations with same user id if user is donor" do
+      User.should_receive(:find_by_email).twice.and_return(@user)
+      @user.should_receive(:identity).and_return(1)
+      @user.should_receive(:id).and_return(5)
+      Donation.should_receive(:find_all_by_user_id).with(5).and_return(@donations)
+      post :view_donations
+      assigns(:donations).should == @donations
     end
   end
 end
