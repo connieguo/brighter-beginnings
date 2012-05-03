@@ -15,18 +15,6 @@ Background: families have been added to database
   | Dear donor, thank you very much for your contributions to the Adopt-a-Family-Program! Each year, your contributions are responsible for improving the lives of many families and we are very grateful to your generosity. Sincerely, Brighter Beginnings | markpeng@cs169.com |
 
 @omniauth_test
-@javascript
-Scenario: not filling in the template
-  # your steps here
-  Given I have successfully completed authentication through Google
-  And I am on the case manager main page
-  And I follow "All Donations"
-  And I follow "(View pending donations)"
-  And I follow "(View/Edit Donor Email Template)" 
-  And I press "Submit"
-  Then I should see "thank you very much for your contributions to the Adopt-a-Family-Program!"
-
-@omniauth_test
 Scenario: successfully editing the template
   # your steps here
   Given I have successfully completed authentication through Google

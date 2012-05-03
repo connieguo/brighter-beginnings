@@ -25,12 +25,6 @@ Scenario: seeing confirmation after successful authentication
   And I should see "Mark Peng"
   And I should see "Logout"
   
-Scenario: seeing an error message after unsuccessful authentication
-  #Knowing Google automatically directs back to 'auth/failure' after failed authentication
-  Given I have unsuccessfully completed authentication through Google
-  Then I should be on the home page
-  And I should see "There was a problem with logging in, please click the Sign In button and try again"
-  And I should see "Sign In"
 
 @omniauth_test
 Scenario: seeing a confirmation after logging out
