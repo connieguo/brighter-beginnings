@@ -86,7 +86,9 @@ class DonationsController < ApplicationController
   # DELETE /donations/1.json
   def destroy
     @donation = Donation.find(params[:id])
+    @donor = User.find_by_id(@donation.user_id)
     @donation.destroy
+    @donor.notify_donation_rejected
     @family = Family.find_by_family_code(@donation.family_code)
     @family.display = true
     @family.save

@@ -16,6 +16,15 @@ class UserMailer < ActionMailer::Base
      end
   end  
 
+  def donation_rejection(user)
+     @user = user
+     mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been rejected.") do |format|
+       format.text do
+         render :text => "Sorry, your donation has been denied. Please respond to bb.casemanager169@gmail.com if you wish to receive details."
+       end     
+  end
+
+
   def receive(email)
     page = Page.find_by_address(email.to.first)
     page.emails.create(
