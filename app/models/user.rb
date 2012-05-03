@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
      end
   end 
   def notify_donation_approved
-     if (self.identity == 1)
-        UserMailer.donation_confirmation(self).deliver
-     end
+     UserMailer.donation_confirmation(self).deliver
   end
 end
