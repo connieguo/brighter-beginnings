@@ -31,6 +31,8 @@ module NavigationHelpers
       "/donations/#{@family.id}/new"
     when /^the Pending Families Page$/
       "/families/pending"
+    when /^the accounts page$/
+      '/users'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
