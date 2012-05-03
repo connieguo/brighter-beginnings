@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :identity, :locationID, :email
   has_many :families, :through => :donations
-  has_many :donations
+  has_many :donations, :dependent => :destroy
   def self.findNearbyFamilies(userLocationID)
     if (userLocationID == 0)
       @families = Family.find(:all)
