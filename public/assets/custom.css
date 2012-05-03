@@ -59,3 +59,13 @@ textarea {
  width: 500px;
  height: 250px;
 }
+
+div.template-preview {
+  background-color: #F0F8FF;
+  padding: 8px;
+  border-style: dotted;
+  border-width: 1px;
+}
+.flash-warning a {
+  border-bottom: 1px dotted #404040
+}
