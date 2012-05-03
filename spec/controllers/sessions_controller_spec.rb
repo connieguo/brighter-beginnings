@@ -39,13 +39,13 @@ describe SessionsController do
   end
   
   it 'should handle a failed authentication' do
-    post :failed_login
+    post :failed_login, {}, {:test => true}
     response.should redirect_to('/')
     flash[:error].should == "There was a problem with logging in, please click the Sign In button and try again."
   end
   
   it 'should log the user out' do
-    post :logout
+    post :logout, {}, {:test => true}
     response.should redirect_to('/')
     flash[:notice].should == "Successfully logged out."
     session[:user_email].should == nil
