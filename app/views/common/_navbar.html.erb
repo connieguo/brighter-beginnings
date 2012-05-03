@@ -17,7 +17,10 @@
 	        <% else %>
 	          <%= navbar_link "About", '/about' %>
 	          <%= navbar_link "Contact", '/contact' %>
-	          <%= navbar_link "Nearby Families", '/users/main' %>
+	          <% if logged_in? %>
+	            <%= navbar_link "Nearby Families", '/users/main' %>
+	            <%= navbar_link "Your Donations", '/users/donations' %>
+	          <% end %>
           <% end %>
         </ul>
         <ul class="nav pull-right">
