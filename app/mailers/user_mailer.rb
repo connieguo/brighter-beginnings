@@ -8,8 +8,8 @@ class UserMailer < ActionMailer::Base
 
   def donation_confirmation(user)
      @user = user
+     @template = EmailTemplate.get_current_template.template_body
      mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been approved!")
-     @template = EmailTemplate.get_current_template
   end  
 
   def receive(email)
