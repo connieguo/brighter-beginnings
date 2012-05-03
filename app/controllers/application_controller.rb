@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   end
   
   def check_login
+    if session[:test]
+      return
+    end
     check_login_valid_paths = [login_callback_path, new_user_path, '/users', '/logout']
     if (!check_login_valid_paths.include?(request.path))
       if (logged_in? && !User.find_by_email(user_email))
