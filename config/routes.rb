@@ -3,6 +3,7 @@ BrighterBeginnings::Application.routes.draw do
   match 'donations/email/new', :to => 'donations#new_email_template'
   match '/donations/email/', :to => 'donations#email_template', :as => 'email_template'
   match '/users/manage/', :to => 'users#manage', :as => 'manage_user'
+  match '/users/donations/', :to => 'users#view_donations', :as => 'view_donations'
 
   match '/donations/pending', :to => 'donations#pending', :as => "pending_donations"
   match '/donations/:id/approve', :to => "donations#approve", :as => "approve_donation"

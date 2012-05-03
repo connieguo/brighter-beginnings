@@ -15,9 +15,12 @@
 	          <%= navbar_link "Pending Donations", '/donations/pending' %>
 	          <%= navbar_link "Accounts", '/users' %>
 	        <% else %>
+	          <% if logged_in? %>
+	            <%= navbar_link "Nearby Families", '/users/main' %>
+	            <%= navbar_link "Your Donations", '/users/donations' %>
+	          <% end %>
 	          <%= navbar_link "About", '/about' %>
 	          <%= navbar_link "Contact", '/contact' %>
-	          <%= navbar_link "Nearby Families", '/users/main' %>
           <% end %>
         </ul>
         <ul class="nav pull-right">

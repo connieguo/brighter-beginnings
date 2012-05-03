@@ -56,7 +56,10 @@ module ApplicationHelper
       false
     end
   end
-
+  
+  def logged_in?
+    session[:user_email] != nil
+  end
   
   def is_link_active? (path)
     if request.path == path

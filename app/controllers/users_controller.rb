@@ -150,4 +150,13 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def view_donations
+    @user = User.find_by_email(session[:user_email])
+    @donations = Donation.find_all_by_user_id(@user.id)
+    respond_to do |format|
+      format.html
+      format.json {head :ok}
+    end
+  end
 end

@@ -67,6 +67,10 @@ div.template-preview {
   border-width: 1px;
 }
 
+a {
+  border-bottom: 1px dotted #404040
+}
+
 .flash-warning a {
   border-bottom: 1px dotted #404040
 }

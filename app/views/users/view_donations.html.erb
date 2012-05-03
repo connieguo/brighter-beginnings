@@ -1,0 +1,14 @@
+<h1>Your donations</h1>
+<table id="donors" class="table table-striped">
+<% @donations.each do |donation| %>
+  <tr>
+    <td>   
+      <big><strong>Family Code:&nbsp;</strong>
+        <%= link_to "#{donation.family_code}", family_details_path(get_family_id_from_code donation.family_code)%></big><br/>
+      <strong>Scheduled Dropoff:&nbsp;</strong><%= donation.scheduled_dropoff %><br/>
+      <strong>Dropoff Site:&nbsp;</strong><%= Family.get_location_name(donation.dropoff_site) %><br/>
+      <strong>Status: &nbsp;</strong><%= get_donation_status donation.id %>
+    </td> 
+  </tr>
+<% end %>
+</table>
