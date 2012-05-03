@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         redirect_to new_user_path
       end
     end
-    not_logged_in_valid_paths = ['/', '/auth/google', '/about', '/contact', login_callback_path]
+    not_logged_in_valid_paths = ['/', '/auth/google', '/about', '/contact', '/more', login_callback_path]
     if (!logged_in? && !not_logged_in_valid_paths.include?(request.path))
       flash[:warning] = "You are not logged in.  Please <a href='/auth/google'>log in</a> to continue.".html_safe
       redirect_to '/'
