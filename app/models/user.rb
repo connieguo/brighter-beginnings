@@ -27,10 +27,16 @@ class User < ActiveRecord::Base
         UserMailer.registration_confirmation(self).deliver
      end
   end 
+
   def notify_donation_approved
      UserMailer.donation_confirmation(self).deliver
   end
+
   def notify_donation_rejected
      UserMailer.donation_rejection(self).deliver
+  end
+
+  def notify_status_changed
+     UserMailer.status_confirmation(self).deliver
   end
 end
