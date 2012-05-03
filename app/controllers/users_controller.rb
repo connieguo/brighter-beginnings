@@ -139,7 +139,7 @@ class UsersController < ApplicationController
         end
         
         if @user_to_promote.save!
-          @user.notify_status_changed
+          @user_to_promote.notify_status_changed
           flash[:notice] = "Successfully changed user."
         else
           flash[:error] = "An error occurred, please try again"
