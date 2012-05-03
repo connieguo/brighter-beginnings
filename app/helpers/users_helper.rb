@@ -27,4 +27,9 @@ module UsersHelper
     html = "<font color='#3B9C9C'>Dropped off on #{donation.dropped_off_date}!  Thank you!</font>" if donation.dropped_off_date != nil
     html.html_safe
   end
+  
+  def get_user_info(id)
+    user = User.find(id)
+    return "#{user.firstname} #{user.lastname} (#{user.email})"
+  end
 end

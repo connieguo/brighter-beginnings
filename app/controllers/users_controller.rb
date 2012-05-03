@@ -153,7 +153,11 @@ class UsersController < ApplicationController
   
   def view_donations
     @user = User.find_by_email(session[:user_email])
-    @donations = Donation.find_all_by_user_id(@user.id)
+    if @user.identity >= 2
+      @donations = Donation.find(:all, :conditions => ['approved_by IS NOT NULL'])
+    else
+      @donations = Donation.find_all_by_user_id(@user.id)
+    end
     respond_to do |format|
       format.html
       format.json {head :ok}

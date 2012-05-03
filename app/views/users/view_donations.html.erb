@@ -1,13 +1,24 @@
-<h1>Your donations</h1>
+<% if user_at_least_case_manager? %>
+  <h1>Approved Donations</h1>
+  <a href='/donations/pending'>(View pending donations)</a><br/><br/>
+<% else %>
+  <h1>Your donations</h1>
+<% end %>
 <table id="donors" class="table table-striped">
 <% @donations.each do |donation| %>
   <tr>
     <td>   
-      <big><strong>Family Code:&nbsp;</strong>
+      <big><strong>Family Code: </strong>
         <%= link_to "#{donation.family_code}", family_details_path(get_family_id_from_code donation.family_code)%></big><br/>
-      <strong>Scheduled Dropoff:&nbsp;</strong><%= donation.scheduled_dropoff %><br/>
-      <strong>Dropoff Site:&nbsp;</strong><%= Family.get_location_name(donation.dropoff_site) %><br/>
-      <strong>Status: &nbsp;</strong><%= get_donation_status donation.id %>
+      <strong>Scheduled Dropoff: </strong><%= donation.scheduled_dropoff %><br/>
+      <strong>Dropoff Site: </strong><%= Family.get_location_name(donation.dropoff_site) %><br/>
+      <strong>Status: </strong><%= get_donation_status donation.id %>
+      <% if user_at_least_case_manager? %>
+        <br/><strong>Donor: </strong><%= get_user_info(donation.user_id) %>
+        <br/><strong>Approved by: </strong><%= get_user_info(donation.approved_by) %>
+        <br/><strong>Dropped off: </strong><%= donation.dropped_off_date %>
+        <br/><strong>Date Delivered: </strong><%= donation.date_delivered %>
+      <% end %>
     </td> 
   </tr>
 <% end %>
