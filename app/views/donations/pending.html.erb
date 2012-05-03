@@ -8,6 +8,8 @@
 <% @donations.each do |donation| %>
 	<tr>
 	<td>
+	<big><strong>Family Code: </strong>
+        <%= link_to "#{donation.family_code}", family_details_path(get_family_id_from_code donation.family_code)%></big><br/>
 	<strong>Donor's Name:&nbsp;</strong><%= donation.get_donor.firstname %>&nbsp;<%=donation.get_donor.lastname %><br />
 	<strong>Donor's Email:&nbsp;</strong><%= donation.get_donor.email %><br />
 	<strong>Donor's Phone No.:&nbsp;</strong><%= donation.get_donor.phone %><br />

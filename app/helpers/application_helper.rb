@@ -79,4 +79,8 @@ module ApplicationHelper
     html += "<a href = \"#{path}\">#{label}</a></li>"
     return html.html_safe
   end
+  
+  def get_family_id_from_code(family_code)
+    Family.find_by_family_code(family_code).id
+  end
 end
