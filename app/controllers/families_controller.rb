@@ -43,6 +43,7 @@ class FamiliesController < ApplicationController
     @family = Family.new(params[:family])
     if User.find_by_email(session[:user_email]).identity >= 3 #if user is at least manager+
       @family.approved_by = User.find_by_email(session[:user_email]).id
+      @family.display = true
     end
     respond_to do |format|
       if @family.save
@@ -104,6 +105,7 @@ class FamiliesController < ApplicationController
   def approve
     @family = Family.find(params[:id])
     @family.approved_by = User.find_by_email(session[:user_email]).id
+    @family.display = true
     if @family.save
       flash[:notice] = "Successfully approved #{@family.family_code}."
     else
