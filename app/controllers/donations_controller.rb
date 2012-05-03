@@ -100,9 +100,11 @@ class DonationsController < ApplicationController
     end
   end
   def approve
+     @user = User.find_by_email(session[:user_email])
      @donation = Donation.find(params[:id])
-     @donation.approved_by = User.find_by_email(session[:user_email]).id
+     @donation.approved_by = @user.id
      if @donation.save
+        @user.donation_confirmation
 	flash[:notice] = "Successfully approved #{@donation.id}."
      else
 	flash[:error] = "Sorry, something went wrong with the approval. Please try again."
