@@ -118,7 +118,7 @@ describe DonationsController do
       end
     end
   end
-
+  
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested donation" do
@@ -200,25 +200,30 @@ describe DonationsController do
     end
     
     it "approves a selected pending donation request" do
-      
-      #flash[:notice].should == "Successfully approved 1"
-    end
-    
-    it "does not approve a selected pending donation request" do 
+      valid_session[:user_email] = "x@x.com"
+      #User.should_receive(:find).with("x@x.com").and_return(@user)
     end
     
   end
   
+  
   describe "email_template" do 
     it "shows current email template" do 
+      manager = User.create! valid_attributes_manager
+      donation = Donation.create! valid_attributes
       old_template = EmailTemplate.create!( {:editor_name => "some_old_guy@cs169.com", :template_body => "some old template"})
+      
+      post :email_template
+      EmailTemplate.get_current_template.should eq(old_template)
     end
   end
   
   describe "new_email_template" do 
     it "replaces old template with new template" do 
       manager = User.create! valid_attributes_manager
-      #old_template = EmailTemplate.create! {:editor_name => "some_old_guy@cs169.com", :template_body => "some old template"}
+      old_template = EmailTemplate.create!( {:editor_name => "some_old_guy@cs169.com", :template_body => "some old template"})
+      new_template = EmailTemplate.create!( {:editor_name => "some_new_guy@cs169.com", :template_body => "a new template"})
+      #put :new_email_template, {:user_name => "someguy"}, valid_session
 
     end
   end
