@@ -51,8 +51,11 @@ class DonationsController < ApplicationController
     @user = User.find_by_email(session[:user_email])
     @donation.user_id = @user.id
     @donation.family_code = session[:family_code]
+    @family = Family.find_by_family_code(session[:family_code])
     respond_to do |format|
       if @donation.save
+        @family.display = false
+        @family.save
         session[:family_code] = nil
         format.html { redirect_to "/users/main", notice: 'Your request has been successfully entered! We will send you an email confirmation with details once the adoption has been approved. Thanks for your generosity!', confirm: 'Are you sure' }
         format.json { render json: @donation, status: :created, location: @donation }
@@ -84,6 +87,9 @@ class DonationsController < ApplicationController
   def destroy
     @donation = Donation.find(params[:id])
     @donation.destroy
+    @family = Family.find_by_family_code(@donation.family_code)
+    @family.display = true
+    @family.save
 
     respond_to do |format|
       format.html { redirect_to session[:redirect_path], notice: "Successfully deleted donation!" }

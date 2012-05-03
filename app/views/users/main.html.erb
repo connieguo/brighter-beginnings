@@ -24,6 +24,7 @@ Filter by Family Size:
 </form>
 <table id="nearby_families" class="table table-striped">
    <% @display_families.each do |family| %>
+     <% if family.display %>
       <tr>
          <td>
            <strong>Family Code:&nbsp;<%= family.family_code %></strong><br />
@@ -39,6 +40,7 @@ Filter by Family Size:
 
          </td>
       <tr />
+    <% end %>
   <% end %>
 </table>
 
