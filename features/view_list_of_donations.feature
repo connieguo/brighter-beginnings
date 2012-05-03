@@ -14,6 +14,7 @@ Background: families have been added to database
 
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
   | eric.leung@cs169.com   |   Eric   |   Leung   |      1     |     1    |
   | connie.guo@cs169.com |   Connie  |   Guo    |      1     |     4    |
   
@@ -29,46 +30,17 @@ Background: families have been added to database
   |                   |                  | 04/26/2012     | BROWNCODE   | 1       | 1            | 2           |
 
 @omniauth_test
-@javascript
 Scenario: see list of approved donations as donor
-  Given the following users exist:
-  |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
   Given I have successfully completed authentication through Google
   And I am on the donors home page
   And I follow "Your Donations"
   Then I should see "Approved" after "BROWNCODE"
 
 @omniauth_test
-@javascript
 Scenario: see list of pending donations as donor
-  Given the following users exist:
-  |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
   Given I have successfully completed authentication through Google
   And I am on the donors home page
   And I follow "Your Donations"
   Then I should see "Waiting for approval" after "SMITHCODE"
 
-@omniauth_test
-@javascript
-Scenario: seeing list of approved donations as a case manager+
-  Given the following users exist:
-  |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     3    |
-  Given I have successfully completed authentication through Google
-  And I am on the manager main page
-  And I follow "All Donations"
-  Then I should see "Approved" after "BROWNCODE"
-
-@omniauth_test
-Scenario: seeing list of pending donations as a case manager+
-  Given the following users exist:
-  |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     3    |
-  Given I have successfully completed authentication through Google
-  And I am on the manager main page
-  And I follow "All Donations"
-  And I follow "(View pending donations)"
-  Then I should see "SMITHCODE"
 
