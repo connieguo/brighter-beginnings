@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def registration_confirmation(user)
     @user = user
-    mail(:to => "#{user.email}>", :subject => "Welcome to the BrighterBeginnings Adopt-a-Family Program!")
+    mail(:to => "#{user.email}>", :subject => "Welcome to the BrighterBeginnings Adopt-a-Family Program!", :body=>'Thank you for registering with the Adopt-a-Family Program! Please sign into the website at brighter-beginnings.herokuapp.com to see the list of families in your area.' )
   end
 
   def receive(email)
