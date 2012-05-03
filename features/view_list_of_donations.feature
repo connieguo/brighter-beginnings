@@ -8,8 +8,8 @@ Background: families have been added to database
   
   Given the following families exist:
   |    profile     | family_code | locationID | display | approved_by |
-  | Smith profile  | SMITHCODE   |     1      | true    |  1          |
-  | Brown profile  | BROWNCODE   |     1      | true    |  1          |
+  | Smith profile  | SMITHCODE   |     1      | true    |  2          |
+  | Brown profile  | BROWNCODE   |     1      | true    |  2          |
   And I am on the home page
 
   Given the following users exist:
@@ -24,22 +24,23 @@ Background: families have been added to database
   |  BROWNCODE   | George| 10| M | None | M | M | M | M | toys   |
 
   Given the following donations exist:
-  | scheduled_dropoff | dropped_off_date | data_delivered | family_code | user_id | dropoff_site | approved_by |
-  |  05/26/2012 | | | SMITHCODE | 1 | 1 | 4 |
+  | scheduled_dropoff | dropped_off_date | date_delivered | family_code | user_id | dropoff_site | approved_by |
+  |  05/26/2012 | 05/26/2012 | | SMITHCODE | 1 | 1 | |
   |  04/25/2012 |  04/25/2012 | 04/26/2012 | BROWNCODE | 1 | 1 | 4 |
+
 @omniauth_test
-Scenario: see list of approved donations
+@javascript
+Scenario: see list of approved donations as donor
   # your steps here
   Given I have successfully completed authentication through Google
   And I am on the donors home page
-  And I follow "Donations"
-  Then I should see "SMITHCODE" under "Pending Donations"
-  And I should not see "BROWNCODE" under "Pending Donations"
+  And I follow "Your Donations"
+  Then I should see "BROWNCODE-Approved"
 
 @omniauth_test
-Scenario: see list of pending donations
+@javascript
+Scenario: see list of pending donations as donor
   Given I have successfully completed authentication through Google
   And I am on the donors home page
-  And I follow "Donations"
-  Then I should see "BROWNCODE" under "Approved Donations"
-  And I should not see "SMITHCODE" under "Approved Donations"
+  And I follow "Your Donations"
+  Then I should see "SMITHCODE-Pending"

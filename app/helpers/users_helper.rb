@@ -18,7 +18,15 @@ module UsersHelper
   def get_family_id_from_code(family_code)
     Family.find_by_family_code(family_code).id
   end
-  
+
+  def get_status_id(donation_id)
+    donation = Donation.find_by_id(donation_id)
+    @status = "#{donation.family_code}-Pending" if donation.approved_by == nil
+    @status = "#{donation.family_code}-Approved" if donation.approved_by != nil
+    @status = "#{donation.family_code}-Dropped-Off" if donation.dropped_off_date != nil
+    return @status
+  end
+ 
   def get_donation_status(donation_id)
     html = ""
     donation = Donation.find_by_id(donation_id)
