@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :check_login
+
   
   def user_email
     session[:user_email]
@@ -20,11 +21,17 @@ class ApplicationController < ActionController::Base
   end
   
   def check_login
-    if ((request.path != login_callback_path) && (request.path != new_user_path) && (request.path != '/users'))
+    check_login_valid_paths = [login_callback_path, new_user_path, '/users', '/logout']
+    if (!check_login_valid_paths.include?(request.path))
       if (logged_in? && !User.find_by_email(user_email))
         flash[:notice] = "Sorry, we seem to be missing some information about you in our records, please fill in the form below before proceeding."
         redirect_to new_user_path
       end
+    end
+    not_logged_in_valid_paths = ['/', '/auth/google', '/about', '/contact', login_callback_path]
+    if (!logged_in? && !not_logged_in_valid_paths.include?(request.path))
+      flash[:warning] = "You are not logged in.  Please <a href='/auth/google'>log in</a> to continue.".html_safe
+      redirect_to '/'
     end
   end
 

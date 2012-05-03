@@ -41,7 +41,9 @@ class FamiliesController < ApplicationController
   # POST /families.json
   def create
     @family = Family.new(params[:family])
-
+    if User.find_by_email(session[:user_email]).identity >= 3 #if user is at least manager+
+      @family.approved_by = User.find_by_email(session[:user_email]).id
+    end
     respond_to do |format|
       if @family.save
         format.html { redirect_to session[:redirect_path], notice: 'Family was successfully created.' }

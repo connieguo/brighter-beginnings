@@ -5,5 +5,13 @@ module UsersHelper
     else
       return ""
     end
-  end  
+  end
+  
+  def appropriate_promotions
+    result = ['Donor', 'Case Manager']
+    if User.find_by_email(session[:user_email]).identity == 4
+      result << 'Manager'
+    end
+    return result
+  end
 end

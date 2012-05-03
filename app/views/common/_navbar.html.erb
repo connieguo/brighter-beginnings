@@ -9,20 +9,15 @@
       <a class="brand" href="/">Brighter Beginnings</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="active"><a href="/">Home</a></li>
+          <%= navbar_link "Home", '/' %>
           <% if user_at_least_case_manager? %>
-            <li><a href="/users/main">All Families</a></li>
-	    <li><a href="/donations/pending">Pending Donations</a></li>
-	     	      <li><a href="/users">Accounts</a></li>
-	  <% else %>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
- 	    <li><a href="/users/main">Nearby Families</a></li>
- 	    
-
-
-
- 	    
+            <%= navbar_link "All Families", '/users/main' %>
+	          <%= navbar_link "Pending Donations", '/donations/pending' %>
+	          <%= navbar_link "Accounts", '/users' %>
+	        <% else %>
+	          <%= navbar_link "About", '/about' %>
+	          <%= navbar_link "Contact", '/contact' %>
+	          <%= navbar_link "Nearby Families", '/users/main' %>
           <% end %>
         </ul>
         <ul class="nav pull-right">

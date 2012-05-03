@@ -1,4 +1,7 @@
 <% if user_at_least_case_manager? %>
+<% if user_at_least_manager? %>
+<%= render 'promotion_form' %>
+<% end %>
 <h2>All Donors</h2>
 <table id="donors" class="table table-striped">
       <% @donors.each do |user| %>
