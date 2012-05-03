@@ -52,3 +52,16 @@ Scenario: successfully editing the template with template fillers
   And I press "Submit"
   Then I should see "Successfully added template! "
   And I should see "Dear Mark Peng, with email markpeng@cs169.com, this is a new template"
+  
+@omniauth_test
+Scenario: successfully editing the template with invalid template fillers
+  # your steps here
+  Given I have successfully completed authentication through Google
+  And I am on the case manager main page
+  And I follow "All Donations"
+  And I follow "(View pending donations)"
+  And I follow "(View/Edit Donor Email Template)" 
+  And I fill in "email_template_template" with "Dear {{user_name}}, with email {{user_email}}, this is a new template {{random_filler}}"
+  And I press "Submit"
+  Then I should see "Successfully added template! "
+  And I should see "Dear Mark Peng, with email markpeng@cs169.com, this is a new template {{random_filler}}"
