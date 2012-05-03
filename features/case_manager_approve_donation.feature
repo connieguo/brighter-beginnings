@@ -25,9 +25,10 @@ Background: donors have already registered with our site
   | family_code | user_id |
   |  SMITHCODE  |    3    |
   
-  And I am on the home page
+  Given the following template exists:
+  | template_body | editor_name |
+  | Dear donor, thank you very much for your contributions to the Adopt-a-Family-Program! Each year, your contributions are responsible for improving the lives of many families and we are very grateful to your generosity. Sincerely, Brighter Beginnings | markpeng@cs169.com |
   
-@javascript
 @omniauth_test
 Scenario: successfully approving a donation
   Given I have successfully completed authentication through Google
@@ -37,6 +38,5 @@ Scenario: successfully approving a donation
   And I follow "View pending donations"
   Then I should see "SMITHCODE"
   And I follow "Approve Donation"
-  And I confirm popup
   Then I should see "Successfully approved"
   And I should not see "SMITHCODE"
