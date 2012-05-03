@@ -104,7 +104,7 @@ class DonationsController < ApplicationController
      @donation = Donation.find(params[:id])
      @donation.approved_by = @user.id
      if @donation.save
-        @user.donation_confirmation
+        @user.notify_donation_approved
 	flash[:notice] = "Successfully approved #{@donation.id}."
      else
 	flash[:error] = "Sorry, something went wrong with the approval. Please try again."
