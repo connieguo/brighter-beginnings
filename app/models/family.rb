@@ -2,7 +2,7 @@ class Family < ActiveRecord::Base
   validates_uniqueness_of :family_code
   validates_presence_of :locationID, :family_code
 
-  has_many :family_members
+  has_many :family_members, :dependent => :destroy, :foreign_key => 'family_code', :primary_key => 'family_code'
   has_many :users, :through => :donations
   
   OAKLAND_ID = 1
