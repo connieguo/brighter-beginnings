@@ -23,7 +23,6 @@ Background: donors have already registered with our site
   
   And I am on the home page
 
-@javascript
 @omniauth_test
 Scenario: successfully viewing all pending family profiles
   Given I have successfully completed authentication through Google
@@ -36,25 +35,21 @@ Scenario: successfully viewing all pending family profiles
   And I should see "LICODE"
   And I should see "WONGCODE"
 
-@javascript  
 @omniauth_test
 Scenario: successfully approving a family profile
   Given I have successfully completed authentication through Google
   And I am on the manager main page
   And I follow "Approve pending families info"
   And I follow "Approve_BROWNCODE"
-  And I confirm popup
   Then I should see "Successfully approved BROWNCODE."
   And I should not see "Approve_BROWNCODE"
 
-@javascript
 @omniauth_test
 Scenario: viewing family profile after successfully approving it
   Given I have successfully completed authentication through Google
   And I am on the manager main page
   And I follow "Approve pending families info"
   And I follow "Approve_BROWNCODE"
-  And I confirm popup
   And I follow "All Families"
   Then I should see "BROWNCODE"
 
