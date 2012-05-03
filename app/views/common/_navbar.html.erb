@@ -12,7 +12,7 @@
           <%= navbar_link "Home", '/' %>
           <% if user_at_least_case_manager? %>
             <%= navbar_link "All Families", '/users/main' %>
-	          <%= navbar_link "Pending Donations", '/donations/pending' %>
+	          <%= navbar_link "All Donations", '/users/donations' %>
 	          <%= navbar_link "Accounts", '/users' %>
 	        <% else %>
 	          <% if logged_in? %>

@@ -5,5 +5,5 @@
   <%= f.text_field :user_email, :required => true, :placeholder => "User email address" %>
   <%= f.label :account_level, "Change account level to" %>
   <%= f.select :account_level, appropriate_promotions %>
-  <%= f.submit "Change", :class=>"btn btn-primary btn-large", :confirm => "Are you sure you want to change this user?"%>
+  <%= f.submit "Change", :confirm => "Are you sure you want to change this user?"%>
 <% end %>
