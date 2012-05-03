@@ -31,7 +31,7 @@ describe FamilyMembersController do
   # in order to pass any filters (e.g. authentication) defined in
   # FamilyMembersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {:test => true}
   end
 
   describe "GET show" do
