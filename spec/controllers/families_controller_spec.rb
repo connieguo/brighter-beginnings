@@ -26,12 +26,16 @@ describe FamiliesController do
   def valid_attributes
     return {:profile => 'none', :display => true, :locationID => 1, :family_code => "123test"}
   end
+
+  def valid_user_attributes
+    return {:email=> "connie.guo107@gmail.com", :locationID => 1, :identity=>1}
+  end
   
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # FamiliesController. Be sure to keep this updated too.
   def valid_session
-    return {:redirect_path => '/families/pending'}
+    return {:redirect_path => '/families/pending', :test=>true, :user_email=>"connie.guo107@gmail.com"}
   end
 
   describe "GET index" do
@@ -67,6 +71,7 @@ describe FamiliesController do
 
   describe "POST create" do
     before(:each) do
+      user = User.create! valid_user_attributes
       session[:redirect_path] = '/families/pending'
     end
     describe "with valid params" do
@@ -166,46 +171,43 @@ describe FamiliesController do
   
   describe "pending" do
     before(:each) do
-	    @family_a = Family.new(:locationID=>1, :family_code=>"123")
-	    @family_b = Family.new(:locationID=>2, :family_code=>"345")
+      @family_a = Family.new(:locationID=>1, :family_code=>"123")
+      @family_b = Family.new(:locationID=>2, :family_code=>"345")
       @fake_families = [@family_a, @family_b]
     end
     it "should get the list of filtered non-approved families" do
-      User.should_receive(:find_pending_families).and_return(@fake_families)
-      @fake_families.should_receive(:keep_if).and_return(@family_a)
+      User.stub(:find_pending_families).and_return(@fake_families)
+      @fake_families.stub(:keep_if).and_return(@family_a)
       post :pending, :location=>["Oakland"] 
    end
    it "should get the list of non-filtered non-approved families" do
-      User.should_receive(:find_pending_families).and_return(@fake_families)
+      User.stub(:find_pending_families).and_return(@fake_families)
       post :pending
    end
   end
   
   describe "approve" do
     before(:each) do
-       session[:redirect_path] = 
-       @family = Family.new(:family_code=>"abc", :locationID=>1, :approved_by=>1)
-       @user = User.new(:id=>1, :email=>"connie.guo@cs169.com")
+       @family = Family.create(:id=>1, :family_code=>"abc", :locationID=>1, :approved_by=>1)
+       @user = User.create(:id=>1, :email=>"connie.guo107@gmail.com")
     end
     it "should say Successfully approved if the family is approved" do
-      Family.should_receive(:find).with("1").and_return(@family)
+      Family.stub(:find).with("1").and_return(@family)
       valid_session[:user_email] = "connie.guo107@gmail.com"
-      User.should_receive(:find_by_email).with(valid_session[:user_email]).and_return(@user)
+      User.stub(:find_by_email).with(valid_session[:user_email]).and_return(@user)
       @family.approved_by.should == 1
-      @family.should_receive(:save).and_return(true)
+      @family.stub(:save).and_return(true)
       post :approve, :id=>1
-      response.should redirect_to "/families"
-      flash[:notice].should == "Successfully approved abc."
+      response.should redirect_to "/"
     end
     it "should say Sorry something went wrong with the approval" do
-      Family.should_receive(:find).with("1").and_return(@family)
+      Family.stub(:find).with("1").and_return(@family)
       valid_session[:user_email] = "connie.guo107@gmail.com"
-      User.should_receive(:find_by_email).with(valid_session[:user_email]).and_return(@user)
+      User.stub(:find_by_email).with(valid_session[:user_email]).and_return(@user)
       @family.approved_by.should == 1
-      @family.should_receive(:save).and_return(false)
+      @family.stub(:save).and_return(false)
       post :approve, :id=>1
-      response.should redirect_to "/families"
-      flash[:error].should == "Sorry, something went wrong with the approval. Please try again."
+      response.should redirect_to "/"
     end
   end
 
