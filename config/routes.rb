@@ -15,7 +15,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/users/main', :to => 'users#main', :as => 'user_main'
   resources :users
   
-  match '/about', :to => 'pages#story'
+  match '/about', :to => 'pages#about'
   match '/more', :to => 'pages#story'
   match 'contact', :to => 'pages#contact'
 
