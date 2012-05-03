@@ -21,7 +21,8 @@ class UserMailer < ActionMailer::Base
      mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been rejected.") do |format|
        format.text do
          render :text => "Sorry, your donation has been denied. Please respond to bb.casemanager169@gmail.com if you wish to receive details."
-       end     
+       end    
+     end 
   end
 
 
