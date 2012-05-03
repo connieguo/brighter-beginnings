@@ -66,6 +66,13 @@ div.template-preview {
   border-style: dotted;
   border-width: 1px;
 }
+
 .flash-warning a {
+  border-bottom: 1px dotted #404040
+}
+.flash-error a {
+  border-bottom: 1px dotted #404040
+}
+.flash-notice a {
   border-bottom: 1px dotted #404040
 }
