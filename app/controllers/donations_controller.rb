@@ -114,9 +114,9 @@ class DonationsController < ApplicationController
      @donation.approved_by = @user.id
      if @donation.save
         @donor.notify_donation_approved
-	flash[:notice] = "Successfully approved #{@donation.id}."
+	      flash[:notice] = "Successfully approved #{@donation.id}."
      else
-	flash[:error] = "Sorry, something went wrong with the approval. Please try again."
+	      flash[:error] = "Sorry, something went wrong with the approval. Please try again."
      end
      redirect_to session[:redirect_path]
   end
