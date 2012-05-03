@@ -22,9 +22,9 @@ Scenario: not filling in the template
   And I follow "All Donations"
   And I follow "(View pending donations)"
   And I follow "(View/Edit Donor Email Template)" 
-  And I fill in "email_template_template" with ""
   And I press "Submit"
   Then I should not see "Successfully added template!"
+  And I should see "Sorry, there was an error, please try again."
 
 @omniauth_test
 Scenario: successfully editing the template
