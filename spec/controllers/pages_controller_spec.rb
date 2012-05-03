@@ -4,7 +4,7 @@ describe PagesController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index'
+      get 'index', {}, {:test => true}
       response.should be_success
     end
   end

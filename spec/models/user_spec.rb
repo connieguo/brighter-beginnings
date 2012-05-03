@@ -40,4 +40,44 @@ describe User do
       @user.get_location.should == "Oakland"
     end
   end
+  
+  describe 'notify registration' do
+    it 'should send registration confirmation' do
+      @user = User.new(:identity => 1)
+      @template = "template"
+      UserMailer.should_receive(:registration_confirmation).with(@user).and_return(@template)
+      @template.should_receive(:deliver)
+      @user.notify_registration
+    end
+  end
+  
+  describe 'notify donation approved' do
+    it 'should send donation approved confirmation' do
+      @user = User.new(:identity => 1)
+      @template = "template"
+      UserMailer.should_receive(:donation_confirmation).with(@user).and_return(@template)
+      @template.should_receive(:deliver)
+      @user.notify_donation_approved
+    end
+  end
+  
+  describe 'notify donation rejected' do
+    it 'should send donation rejected confirmation' do
+      @user = User.new(:identity => 1)
+      @template = "template"
+      UserMailer.should_receive(:donation_rejection).with(@user).and_return(@template)
+      @template.should_receive(:deliver)
+      @user.notify_donation_rejected
+    end
+  end
+  
+  describe 'notify status changed' do
+    it 'should send status changed confirmation' do
+      @user = User.new(:identity => 1)
+      @template = "template"
+      UserMailer.should_receive(:status_confirmation).with(@user).and_return(@template)
+      @template.should_receive(:deliver)
+      @user.notify_status_changed
+    end
+  end
 end
