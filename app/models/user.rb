@@ -27,4 +27,9 @@ class User < ActiveRecord::Base
         UserMailer.registration_confirmation(self).deliver
      end
   end 
+  def notify_donation_approved
+     if (self.identity > 1)
+        UserMailer.donation_confirmation(self).deliver
+     end
+  end
 end
