@@ -19,6 +19,7 @@ BrighterBeginnings::Application.routes.draw do
   match '/more', :to => 'pages#story'
   match '/contact', :to => 'pages#contact'
   match '/story', :to => 'pages#success_story'
+  match '/faq', :to => 'pages#faq'
   
   get "pages/index"
   root :to => "pages#index"
