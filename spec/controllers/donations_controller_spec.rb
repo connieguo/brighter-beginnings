@@ -44,7 +44,7 @@ describe DonationsController do
   # in order to pass any filters (e.g. authentication) defined in
   # DonationsController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {:test => true}
   end
 
   describe "GET index" do
@@ -84,6 +84,7 @@ describe DonationsController do
     describe "with valid params" do
       it "creates a new Donation" do
         user = User.create! valid_attributes_user
+        family = Family.create! valid_attributes_family
         expect {
           post :create, {:donation => valid_attributes}, {:user_email => user.email, :family_code => "123test"}
         }.to change(Donation, :count).by(1)
@@ -91,6 +92,7 @@ describe DonationsController do
 
       it "assigns a newly created donation as @donation" do
         user = User.create! valid_attributes_user
+        family = Family.create! valid_attributes_family
         post :create, {:donation => valid_attributes}, {:user_email => user.email, :family_code => "123test"}
         assigns(:donation).should be_a(Donation)
         assigns(:donation).should be_persisted
@@ -164,6 +166,7 @@ describe DonationsController do
   describe "DELETE destroy" do
     it "destroys the requested donation" do
       user = User.create! valid_attributes_user
+      family = Family.create! valid_attributes_family
       donation = Donation.create! valid_attributes
       expect {
         delete :destroy, {:id => donation.to_param}, {:user_email => user.email, :family_code => "123test", :redirect_path => donations_url}
@@ -172,6 +175,7 @@ describe DonationsController do
 
     it "redirects to the donations list" do
       user = User.create! valid_attributes_user
+      family = Family.create! valid_attributes_family
       donation = Donation.create! valid_attributes
       delete :destroy, {:id => donation.to_param}, {:user_email => user.email, :family_code => "123test", :redirect_path => donations_url}
       response.should redirect_to(donations_url)
@@ -188,9 +192,34 @@ describe DonationsController do
   end
   
   describe "approve" do 
+    
+    before(:each) do       
+      @donation = Donation.create! valid_attributes
+      @user = User.create! valid_attributes_user
+      @manager = User.create! valid_attributes_manager
+    end
+    
     it "approves a selected pending donation request" do
-      donation = Donation.create! valid_attributes
+      
+      #flash[:notice].should == "Successfully approved 1"
+    end
+    
+    it "does not approve a selected pending donation request" do 
+    end
+    
+  end
+  
+  describe "email_template" do 
+    it "shows current email template" do 
+      old_template = EmailTemplate.create!( {:editor_name => "some_old_guy@cs169.com", :template_body => "some old template"})
+    end
+  end
+  
+  describe "new_email_template" do 
+    it "replaces old template with new template" do 
       manager = User.create! valid_attributes_manager
+      #old_template = EmailTemplate.create! {:editor_name => "some_old_guy@cs169.com", :template_body => "some old template"}
+
     end
   end
 
