@@ -8,11 +8,11 @@ Background: donors have already registered with our site
   
   #identity: 1 (donor), 2 (case manager), 3 (manager), 4 (superuser)
   Given the following users exist:
-  |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      0     |     3    |
-  | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     2    |
-  | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |
-  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     4    |
+  |        email         | firstname | lastname | locationID | identity | id |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      0     |     3    |  1 |
+  | connie.guo@cs169.com |  Connie   |   Guo    |      2     |     2    |  2 |
+  | eric.leung@cs169.com |  Eric     |  Leung   |      3     |     1    |  3 |
+  | manduo.dong@cs169.com|  Man      |   Dong   |      1     |     4    |  4 |
 
   Given the following families exist:
   |    profile     | family_code | locationID | display |  approved_by  |
@@ -21,15 +21,22 @@ Background: donors have already registered with our site
   | Li profile     |  LICODE     |     1      | true    |               |
   | Wong profile   |  WONGCODE   |     1      | true    |               |
   
-  And I am on the home page
+  Given the following donations exist:
+  | family_code | user_id |
+  |  SMITHCODE  |    3    |
   
-@javascript
+  Given the following template exists:
+  | template_body | editor_name |
+  | Dear donor, thank you very much for your contributions to the Adopt-a-Family-Program! Each year, your contributions are responsible for improving the lives of many families and we are very grateful to your generosity. Sincerely, Brighter Beginnings | markpeng@cs169.com |
+  
 @omniauth_test
-Scenario: a donor should receive an email confirmation once the donation has been approved
+Scenario: successfully approving a donation
   Given I have successfully completed authentication through Google
   And I am on the case manager main page
-  And I follow "View Donations"
-  Then I should be on "Donations Page"
-  And I hit approve
-  Then I should see "donation confirmation email has been sent to the donor"
-
+  And I follow "All Donations"
+  Then I should be on All Donations Page
+  And I follow "View pending donations"
+  Then I should see "SMITHCODE"
+  And I follow "Approve Donation"
+  Then I should see "Successfully approved"
+  And I should not see "SMITHCODE"

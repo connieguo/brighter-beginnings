@@ -166,9 +166,9 @@ describe FamiliesController do
   
   describe "pending" do
     before(:each) do
-	@family_a = Family.new(:locationID=>1, :family_code=>"123")
-	@family_b = Family.new(:locationID=>2, :family_code=>"345")
-        @fake_families = [@family_a, @family_b]
+	    @family_a = Family.new(:locationID=>1, :family_code=>"123")
+	    @family_b = Family.new(:locationID=>2, :family_code=>"345")
+      @fake_families = [@family_a, @family_b]
     end
     it "should get the list of filtered non-approved families" do
       User.should_receive(:find_pending_families).and_return(@fake_families)
