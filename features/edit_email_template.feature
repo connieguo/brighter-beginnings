@@ -8,28 +8,47 @@ Background: families have been added to database
   
   Given the following users exist:
   |        email         | firstname | lastname | locationID | identity |
-  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     1    |
+  | markpeng@cs169.com   |    Mark   |   Peng   |      1     |     3    |
   
   Given the following template exists:
-  | content |
-  | Dear donor, Thank you very much for your contributions to the Adopt-a-Family-Program! Each year, your contributions are responsible for improving the lives of many families and we are very grateful to your generosity. Sincerely, Brighter Beginnings |
+  | template_body | editor_name |
+  | Dear donor, thank you very much for your contributions to the Adopt-a-Family-Program! Each year, your contributions are responsible for improving the lives of many families and we are very grateful to your generosity. Sincerely, Brighter Beginnings | markpeng@cs169.com |
 
 @omniauth_test
 Scenario: successfully editing the template
   # your steps here
   Given I have successfully completed authentication through Google
-  And I am on the case manager home page
-  And I follow "Edit Template"
-  And I enter "Dear donor, This is a new template" for the "template field"
+  And I am on the case manager main page
+  And I follow "All Donations"
+  And I follow "(View pending donations)"
+  And I follow "(View/Edit Donor Email Template)" 
+  And I fill in "email_template_template" with "Dear donor, This is a new template"
   And I press "Submit"
-  Then I should see "Congratulations, your template has been edited!"
+  Then I should see "Successfully added template! "
+  And I should see "Dear donor, This is a new template"
+
 
 @omniauth_test
 Scenario: getting an error while editing template
   # your steps here
   Given I have successfully completed authentication through Google
-  And I am on the case manager home page
-  And I follow "Edit Template"
-  And I enter "" for the "template field"
+  And I am on the case manager main page
+  And I follow "All Donations"
+  And I follow "(View pending donations)"
+  And I follow "(View/Edit Donor Email Template)" 
+  And I fill in "email_template_template" with ""
   And I press "Submit"
-  Then I should see "Sorry, the template field cannot be mandatory"
+  Then I should not see "Successfully added template! "
+  
+@omniauth_test
+Scenario: successfully editing the template with template fillers
+  # your steps here
+  Given I have successfully completed authentication through Google
+  And I am on the case manager main page
+  And I follow "All Donations"
+  And I follow "(View pending donations)"
+  And I follow "(View/Edit Donor Email Template)" 
+  And I fill in "email_template_template" with "Dear {{user_name}}, with email {{user_email}}, this is a new template"
+  And I press "Submit"
+  Then I should see "Successfully added template! "
+  And I should see "Dear Mark Peng, with email markpeng@cs169.com, this is a new template"
