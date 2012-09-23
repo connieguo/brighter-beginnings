@@ -10,6 +10,13 @@
 		<strong>Name:&nbsp;</strong><%= user.firstname%>&nbsp;<%= user.lastname %><br />
 		<strong>Email:&nbsp;</strong><%= user.email %><br />
        		<strong>Location:&nbsp;</strong><%= user.get_location %><br />
+                <strong>Address 1:&nbsp;</strong><%= user.address_1 =%><br />
+                <% if user.address_2 != "" %>
+                   <strong>Address 2:&nbsp;</strong><%= user.address_2 =%><br />
+                <% end %>
+                <strong>City:&nbsp;</strong><%= user.city =%><br />
+                <strong>State:&nbsp;</strong><%= user.state =%><br />
+                <strong>Zip Code:&nbsp;</strong><%= user.zipcode =%><br />
                 <% if user_at_least_manager? %>
                      <%= link_to "Delete Donor", user, :id=>"user_#{user.id}" ,:class=> "btn btn-danger btn-mini", confirm: 'Are you sure you want to delete this donor?', method: :delete %>
                 <% end %>        
