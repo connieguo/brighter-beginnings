@@ -9,6 +9,11 @@ class UserMailer < ActionMailer::Base
   def donation_confirmation(user)
      @user = user
      @template = EmailTemplate.get_current_template.template_body
+     @template = @template.gsub("{{user_name}}", @user.firstname+ " " + @user.lastname)
+     @template = @template.gsub("{{user_email}}", @user.email)
+     @template = @template.gsub("{{user_firstname}}", @user.firstname)
+     @template = @template.gsub("{{user_lastname}}", @user.lastname)
+     @template = @template.gsub("{{user_location}}", @user.location)
      mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been approved!") do |format|
        format.text do
          render :text => "#{@template}"
