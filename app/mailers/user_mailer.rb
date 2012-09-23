@@ -13,7 +13,7 @@ class UserMailer < ActionMailer::Base
      @template = @template.gsub("{{user_email}}", @user.email)
      @template = @template.gsub("{{user_firstname}}", @user.firstname)
      @template = @template.gsub("{{user_lastname}}", @user.lastname)
-     @template = @template.gsub("{{user_location}}", @user.location)
+     @template = @template.gsub("{{user_location}}", Family.get_location_name(@user.locationID))
      mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been approved!") do |format|
        format.text do
          render :text => "#{@template}"
