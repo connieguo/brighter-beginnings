@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_email(session[:user_email])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_email(session[:user_email])
   end
 
   # POST /users

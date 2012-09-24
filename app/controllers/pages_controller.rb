@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   end
   
   def signout
-    session[:uid] = nil #Logs out the user
+    reset_session
     redirect_to :action => "home" #redirect to the homepage
   end
 end
