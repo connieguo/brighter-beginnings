@@ -1,17 +1,13 @@
-<table class="profile" summary="Profile information">
-  <tr>
-    <td class="main">
-      <h1>
-        <%= @user.firstname %>
-        <%= @user.lastname %>
-      </h1>
-    </td>
-  </tr>
-</table>
+<h1>
+  <%= @user.firstname %>
+  <%= @user.lastname %>
+</h1>
 
 <li><strong>First Name</strong> <%= @user.firstname %></li>
 <li><strong>Last Name</strong> <%= @user.lastname %></li>
-<li><strong>Address</strong> <%= @user.address %></li>
-<li><strong>Location ID</strong> <%= @user.locationID %></li>
 <li><strong>Organization</strong> <%= @user.organization %></li>
-<li><strong>Email</strong> <%= @user.email %></li>
+<li><strong>Address 1</strong> <%= @user.address_1 %></li>
+<li><strong>Address 2</strong> <%= @user.address_2 %></li>
+<li><strong>City</strong> <%= @user.city %></li>
+<li><strong>State</strong> <%= @user.state %></li>
+<li><strong>Zip Code</strong> <%= @user.zipcode %></li>

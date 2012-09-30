@@ -25,7 +25,7 @@ BrighterBeginnings::Application.routes.draw do
   root :to => "pages#index"
   match '/signup', :to => 'users#new'
   #match '/home', :to => 'pages#donor'
-  match '/profile', :to => 'users#main'  
+  match '/profile', :to => 'users#edit'  
   match '/auth/google/callback', :to => 'sessions#create', :as => 'login_callback'
   match '/auth/failure', :to => 'sessions#failed_login'
   match '/logout', :to => 'sessions#logout'
