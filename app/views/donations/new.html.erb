@@ -1,14 +1,11 @@
 <h1>Adopt <%= @display %>!</h1><br />
 <%= form_for @donation do |f| %>
-   <label>Drop Off Location:</label>
-   <select id="donation_dropoff_site" name="donation[dropoff_site]">
-      <option value="1">Oakland</option>
-      <option value="2">Richmond</option>
-      <option value="3">Antioch</option>
-      <option value="4">Bay Point</option>
+   <label>Desired Drop-Off Date:</label>
+   <select name="donation[scheduled_dropoff]" style="width:300px;">
+      <option value="12/8/2012">Saturday, 12/8/2012 (11:00am-5:00pm)</option>
+      <option value="12/12/2012">Wednesday, 12/12/2012 (11:00am-7:00pm)</option>
     </select>  
 
-<label>Desired Drop-Off Date:(mm/dd/yyyy)</label> 
-<input type="text" name="donation[scheduled_dropoff]" id="datepicker"><br /><br />
-   <%=f.submit "Donate Now!", :id=> "Donate", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to donate?"%>
+<p>(Please note, your drop-off location will be the office in the location of the family you chose.)</p>   
+<%=f.submit "Donate Now!", :id=> "Donate", :class=>"btn btn-primary btn-large", confirm: "Are you sure you want to donate?"%>
 <%end%>
