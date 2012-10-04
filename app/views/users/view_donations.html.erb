@@ -16,10 +16,21 @@
       <% if user_at_least_case_manager? %>
         <br/><strong>Donor: </strong><%= get_user_info(donation.user_id) %>
         <br/><strong>Approved by: </strong><%= get_user_info(donation.approved_by) %>
-        <br/><strong>Dropped off: </strong><%= donation.dropped_off_date %>
+        <br/><strong>Dropped off Date: </strong><%= donation.dropped_off_date %>
         <br/><strong>Date Delivered: </strong><%= donation.date_delivered %>
-      <% end %>
-    </td> 
-  </tr>
+	<br/><strong>Number of Boxes: </strong><%= donation.num_boxes %>
+      </td> 
+      </tr>
+        <% if user_at_least_manager? %>
+	<tr>
+	<td>
+        <%= form_for donation do |f| %>
+	<br/>
+	<strong>Dropped Off Date: </strong><input type="text" id="donation_dropped_off_date" name="donation[dropped_off_date]" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<strong>Date Delivered: </strong><input type="text" id="donation_date_delivered" name="donation[date_delivered]" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<strong>Number of Boxes: </strong><input type="text" id="donation_num_boxes" name="donation[num_boxes]" style="width:50px; height:15px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><%= f.submit "Edit Donation Info", :class=>"btn btn-primary btn-small" %></td></tr>
+	<% end %> 
+	<% end %>
+     <% end %>
 <% end %>
 </table>

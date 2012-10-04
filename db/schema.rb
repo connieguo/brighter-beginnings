@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120501043635) do
+ActiveRecord::Schema.define(:version => 20121004052542) do
 
   create_table "donations", :force => true do |t|
     t.string   "scheduled_dropoff"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120501043635) do
     t.datetime "updated_at"
     t.integer  "dropoff_site"
     t.integer  "approved_by"
+    t.integer  "num_boxes"
   end
 
   create_table "email_templates", :force => true do |t|
