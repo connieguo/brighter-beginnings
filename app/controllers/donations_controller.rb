@@ -73,7 +73,6 @@ class DonationsController < ApplicationController
 
     respond_to do |format|
       if @donation.update_attributes(params[:donation])
-	flash[:notice] = "hi"
         format.html { redirect_to "/users/donations", notice: 'Donation was successfully updated.' }
         format.json { head :ok }
       else
@@ -95,7 +94,7 @@ class DonationsController < ApplicationController
     @family.save
 
     respond_to do |format|
-      format.html { redirect_to session[:redirect_path], notice: "Successfully deleted donation!" }
+      format.html { redirect_to "/users/donations", notice: "Successfully deleted donation!" }
       format.json { head :ok }
     end
   end

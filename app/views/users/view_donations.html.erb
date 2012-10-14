@@ -26,9 +26,9 @@
 	<td>
         <%= form_for donation do |f| %>
 	<br/>
-	<strong>Dropped Off Date: </strong><input type="text" id="donation_dropped_off_date" name="donation[dropped_off_date]" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<strong>Date Delivered: </strong><input type="text" id="donation_date_delivered" name="donation[date_delivered]" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<strong>Number of Boxes: </strong><input type="text" id="donation_num_boxes" name="donation[num_boxes]" style="width:50px; height:15px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><%= f.submit "Edit Donation Info", :class=>"btn btn-primary btn-small" %></td></tr>
+	<strong>Dropped Off Date: </strong><input type="text" id="donation_dropped_off_date" name="donation[dropped_off_date]" value="<%= donation.dropped_off_date %>" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<strong>Date Delivered: </strong><input type="text" id="donation_date_delivered" name="donation[date_delivered]" value="<%= donation.date_delivered %>" style="width:120px; height:15px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<strong>Number of Boxes: </strong><input type="text" id="donation_num_boxes" name="donation[num_boxes]" value="<%= donation.num_boxes %>" style="width:50px; height:15px;" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><%= f.submit "Edit Donation Info", :class=>"btn btn-primary btn-small" %>&nbsp;&nbsp;&nbsp;<%= link_to 'Delete Donation', donation, :class=>"btn btn-danger btn-small", confirm: "Are you sure? This donation will be deleted forever.", method: :delete %></td></tr>
 	<% end %> 
 	<% end %>
      <% end %>

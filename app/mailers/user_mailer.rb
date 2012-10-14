@@ -9,6 +9,9 @@ class UserMailer < ActionMailer::Base
   def donation_confirmation(user)
      @user = user
      @template = EmailTemplate.get_current_template.template_body
+     if @template == nil
+	@template = ""
+     end
      @template = @template.gsub("{{user_name}}", @user.firstname+ " " + @user.lastname)
      @template = @template.gsub("{{user_email}}", @user.email)
      @template = @template.gsub("{{user_firstname}}", @user.firstname)
