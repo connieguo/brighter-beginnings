@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     @user.identity = 1
     respond_to do |format|
       if @user.save
-        @user.notify_registration
         format.html { redirect_to user_main_path, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
