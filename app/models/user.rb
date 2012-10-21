@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
      end
   end 
 
-  def notify_donation_approved
-     UserMailer.donation_confirmation(self).deliver
+  def notify_donation_approved(donation)
+     UserMailer.donation_confirmation(self,donation).deliver
   end
 
   def notify_donation_rejected

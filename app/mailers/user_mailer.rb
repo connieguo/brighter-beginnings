@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Welcome to the BrighterBeginnings Adopt-a-Family Program!")
   end
 
-  def donation_confirmation(user)
+  def donation_confirmation(user,donation)
      @user = user
      @template = EmailTemplate.get_current_template.template_body
      if @template == nil
@@ -17,6 +17,7 @@ class UserMailer < ActionMailer::Base
      @template = @template.gsub("{{user_firstname}}", @user.firstname)
      @template = @template.gsub("{{user_lastname}}", @user.lastname)
      @template = @template.gsub("{{user_location}}", Family.get_location_name(@user.locationID))
+     @template = @template.gsub("{{donation_family_code}}", donation.family_code)
      mail(:to => "#{user.email}>", :subject => "[Brighter Beginnings] Your donation has been approved!") do |format|
        format.text do
          render :text => "#{@template}"
