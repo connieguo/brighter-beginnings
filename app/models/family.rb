@@ -8,6 +8,7 @@ class Family < ActiveRecord::Base
   OAKLAND_ID = 1
   RICHMOND_ID = 2
   ANTIOCH_ID = 3
+  BAYPOINT_ID = 4
   
   def get_size
 	  return FamilyMember.find_all_by_family_code(self.family_code).count
@@ -27,6 +28,8 @@ class Family < ActiveRecord::Base
         return "Richmond"
       when 3
         return "Antioch"
+      when 4
+        return "Bay Point"
     end
   end
 end
