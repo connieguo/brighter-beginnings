@@ -4,7 +4,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 587,
   :domain               => "gmail.com",
   :user_name            => "bb.manager169@gmail.com",
-  :password             => "bbmanager169",
+  :password             => "bbmanager99",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
