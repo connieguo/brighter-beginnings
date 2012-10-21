@@ -2,8 +2,8 @@ ActionMailer::Base.smtp_settings = {
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => "gmail.com",
-  :user_name            => "bb.manager169",
-  :password             => "brighterbeginningsmanager",
+  :user_name            => "bb.case_manager169",
+  :password             => "brighterbeginningscasemanager",
   :authentication       => "plain",
   :enable_starttls_auto => true
 }
